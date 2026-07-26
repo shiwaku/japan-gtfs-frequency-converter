@@ -6,7 +6,7 @@
 # 最小ズームは aggregate.py が地物ごとに指定済み（便数の多い幹線から先に現れる）。
 # ここで --drop-densest-as-needed を付けないのは、密度だけで間引かれると
 # 全国ズームの絵が「たまたま残った区間」になってしまうため。
-# 地物数は区間6.2万・停留所5.4万で、間引きなしでもタイル上限に収まる。
+# 地物数は区間8.6万・停留所7.4万で、間引きなしでもタイル上限に収まる。
 
 set -euo pipefail
 
@@ -31,9 +31,9 @@ tippecanoe \
   --named-layer="stops:$STOPS" \
   --no-line-simplification \
   --preserve-input-order \
-  --attribution='<a href="https://gtfs-data.jp/">GTFSデータリポジトリ</a>' \
+  --attribution='<a href="https://gtfs-data.jp/">GTFSデータリポジトリ</a> | <a href="https://ckan.odpt.org/">公共交通オープンデータセンター</a>' \
   --name="全国バス運行頻度図" \
-  --description="gtfs-data.jp の GTFS から集計した平日の運行頻度"
+  --description="gtfs-data.jp と ODPT の GTFS から集計した平日の運行頻度"
 
 echo
 ls -lh "$OUT"

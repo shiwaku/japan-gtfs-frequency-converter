@@ -1,5 +1,7 @@
-# 取得した GTFS フィード本体（76MB / 543 本）。src/fetch.py で再取得できる
+# 取得した GTFS フィード本体（gtfs-data.jp 76MB / ODPT 73MB）。
+# src/fetch.py と src/fetch_odpt.py で再取得できる
 data/feeds/
+data/feeds_odpt/
 
 # 中間生成物。build/bus_frequency.pmtiles だけは成果物としてコミットする
 build/*.geojsonl

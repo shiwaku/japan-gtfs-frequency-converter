@@ -13,7 +13,7 @@
 <meta charset="utf-8">
 <title>全国バス運行頻度図</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="全国のバスGTFSから集計した平日の区間別運行本数（gtfs-data.jp 543フィード / 62,391区間）">
+<meta name="description" content="全国のバスGTFSから集計した平日の区間別運行本数（gtfs-data.jp と ODPT の648フィード / 85,553区間）">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg stroke-linecap='round' fill='none'%3E%3Cpath d='M2 12h12' stroke='%230d366b' stroke-width='3'/%3E%3Cpath d='M3 8h10' stroke='%232a78d6' stroke-width='2'/%3E%3Cpath d='M4 4h8' stroke='%2386b6ef' stroke-width='1.2'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
 <style>
@@ -73,14 +73,14 @@
   <p class="sub">1日あたりの便数 / 区間</p>
   <ul id="legend-items"></ul>
   <p class="src"><a href="https://github.com/shiwaku/japan-gtfs-frequency-converter">生成コード</a>
-    ／ 出典 <a href="https://gtfs-data.jp/">GTFSデータリポジトリ</a></p>
+    ／ 出典 <a href="https://gtfs-data.jp/">GTFSデータリポジトリ</a>・<a href="https://ckan.odpt.org/">ODPT</a></p>
 </div>
 <div id="hud" class="panel">z<span id="z">–</span></div>
 
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="https://unpkg.com/pmtiles@3.2.0/dist/pmtiles.js"></script>
 <script>
-// 便数の分布は 1-5:25% / 6-11:33% / 12-23:26% / 24-47:11% / 48-95:3.6% / 96+:1.3%。
+// 便数の分布は 1-5:21% / 6-11:27% / 12-23:24% / 24-47:14% / 48-95:6.8% / 96+:6.9%。
 // 等間隔ではなくおおよそ倍々で刻む。色は単一色相の連続ランプ（明→暗）、
 // 太さを従属的にもう一段の符号化として重ねる（細線は色だけだと判別しづらいため）。
 const BREAKS = [6, 12, 24, 48, 96];
@@ -134,7 +134,7 @@ const map = new maplibregl.Map({
         type: 'vector',
         // 相対解決にしておくと、ローカル (/) でも Pages (/<repo>/) でも同じ記述で通る
         url: 'pmtiles://' + new URL('build/bus_frequency.pmtiles', location.href).href,
-        attribution: '<a href="https://gtfs-data.jp/">GTFSデータリポジトリ</a>',
+        attribution: '<a href="https://gtfs-data.jp/">GTFSデータリポジトリ</a> | <a href="https://ckan.odpt.org/">公共交通オープンデータセンター</a>',
       },
     },
     layers: [

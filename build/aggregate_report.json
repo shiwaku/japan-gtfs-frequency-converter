@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-26T16:07:49+09:00",
+ "generated_at": "2026-07-26T19:41:28+09:00",
  "today": "2026-07-26",
  "options": {
   "today": "2026-07-26",
@@ -7,27 +7,36 @@
   "begin_time": "",
   "end_time": "",
   "unify_stops": true,
+  "unify_threshold": 200.0,
   "delimiter": "",
   "directional": false,
   "by_route": false,
   "merge_operators": true,
+  "unify_threshold_m": 200.0,
   "merge_threshold_m": 50.0,
-  "max_segment_km": 30.0
+  "max_segment_km": 30.0,
+  "dup_overlap": 0.8
+ },
+ "sources": {
+  "gtfs-data.jp": 543,
+  "odpt": 105
  },
  "totals": {
-  "feeds": 543,
-  "segments": 62391,
-  "segments_dropped_long": 39,
-  "stops": 54467,
+  "feeds": 648,
+  "segments": 85553,
+  "segments_dropped_long": 71,
+  "stops": 73999,
   "status": {
-   "ok": 513,
-   "skip": 29,
-   "error": 1
+   "ok": 565,
+   "skip": 69,
+   "error": 1,
+   "duplicate": 13
   }
  },
  "feeds": [
   {
    "key": "sankobus__sankobus",
+   "source": "gtfs-data.jp",
    "organization_name": "産交バス",
    "feed_name": "産交バス",
    "pref_id": 43,
@@ -35,11 +44,90 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 3335,
-   "n_stops": 3025
+   "n_segments": 3360,
+   "n_stops": 3038
+  },
+  {
+   "key": "seibu_bus__b-bus_gtfs__SeibuBus-GTFS",
+   "source": "odpt",
+   "organization_name": "西武バス バス関連情報",
+   "feed_name": "seibu_bus__b-bus_gtfs",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 2121,
+   "n_stops": 1926
+  },
+  {
+   "key": "b_bus_gtfs_jp-toei__ToeiBus-GTFS",
+   "source": "odpt",
+   "organization_name": "東京都交通局 バス関連情報",
+   "feed_name": "b_bus_gtfs_jp-toei",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 2086,
+   "n_stops": 1688
+  },
+  {
+   "key": "keio_bus_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "京王バス",
+   "feed_name": "keio_bus_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-31",
+   "status": "ok",
+   "note": "",
+   "n_segments": 1770,
+   "n_stops": 1460
+  },
+  {
+   "key": "yokohama_municipal_bus__Bus",
+   "source": "odpt",
+   "organization_name": "横浜市営バス",
+   "feed_name": "yokohama_municipal_bus",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 1622,
+   "n_stops": 1268
+  },
+  {
+   "key": "sendai_municipal_bus_realtime_information__bus_realtime_information",
+   "source": "odpt",
+   "organization_name": "仙台市交通局　バス関連情報（GTFS-JP及びGTFSリアルタイム）",
+   "feed_name": "sendai_municipal_bus_realtime_information",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 1312,
+   "n_stops": 1088
+  },
+  {
+   "key": "kan_etsu_transportation_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "関越交通バス",
+   "feed_name": "kan_etsu_transportation_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 1218,
+   "n_stops": 1103
   },
   {
    "key": "tokubus__tokushimabus",
+   "source": "gtfs-data.jp",
    "organization_name": "徳島バス株式会社",
    "feed_name": "徳島バス株式会社",
    "pref_id": 36,
@@ -47,11 +135,51 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 1169,
-   "n_stops": 1022
+   "n_segments": 1177,
+   "n_stops": 1027
+  },
+  {
+   "key": "odakyu_bus_aii_lines__AIILines",
+   "source": "odpt",
+   "organization_name": "小田急バス",
+   "feed_name": "odakyu_bus_aii_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 1094,
+   "n_stops": 936
+  },
+  {
+   "key": "nishi_tokyo_bus_nt_bus__NTBus",
+   "source": "odpt",
+   "organization_name": "西東京バス",
+   "feed_name": "nishi_tokyo_bus_nt_bus",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 1070,
+   "n_stops": 928
+  },
+  {
+   "key": "kyoto_municipal_transportation_kyoto_city_bus_gtfs__Kyoto_City_Bus_GTFS",
+   "source": "odpt",
+   "organization_name": "京都市営バス",
+   "feed_name": "kyoto_municipal_transportation_kyoto_city_bus_gtfs",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 968,
+   "n_stops": 726
   },
   {
    "key": "yamakobus__YAMAKOBUS",
+   "source": "gtfs-data.jp",
    "organization_name": "山形交通",
    "feed_name": "山交バス",
    "pref_id": 6,
@@ -59,11 +187,38 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 932,
-   "n_stops": 834
+   "n_segments": 942,
+   "n_stops": 854
+  },
+  {
+   "key": "kagoshimacity__aibus",
+   "source": "gtfs-data.jp",
+   "organization_name": "鹿児島市",
+   "feed_name": "鹿児島市コミュニティバス「あいばす」",
+   "pref_id": 46,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 934,
+   "n_stops": 789
+  },
+  {
+   "key": "keifuku_bus_keifuku_rosen__keifuku_rosen",
+   "source": "odpt",
+   "organization_name": "京福バス（路線バス）",
+   "feed_name": "keifuku_bus_keifuku_rosen",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 923,
+   "n_stops": 818
   },
   {
    "key": "gifucity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "岐阜市",
    "feed_name": "岐阜市コミュニティバス",
    "pref_id": 21,
@@ -75,19 +230,8 @@
    "n_stops": 775
   },
   {
-   "key": "kagoshimacity__aibus",
-   "organization_name": "鹿児島市",
-   "feed_name": "鹿児島市コミュニティバス「あいばす」",
-   "pref_id": 46,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 838,
-   "n_stops": 652
-  },
-  {
    "key": "shinjobankotsu__SHINJOBANKOTSU",
+   "source": "gtfs-data.jp",
    "organization_name": "新常磐交通株式会社",
    "feed_name": "新常磐交通",
    "pref_id": 7,
@@ -95,11 +239,38 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 791,
-   "n_stops": 725
+   "n_segments": 800,
+   "n_stops": 729
+  },
+  {
+   "key": "iyotetsu_bus_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "伊予鉄バス",
+   "feed_name": "iyotetsu_bus_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 786,
+   "n_stops": 692
+  },
+  {
+   "key": "gunma_bus_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "株式会社群馬バス",
+   "feed_name": "gunma_bus_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 674,
+   "n_stops": 604
   },
   {
    "key": "chitetsu__chitetsubus",
+   "source": "gtfs-data.jp",
    "organization_name": "富山地方鉄道",
    "feed_name": "富山地方鉄道バス",
    "pref_id": 16,
@@ -107,11 +278,25 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 651,
-   "n_stops": 580
+   "n_segments": 662,
+   "n_stops": 587
+  },
+  {
+   "key": "matsue_city_traffic_office_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "松江市交通局",
+   "feed_name": "matsue_city_traffic_office_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-08-03",
+   "status": "ok",
+   "note": "",
+   "n_segments": 643,
+   "n_stops": 521
   },
   {
    "key": "naganocity__shiei_noriaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "長野市",
    "feed_name": "長野市営バス・乗合タクシー",
    "pref_id": 20,
@@ -119,11 +304,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 616,
-   "n_stops": 596
+   "n_segments": 620,
+   "n_stops": 600
   },
   {
    "key": "mie-kotsu__sancochusei",
+   "source": "gtfs-data.jp",
    "organization_name": "三重交通",
    "feed_name": "中勢営業所",
    "pref_id": 24,
@@ -131,11 +317,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 611,
-   "n_stops": 562
+   "n_segments": 615,
+   "n_stops": 564
   },
   {
    "key": "nouhibus__nouhibus",
+   "source": "gtfs-data.jp",
    "organization_name": "濃飛乗合自動車（濃飛バス）",
    "feed_name": "濃飛バス（一般路線）",
    "pref_id": 21,
@@ -143,11 +330,38 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 599,
-   "n_stops": 532
+   "n_segments": 606,
+   "n_stops": 539
+  },
+  {
+   "key": "hokkaido_takushoku_bus_takusyoku_regular_line__Takusyoku_regular_line",
+   "source": "odpt",
+   "organization_name": "拓殖バス　一般路線",
+   "feed_name": "hokkaido_takushoku_bus_takusyoku_regular_line",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 569,
+   "n_stops": 500
+  },
+  {
+   "key": "izuhakone_bus_izhb__IZHB",
+   "source": "odpt",
+   "organization_name": "伊豆箱根バス株式会社",
+   "feed_name": "izuhakone_bus_izhb",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-28",
+   "status": "ok",
+   "note": "",
+   "n_segments": 569,
+   "n_stops": 519
   },
   {
    "key": "kochi-seinan-kotsu__GTFS-Seinantraffic_Localbus",
+   "source": "gtfs-data.jp",
    "organization_name": "高知西南交通株式会社",
    "feed_name": "路線バス",
    "pref_id": 39,
@@ -155,11 +369,38 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 564,
-   "n_stops": 538
+   "n_segments": 566,
+   "n_stops": 539
+  },
+  {
+   "key": "transportation_bureau_city_of_kawasaki_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "川崎市バス",
+   "feed_name": "transportation_bureau_city_of_kawasaki_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 552,
+   "n_stops": 476
+  },
+  {
+   "key": "towadakankodentetsu__toutetsu",
+   "source": "gtfs-data.jp",
+   "organization_name": "十和田観光電鉄株式会社",
+   "feed_name": "十和田観光電鉄（一般路線）",
+   "pref_id": 2,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 544,
+   "n_stops": 488
   },
   {
    "key": "matsumotocity__guruttomatsumotobus2",
+   "source": "gtfs-data.jp",
    "organization_name": "松本市",
    "feed_name": "地域連携バス",
    "pref_id": 20,
@@ -168,22 +409,11 @@
    "status": "ok",
    "note": "",
    "n_segments": 530,
-   "n_stops": 457
-  },
-  {
-   "key": "towadakankodentetsu__toutetsu",
-   "organization_name": "十和田観光電鉄株式会社",
-   "feed_name": "十和田観光電鉄（一般路線）",
-   "pref_id": 2,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 521,
-   "n_stops": 477
+   "n_stops": 460
   },
   {
    "key": "tosaden-kotsu__GTFS-Tosadentraffic_Regularbus",
+   "source": "gtfs-data.jp",
    "organization_name": "とさでん交通株式会社",
    "feed_name": "路線バス",
    "pref_id": 39,
@@ -191,11 +421,38 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 514,
-   "n_stops": 471
+   "n_segments": 521,
+   "n_stops": 474
+  },
+  {
+   "key": "akita_city_akita_city_bus__AkitaCityBus",
+   "source": "odpt",
+   "organization_name": "秋田市　マイタウン・バス、中心市街地循環バスぐるる",
+   "feed_name": "akita_city_akita_city_bus",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 511,
+   "n_stops": 492
+  },
+  {
+   "key": "aomori_city_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "青森市営バス路線情報",
+   "feed_name": "aomori_city_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 497,
+   "n_stops": 408
   },
   {
    "key": "ichinosekicity__Ichinosekibus",
+   "source": "gtfs-data.jp",
    "organization_name": "一関市",
    "feed_name": "一関市市営バス",
    "pref_id": 3,
@@ -207,7 +464,21 @@
    "n_stops": 448
   },
   {
+   "key": "kawasaki_tsurumi_rinko_bus_allrinko__allrinko",
+   "source": "odpt",
+   "organization_name": "川崎鶴見臨港バス株式会社",
+   "feed_name": "kawasaki_tsurumi_rinko_bus_allrinko",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 473,
+   "n_stops": 391
+  },
+  {
    "key": "takayamacity__noramaicar",
+   "source": "gtfs-data.jp",
    "organization_name": "高山市",
    "feed_name": "のらマイカー",
    "pref_id": 21,
@@ -220,6 +491,7 @@
   },
   {
    "key": "kaetsunou__kaetsunouippan",
+   "source": "gtfs-data.jp",
    "organization_name": "加越能バス",
    "feed_name": "加越能バス（一般路線）",
    "pref_id": 16,
@@ -227,11 +499,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 440,
-   "n_stops": 408
+   "n_segments": 450,
+   "n_stops": 413
   },
   {
    "key": "hachinohe__hachinohe-citybus",
+   "source": "gtfs-data.jp",
    "organization_name": "八戸市交通部",
    "feed_name": "八戸市営バス",
    "pref_id": 2,
@@ -239,11 +512,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 429,
-   "n_stops": 364
+   "n_segments": 439,
+   "n_stops": 370
   },
   {
    "key": "mie-kotsu__sancoiga",
+   "source": "gtfs-data.jp",
    "organization_name": "三重交通",
    "feed_name": "伊賀営業所",
    "pref_id": 24,
@@ -251,11 +525,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 426,
-   "n_stops": 399
+   "n_segments": 428,
+   "n_stops": 400
   },
   {
    "key": "ugokotsu__ugokotsu_honjo",
+   "source": "gtfs-data.jp",
    "organization_name": "羽後交通株式会社",
    "feed_name": "羽後交通（本荘地区）",
    "pref_id": 5,
@@ -263,11 +538,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 415,
-   "n_stops": 375
+   "n_segments": 425,
+   "n_stops": 383
   },
   {
    "key": "mie-kotsu__sancoyokkaichi",
+   "source": "gtfs-data.jp",
    "organization_name": "三重交通",
    "feed_name": "四日市営業所",
    "pref_id": 24,
@@ -275,11 +551,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 407,
-   "n_stops": 358
+   "n_segments": 422,
+   "n_stops": 365
   },
   {
    "key": "hakusancity__hakusan_bus_meguru",
+   "source": "gtfs-data.jp",
    "organization_name": "白山市",
    "feed_name": "白山市コミュニティバス「めぐーる」",
    "pref_id": 17,
@@ -292,6 +569,7 @@
   },
   {
    "key": "kokacity__sinaicommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "甲賀市",
    "feed_name": "甲賀市コミュニティバス",
    "pref_id": 25,
@@ -299,11 +577,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 392,
-   "n_stops": 316
+   "n_segments": 395,
+   "n_stops": 317
   },
   {
    "key": "mitoyocity__mitoyocommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "三豊市",
    "feed_name": "三豊市コミュニティバス",
    "pref_id": 37,
@@ -316,6 +595,7 @@
   },
   {
    "key": "shimoko__shimokitakotsu",
+   "source": "gtfs-data.jp",
    "organization_name": "下北交通株式会社",
    "feed_name": "下北交通",
    "pref_id": 2,
@@ -323,11 +603,25 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 374,
-   "n_stops": 357
+   "n_segments": 376,
+   "n_stops": 358
+  },
+  {
+   "key": "nippon_chuo_bus_maebashi_area__Maebashi_Area",
+   "source": "odpt",
+   "organization_name": "日本中央バス　全線 (2025.9/30までは奥多野線を除く)",
+   "feed_name": "nippon_chuo_bus_maebashi_area",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 372,
+   "n_stops": 345
   },
   {
    "key": "kumamoto-toshibus__kumamoto-toshibus",
+   "source": "gtfs-data.jp",
    "organization_name": "熊本都市バス",
    "feed_name": "熊本都市バス",
    "pref_id": 43,
@@ -335,23 +629,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 363,
-   "n_stops": 313
-  },
-  {
-   "key": "shonaikotsu__SHONAIKOTSU",
-   "organization_name": "庄内交通",
-   "feed_name": "庄内交通",
-   "pref_id": 6,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 353,
-   "n_stops": 310
+   "n_segments": 365,
+   "n_stops": 314
   },
   {
    "key": "kumamotodentetsu__kumamotodentetsu-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "熊本電鉄",
    "feed_name": "熊本電鉄バス",
    "pref_id": 43,
@@ -359,11 +642,25 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 351,
-   "n_stops": 321
+   "n_segments": 356,
+   "n_stops": 323
+  },
+  {
+   "key": "shonaikotsu__SHONAIKOTSU",
+   "source": "gtfs-data.jp",
+   "organization_name": "庄内交通",
+   "feed_name": "庄内交通",
+   "pref_id": 6,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 355,
+   "n_stops": 312
   },
   {
    "key": "nantocity__nanbus",
+   "source": "gtfs-data.jp",
    "organization_name": "南砺市",
    "feed_name": "南砺市営バス",
    "pref_id": 16,
@@ -375,7 +672,21 @@
    "n_stops": 290
   },
   {
+   "key": "ogakicity__meihankintetsubus",
+   "source": "gtfs-data.jp",
+   "organization_name": "大垣市",
+   "feed_name": "名阪近鉄バス",
+   "pref_id": 21,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 349,
+   "n_stops": 305
+  },
+  {
    "key": "igacity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "伊賀市",
    "feed_name": "伊賀市行政バス・コミュニティバス",
    "pref_id": 24,
@@ -387,19 +698,34 @@
    "n_stops": 298
   },
   {
-   "key": "ogakicity__meihankintetsubus",
-   "organization_name": "大垣市",
-   "feed_name": "名阪近鉄バス",
-   "pref_id": 21,
-   "license": "CC BY 4.0",
+   "key": "sentetsu_bus_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "船木鉄道株式会社",
+   "feed_name": "sentetsu_bus_all_lines",
+   "pref_id": 0,
+   "license": "",
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 343,
-   "n_stops": 302
+   "n_segments": 346,
+   "n_stops": 310
+  },
+  {
+   "key": "shimoden_shimoden_bus_gtfs_realtime__Shimoden_BUS_GTFS_Realtime",
+   "source": "odpt",
+   "organization_name": "下津井電鉄株式会社（路線バス ODPTライセンス版  GTFS/GTFS Realtime",
+   "feed_name": "shimoden_shimoden_bus_gtfs_realtime",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 342,
+   "n_stops": 323
   },
   {
    "key": "enacity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "恵那市",
    "feed_name": "恵那市自主運行バス（コミュニティバス）",
    "pref_id": 21,
@@ -407,11 +733,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 339,
-   "n_stops": 308
+   "n_segments": 341,
+   "n_stops": 309
   },
   {
    "key": "itoigawabus__itoigawabus",
+   "source": "gtfs-data.jp",
    "organization_name": "糸魚川バス株式会社",
    "feed_name": "糸魚川バス",
    "pref_id": 15,
@@ -419,11 +746,38 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 338,
-   "n_stops": 302
+   "n_segments": 340,
+   "n_stops": 304
+  },
+  {
+   "key": "uno_bus_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "宇野自動車（路線バス）",
+   "feed_name": "uno_bus_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-08-03",
+   "status": "ok",
+   "note": "",
+   "n_segments": 333,
+   "n_stops": 310
+  },
+  {
+   "key": "kyoto_bus_all_lines_anotherversion__AllLinesAnotherversion",
+   "source": "odpt",
+   "organization_name": "京都バス",
+   "feed_name": "kyoto_bus_all_lines_anotherversion",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 330,
+   "n_stops": 295
   },
   {
    "key": "kochi-tobu-kotsu__GTFS-Tobutraffic_Localbus",
+   "source": "gtfs-data.jp",
    "organization_name": "高知東部交通株式会社",
    "feed_name": "路線バス",
    "pref_id": 39,
@@ -436,6 +790,7 @@
   },
   {
    "key": "kuma-bus__kuma-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "熊本バス",
    "feed_name": "熊本バス",
    "pref_id": 43,
@@ -448,6 +803,7 @@
   },
   {
    "key": "toyotacity__kikanbus",
+   "source": "gtfs-data.jp",
    "organization_name": "豊田市",
    "feed_name": "とよたおいでんバス",
    "pref_id": 23,
@@ -460,6 +816,7 @@
   },
   {
    "key": "uozucity__junkai",
+   "source": "gtfs-data.jp",
    "organization_name": "魚津市",
    "feed_name": "魚津市民バス",
    "pref_id": 16,
@@ -472,6 +829,7 @@
   },
   {
    "key": "mie-kotsu__sancoise",
+   "source": "gtfs-data.jp",
    "organization_name": "三重交通",
    "feed_name": "伊勢営業所",
    "pref_id": 24,
@@ -479,11 +837,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 316,
-   "n_stops": 279
+   "n_segments": 321,
+   "n_stops": 281
   },
   {
    "key": "kochi-koryo-kotsu__GTFS-Koryotraffic_Localbus",
+   "source": "gtfs-data.jp",
    "organization_name": "高知高陵交通株式会社",
    "feed_name": "路線バス",
    "pref_id": 39,
@@ -496,6 +855,7 @@
   },
   {
    "key": "kinokawacity__kinokawa_bus",
+   "source": "gtfs-data.jp",
    "organization_name": "紀の川市",
    "feed_name": "紀の川市地域巡回バス・紀の川コミュニティバス",
    "pref_id": 30,
@@ -508,6 +868,7 @@
   },
   {
    "key": "omachicity__omachisiminbus",
+   "source": "gtfs-data.jp",
    "organization_name": "大町市",
    "feed_name": "大町市民バス",
    "pref_id": 20,
@@ -520,6 +881,7 @@
   },
   {
    "key": "takashimacity__takasimasicommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "高島市",
    "feed_name": "高島市コミュニティバス",
    "pref_id": 25,
@@ -527,11 +889,25 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 295,
-   "n_stops": 260
+   "n_segments": 298,
+   "n_stops": 263
+  },
+  {
+   "key": "matsumotocity__guruttomatsumotobus1",
+   "source": "gtfs-data.jp",
+   "organization_name": "松本市",
+   "feed_name": "松本駅・バスターミナル発着バス",
+   "pref_id": 20,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 293,
+   "n_stops": 259
   },
   {
    "key": "shimadacity__shimada_combus",
+   "source": "gtfs-data.jp",
    "organization_name": "島田市",
    "feed_name": "島田市コミュニティバス",
    "pref_id": 22,
@@ -543,19 +919,8 @@
    "n_stops": 277
   },
   {
-   "key": "matsumotocity__guruttomatsumotobus1",
-   "organization_name": "松本市",
-   "feed_name": "松本駅・バスターミナル発着バス",
-   "pref_id": 20,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 292,
-   "n_stops": 257
-  },
-  {
    "key": "tokushima-miyoshicity__miyoshicitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "三好市",
    "feed_name": "三好市営バス",
    "pref_id": 36,
@@ -567,7 +932,21 @@
    "n_stops": 284
   },
   {
+   "key": "gujocity__citybus",
+   "source": "gtfs-data.jp",
+   "organization_name": "郡上市",
+   "feed_name": "郡上市自主運行バス",
+   "pref_id": 21,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 289,
+   "n_stops": 259
+  },
+  {
    "key": "imizucity__imizushi",
+   "source": "gtfs-data.jp",
    "organization_name": "射水市",
    "feed_name": "きときとバス",
    "pref_id": 16,
@@ -580,6 +959,7 @@
   },
   {
    "key": "naritacity__narita-community-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "成田市",
    "feed_name": "成田市コミュニティバス",
    "pref_id": 12,
@@ -588,22 +968,11 @@
    "status": "ok",
    "note": "",
    "n_segments": 287,
-   "n_stops": 255
-  },
-  {
-   "key": "gujocity__citybus",
-   "organization_name": "郡上市",
-   "feed_name": "郡上市自主運行バス",
-   "pref_id": 21,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 286,
    "n_stops": 258
   },
   {
    "key": "inabecity__fukushibus",
+   "source": "gtfs-data.jp",
    "organization_name": "いなべ市",
    "feed_name": "いなべ市福祉バス",
    "pref_id": 24,
@@ -616,6 +985,7 @@
   },
   {
    "key": "oshucity__bus-oshucity-iwate-jp",
+   "source": "gtfs-data.jp",
    "organization_name": "奥州市",
    "feed_name": "奥州市コミュニティバス",
    "pref_id": 3,
@@ -628,6 +998,7 @@
   },
   {
    "key": "kuwanacity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "桑名市",
    "feed_name": "桑名市コミュニティバス「Ｋ－バス」",
    "pref_id": 24,
@@ -640,6 +1011,7 @@
   },
   {
    "key": "kimitsucity__Local_buses_via_Kimitsu_City",
+   "source": "gtfs-data.jp",
    "organization_name": "君津市",
    "feed_name": "君津市経由路線バス",
    "pref_id": 12,
@@ -652,6 +1024,7 @@
   },
   {
    "key": "nagadenbus__nagadenbus-nagano",
+   "source": "gtfs-data.jp",
    "organization_name": "長電バス株式会社",
    "feed_name": "長電バス長野営業所管内",
    "pref_id": 20,
@@ -664,6 +1037,7 @@
   },
   {
    "key": "toyotacity__chiikibus",
+   "source": "gtfs-data.jp",
    "organization_name": "豊田市",
    "feed_name": "豊田市　地域バス",
    "pref_id": 23,
@@ -676,6 +1050,7 @@
   },
   {
    "key": "kamacity__KamaCityBus",
+   "source": "gtfs-data.jp",
    "organization_name": "嘉麻市",
    "feed_name": "嘉麻市バス",
    "pref_id": 40,
@@ -683,11 +1058,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 270,
-   "n_stops": 206
+   "n_segments": 272,
+   "n_stops": 207
   },
   {
    "key": "otawaracity__Ohtawaracitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "大田原市",
    "feed_name": "大田原市営バス",
    "pref_id": 9,
@@ -700,6 +1076,7 @@
   },
   {
    "key": "shimanto-kotsu__GTFS-Shimantotraffic_Localbus",
+   "source": "gtfs-data.jp",
    "organization_name": "株式会社四万十交通",
    "feed_name": "路線バス",
    "pref_id": 39,
@@ -712,6 +1089,7 @@
   },
   {
    "key": "omihachimancity__akakonbus",
+   "source": "gtfs-data.jp",
    "organization_name": "近江八幡市",
    "feed_name": "近江八幡市　あかこんバス　",
    "pref_id": 25,
@@ -724,6 +1102,7 @@
   },
   {
    "key": "minamiawajicity__lanrunbus",
+   "source": "gtfs-data.jp",
    "organization_name": "南あわじ市",
    "feed_name": "らん・らんバス",
    "pref_id": 28,
@@ -736,6 +1115,7 @@
   },
   {
    "key": "higashiomicity__higasiohmisicommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "東近江市",
    "feed_name": "東近江市ちょこっとバス",
    "pref_id": 25,
@@ -748,6 +1128,7 @@
   },
   {
    "key": "reihoku-kanko__GTFS-Reihokukanko_Localbus",
+   "source": "gtfs-data.jp",
    "organization_name": "有限会社嶺北観光自動車",
    "feed_name": "路線バス",
    "pref_id": 39,
@@ -760,6 +1141,7 @@
   },
   {
    "key": "chikuma-bus__rosenbus",
+   "source": "gtfs-data.jp",
    "organization_name": "千曲バス株式会社",
    "feed_name": "路線バス",
    "pref_id": 20,
@@ -767,11 +1149,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 251,
-   "n_stops": 242
+   "n_segments": 253,
+   "n_stops": 244
   },
   {
    "key": "mie-kotsu__sancoshima",
+   "source": "gtfs-data.jp",
    "organization_name": "三重交通",
    "feed_name": "志摩営業所",
    "pref_id": 24,
@@ -779,11 +1162,25 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 248,
-   "n_stops": 231
+   "n_segments": 251,
+   "n_stops": 233
+  },
+  {
+   "key": "akaiwa_city_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "赤磐市広域路線バス・市民バス",
+   "feed_name": "akaiwa_city_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 246,
+   "n_stops": 227
   },
   {
    "key": "kumagayacity__yuuyuubus",
+   "source": "gtfs-data.jp",
    "organization_name": "熊谷市",
    "feed_name": "熊谷市ゆうゆうバス",
    "pref_id": 11,
@@ -795,7 +1192,21 @@
    "n_stops": 224
   },
   {
+   "key": "ryujinbus__ryujinbus",
+   "source": "gtfs-data.jp",
+   "organization_name": "龍神自動車株式会社",
+   "feed_name": "龍神自動車",
+   "pref_id": 30,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 243,
+   "n_stops": 226
+  },
+  {
    "key": "minokamocity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "美濃加茂市",
    "feed_name": "美濃加茂市コミュニティバス「あい愛バス」",
    "pref_id": 21,
@@ -808,6 +1219,7 @@
   },
   {
    "key": "nisshincity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "日進市",
    "feed_name": "くるりんばす（日進市巡回バス）",
    "pref_id": 23,
@@ -819,19 +1231,8 @@
    "n_stops": 157
   },
   {
-   "key": "ryujinbus__ryujinbus",
-   "organization_name": "龍神自動車株式会社",
-   "feed_name": "龍神自動車",
-   "pref_id": 30,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 241,
-   "n_stops": 225
-  },
-  {
    "key": "kakogawacity__kakobuskakobusmini",
+   "source": "gtfs-data.jp",
    "organization_name": "加古川市",
    "feed_name": "かこバス/かこバスミニ",
    "pref_id": 28,
@@ -843,7 +1244,21 @@
    "n_stops": 226
   },
   {
+   "key": "mie-kotsu__sancomatsusaka",
+   "source": "gtfs-data.jp",
+   "organization_name": "三重交通",
+   "feed_name": "松阪営業所",
+   "pref_id": 24,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 235,
+   "n_stops": 219
+  },
+  {
    "key": "chikumacity__chikumajunkanbus",
+   "source": "gtfs-data.jp",
    "organization_name": "千曲市",
    "feed_name": "千曲市循環バス",
    "pref_id": 20,
@@ -852,10 +1267,11 @@
    "status": "ok",
    "note": "",
    "n_segments": 233,
-   "n_stops": 192
+   "n_stops": 193
   },
   {
    "key": "akashicity__tacobustacobusmini",
+   "source": "gtfs-data.jp",
    "organization_name": "明石市",
    "feed_name": "たこバス/たこバスミニ",
    "pref_id": 28,
@@ -867,19 +1283,8 @@
    "n_stops": 200
   },
   {
-   "key": "mie-kotsu__sancomatsusaka",
-   "organization_name": "三重交通",
-   "feed_name": "松阪営業所",
-   "pref_id": 24,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 232,
-   "n_stops": 217
-  },
-  {
    "key": "kisokoikirengo__kiso-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "木曽広域連合",
    "feed_name": "きそバス",
    "pref_id": 20,
@@ -888,10 +1293,11 @@
    "status": "ok",
    "note": "",
    "n_segments": 227,
-   "n_stops": 217
+   "n_stops": 218
   },
   {
    "key": "ashikagacity__Ashikaga-route-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "足利市",
    "feed_name": "足利市路線バス",
    "pref_id": 9,
@@ -904,6 +1310,7 @@
   },
   {
    "key": "setouchicity__setouchicitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "瀬戸内市",
    "feed_name": "瀬戸内市営バス",
    "pref_id": 33,
@@ -911,11 +1318,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 224,
-   "n_stops": 212
+   "n_segments": 226,
+   "n_stops": 213
   },
   {
    "key": "khkhokubu-kotsu__GTFS-Hokubutraffic_Localbus",
+   "source": "gtfs-data.jp",
    "organization_name": "株式会社県交北部交通",
    "feed_name": "路線バス",
    "pref_id": 39,
@@ -923,11 +1331,25 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 222,
-   "n_stops": 220
+   "n_segments": 224,
+   "n_stops": 221
+  },
+  {
+   "key": "kitaena__kitaena",
+   "source": "gtfs-data.jp",
+   "organization_name": "北恵那交通",
+   "feed_name": "北恵那交通",
+   "pref_id": 21,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 223,
+   "n_stops": 209
   },
   {
    "key": "hidacity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "飛騨市",
    "feed_name": "飛騨市営バス「ひだまる」",
    "pref_id": 21,
@@ -939,19 +1361,34 @@
    "n_stops": 178
   },
   {
-   "key": "kitaena__kitaena",
-   "organization_name": "北恵那交通",
-   "feed_name": "北恵那交通",
-   "pref_id": 21,
-   "license": "CC BY 4.0",
+   "key": "nemurokotsu__nemurobus",
+   "source": "gtfs-data.jp",
+   "organization_name": "根室交通株式会社",
+   "feed_name": "根室交通株式会社",
+   "pref_id": 1,
+   "license": "CC0 1.0",
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
    "n_segments": 221,
-   "n_stops": 208
+   "n_stops": 180
+  },
+  {
+   "key": "mie-kotsu__sancokuwana",
+   "source": "gtfs-data.jp",
+   "organization_name": "三重交通",
+   "feed_name": "桑名営業所",
+   "pref_id": 24,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 220,
+   "n_stops": 190
   },
   {
    "key": "shiojiricity__suteppukunn",
+   "source": "gtfs-data.jp",
    "organization_name": "塩尻市",
    "feed_name": "塩尻市地域振興バス「すてっぷくん」",
    "pref_id": 20,
@@ -963,7 +1400,21 @@
    "n_stops": 192
   },
   {
+   "key": "urban_development_aomori_city_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "青森県青森市　コミュニティバス",
+   "feed_name": "urban_development_aomori_city_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 220,
+   "n_stops": 197
+  },
+  {
    "key": "kakegawacity__kakegawa6",
+   "source": "gtfs-data.jp",
    "organization_name": "掛川市",
    "feed_name": "桜木、居尻、倉真、東山、粟本線、市街地循環線南回り、市街地循環線北回り",
    "pref_id": 22,
@@ -975,19 +1426,8 @@
    "n_stops": 201
   },
   {
-   "key": "nemurokotsu__nemurobus",
-   "organization_name": "根室交通株式会社",
-   "feed_name": "根室交通株式会社",
-   "pref_id": 1,
-   "license": "CC0 1.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 219,
-   "n_stops": 179
-  },
-  {
    "key": "yamanashi-hokutocity__hokuto-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "北杜市",
    "feed_name": "北杜市民バス",
    "pref_id": 19,
@@ -999,19 +1439,8 @@
    "n_stops": 197
   },
   {
-   "key": "mie-kotsu__sancokuwana",
-   "organization_name": "三重交通",
-   "feed_name": "桑名営業所",
-   "pref_id": 24,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 214,
-   "n_stops": 186
-  },
-  {
    "key": "hyogo-ono__ranranbus",
+   "source": "gtfs-data.jp",
    "organization_name": "小野市",
    "feed_name": "らんらんバス",
    "pref_id": 28,
@@ -1023,7 +1452,21 @@
    "n_stops": 156
   },
   {
+   "key": "meikobus__meikobus",
+   "source": "gtfs-data.jp",
+   "organization_name": "明光バス株式会社",
+   "feed_name": "明光バス",
+   "pref_id": 30,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 210,
+   "n_stops": 182
+  },
+  {
    "key": "nagai-unyu__Nagaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "永井運輸株式会社",
    "feed_name": "永井バス",
    "pref_id": 10,
@@ -1032,22 +1475,11 @@
    "status": "ok",
    "note": "",
    "n_segments": 210,
-   "n_stops": 199
-  },
-  {
-   "key": "meikobus__meikobus",
-   "organization_name": "明光バス株式会社",
-   "feed_name": "明光バス",
-   "pref_id": 30,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 208,
-   "n_stops": 181
+   "n_stops": 200
   },
   {
    "key": "shisocity__shitanbus-wingshinki",
+   "source": "gtfs-data.jp",
    "organization_name": "宍粟市",
    "feed_name": "しーたんバス（蔦沢線・大谷線以外）",
    "pref_id": 28,
@@ -1059,7 +1491,21 @@
    "n_stops": 194
   },
   {
+   "key": "gunmachuo_bus_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "群馬中央バス株式会社",
+   "feed_name": "gunmachuo_bus_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 206,
+   "n_stops": 195
+  },
+  {
    "key": "nikkocity__nikkocity",
+   "source": "gtfs-data.jp",
    "organization_name": "日光市",
    "feed_name": "日光市営バス",
    "pref_id": 9,
@@ -1068,10 +1514,11 @@
    "status": "ok",
    "note": "",
    "n_segments": 205,
-   "n_stops": 200
+   "n_stops": 201
   },
   {
    "key": "tokubus-nanbu__tokushimabusnanbu",
+   "source": "gtfs-data.jp",
    "organization_name": "徳島バス南部株式会社",
    "feed_name": "徳島バス南部株式会社",
    "pref_id": 36,
@@ -1084,6 +1531,7 @@
   },
   {
    "key": "anjocity__AnkuruBus",
+   "source": "gtfs-data.jp",
    "organization_name": "安城市",
    "feed_name": "あんくるバス",
    "pref_id": 23,
@@ -1096,6 +1544,7 @@
   },
   {
    "key": "kotosan__sakaide-local",
+   "source": "gtfs-data.jp",
    "organization_name": "琴参バス株式会社",
    "feed_name": "坂出路線",
    "pref_id": 37,
@@ -1108,6 +1557,7 @@
   },
   {
    "key": "kitashitara__odekakehokusetsu",
+   "source": "gtfs-data.jp",
    "organization_name": "北設楽郡公共交通活性化協議会",
    "feed_name": "おでかけ北設（設楽町・東栄町・豊根村）",
    "pref_id": 23,
@@ -1120,6 +1570,7 @@
   },
   {
    "key": "uedabus__noriai_bus",
+   "source": "gtfs-data.jp",
    "organization_name": "上田バス株式会社",
    "feed_name": "路線バス",
    "pref_id": 20,
@@ -1132,6 +1583,7 @@
   },
   {
    "key": "nagaicity__NagaiCity",
+   "source": "gtfs-data.jp",
    "organization_name": "長井市",
    "feed_name": "長井市営バス",
    "pref_id": 6,
@@ -1144,6 +1596,7 @@
   },
   {
    "key": "matsusakacity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "松阪市",
    "feed_name": "松阪市コミュニティ交通",
    "pref_id": 24,
@@ -1155,7 +1608,21 @@
    "n_stops": 169
   },
   {
+   "key": "kumanogobobus__kumanogobobus_kumano",
+   "source": "gtfs-data.jp",
+   "organization_name": "熊野御坊南海バス株式会社",
+   "feed_name": "熊野御坊南海バス 熊野エリア",
+   "pref_id": 30,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 185,
+   "n_stops": 167
+  },
+  {
    "key": "kumanogobobus__kumanogobobus_gobo",
+   "source": "gtfs-data.jp",
    "organization_name": "熊野御坊南海バス株式会社",
    "feed_name": "熊野御坊南海バス 御坊エリア",
    "pref_id": 30,
@@ -1168,6 +1635,7 @@
   },
   {
    "key": "munakatacity__MunakataCityCommunityBus",
+   "source": "gtfs-data.jp",
    "organization_name": "宗像市",
    "feed_name": "宗像市コミュニティバス",
    "pref_id": 40,
@@ -1176,22 +1644,24 @@
    "status": "ok",
    "note": "",
    "n_segments": 184,
-   "n_stops": 136
+   "n_stops": 137
   },
   {
-   "key": "kumanogobobus__kumanogobobus_kumano",
-   "organization_name": "熊野御坊南海バス株式会社",
-   "feed_name": "熊野御坊南海バス 熊野エリア",
-   "pref_id": 30,
-   "license": "CC BY 4.0",
+   "key": "akiha_bus_service_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "秋葉バス",
+   "feed_name": "akiha_bus_service_all_lines",
+   "pref_id": 0,
+   "license": "",
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
    "n_segments": 183,
-   "n_stops": 166
+   "n_stops": 176
   },
   {
    "key": "namerikawacity__norumycar",
+   "source": "gtfs-data.jp",
    "organization_name": "滑川市",
    "feed_name": "コミュニティバス「のるmycar」",
    "pref_id": 16,
@@ -1204,6 +1674,7 @@
   },
   {
    "key": "tohokutown__tohoku-town-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "東北町",
    "feed_name": "東北町町民バス",
    "pref_id": 2,
@@ -1216,6 +1687,7 @@
   },
   {
    "key": "taiyo-koutu__taiyo-koutu",
+   "source": "gtfs-data.jp",
    "organization_name": "太陽交通株式会社",
    "feed_name": "太陽交通株式会社",
    "pref_id": 40,
@@ -1228,6 +1700,7 @@
   },
   {
    "key": "chitabus__chitabus",
+   "source": "gtfs-data.jp",
    "organization_name": "知多乗合（知多バス）",
    "feed_name": "知多バス",
    "pref_id": 23,
@@ -1240,6 +1713,7 @@
   },
   {
    "key": "mizunamicity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "瑞浪市",
    "feed_name": "瑞浪市コミュニティバス",
    "pref_id": 21,
@@ -1252,6 +1726,7 @@
   },
   {
    "key": "nishiocity__rokumangokukururinbus",
+   "source": "gtfs-data.jp",
    "organization_name": "西尾市",
    "feed_name": "六万石くるりんバス",
    "pref_id": 23,
@@ -1264,6 +1739,7 @@
   },
   {
    "key": "niimicity__niimishieibus",
+   "source": "gtfs-data.jp",
    "organization_name": "新見市",
    "feed_name": "新見市営バス",
    "pref_id": 33,
@@ -1275,7 +1751,34 @@
    "n_stops": 172
   },
   {
+   "key": "kameyamacity__communitybus",
+   "source": "gtfs-data.jp",
+   "organization_name": "亀山市",
+   "feed_name": "亀山市コミュニティバス",
+   "pref_id": 24,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 175,
+   "n_stops": 144
+  },
+  {
+   "key": "minamishinshu__Minamishinshu-Shinnan-1",
+   "source": "gtfs-data.jp",
+   "organization_name": "南信州地域交通問題協議会（南信州広域連合）",
+   "feed_name": "【信南交通㈱】W0駒場線/E0 阿島線/E1遠山郷線",
+   "pref_id": 20,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 174,
+   "n_stops": 156
+  },
+  {
    "key": "toyamacity__yatsuocommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "富山市",
    "feed_name": "八尾コミュニティバス",
    "pref_id": 16,
@@ -1287,31 +1790,8 @@
    "n_stops": 150
   },
   {
-   "key": "kameyamacity__communitybus",
-   "organization_name": "亀山市",
-   "feed_name": "亀山市コミュニティバス",
-   "pref_id": 24,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 173,
-   "n_stops": 143
-  },
-  {
-   "key": "minamishinshu__Minamishinshu-Shinnan-1",
-   "organization_name": "南信州地域交通問題協議会（南信州広域連合）",
-   "feed_name": "【信南交通㈱】W0駒場線/E0 阿島線/E1遠山郷線",
-   "pref_id": 20,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 173,
-   "n_stops": 155
-  },
-  {
    "key": "kotosan__marugame-community",
+   "source": "gtfs-data.jp",
    "organization_name": "琴参バス株式会社",
    "feed_name": "丸亀コミュニティバス",
    "pref_id": 37,
@@ -1319,11 +1799,25 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
+   "n_segments": 172,
+   "n_stops": 160
+  },
+  {
+   "key": "joshin_kanko_bus_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "株式会社上信観光バス　乗合事業課",
+   "feed_name": "joshin_kanko_bus_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
    "n_segments": 170,
-   "n_stops": 159
+   "n_stops": 156
   },
   {
    "key": "maniwacity__maniwakun",
+   "source": "gtfs-data.jp",
    "organization_name": "真庭市",
    "feed_name": "真庭市コミュニティバス「まにわくん」",
    "pref_id": 33,
@@ -1336,6 +1830,7 @@
   },
   {
    "key": "sakatacity__SakataCity",
+   "source": "gtfs-data.jp",
    "organization_name": "酒田市",
    "feed_name": "酒田市営バス",
    "pref_id": 6,
@@ -1348,6 +1843,7 @@
   },
   {
    "key": "kumanocity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "熊野市",
    "feed_name": "熊野市バス、御浜町自主運行バス",
    "pref_id": 24,
@@ -1360,6 +1856,7 @@
   },
   {
    "key": "tokaicity__tokai-ranranbus",
+   "source": "gtfs-data.jp",
    "organization_name": "東海市",
    "feed_name": "東海市らんらんバス",
    "pref_id": 23,
@@ -1372,6 +1869,7 @@
   },
   {
    "key": "hokushin-bus__hokushinbus",
+   "source": "gtfs-data.jp",
    "organization_name": "北振バス株式会社",
    "feed_name": "北振バス",
    "pref_id": 33,
@@ -1384,6 +1882,7 @@
   },
   {
    "key": "yasucity__onoriyasu",
+   "source": "gtfs-data.jp",
    "organization_name": "野洲市",
    "feed_name": "野洲市コミバスおのりやす",
    "pref_id": 25,
@@ -1396,6 +1895,7 @@
   },
   {
    "key": "kasugacity__yayoi_kasuga",
+   "source": "gtfs-data.jp",
    "organization_name": "春日市",
    "feed_name": "春日市コミュニティバスやよい",
    "pref_id": 40,
@@ -1408,6 +1908,7 @@
   },
   {
    "key": "obanazawacity__ObanazawaCity",
+   "source": "gtfs-data.jp",
    "organization_name": "尾花沢市",
    "feed_name": "尾花沢市営バス",
    "pref_id": 6,
@@ -1420,6 +1921,7 @@
   },
   {
    "key": "chigasakicity__eboshigou",
+   "source": "gtfs-data.jp",
    "organization_name": "茅ヶ崎市",
    "feed_name": "コミュニティバスえぼし号",
    "pref_id": 14,
@@ -1428,10 +1930,24 @@
    "status": "ok",
    "note": "",
    "n_segments": 165,
-   "n_stops": 150
+   "n_stops": 151
+  },
+  {
+   "key": "nabaricity__communitybus",
+   "source": "gtfs-data.jp",
+   "organization_name": "名張市",
+   "feed_name": "名張市コミュニティバス",
+   "pref_id": 24,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 164,
+   "n_stops": 143
   },
   {
    "key": "shiga-konancity__konansimegurukun",
+   "source": "gtfs-data.jp",
    "organization_name": "湖南市",
    "feed_name": "湖南市コミバスめぐるくん",
    "pref_id": 25,
@@ -1440,10 +1956,11 @@
    "status": "ok",
    "note": "",
    "n_segments": 164,
-   "n_stops": 126
+   "n_stops": 127
   },
   {
    "key": "minamishinshu__Minamishinshu-Iidacity-1",
+   "source": "gtfs-data.jp",
    "organization_name": "南信州地域交通問題協議会（南信州広域連合）",
    "feed_name": " 【飯田市】L1市民バス循環線/C2市民バス久堅線/C3市民バス千代線/C4市民バス三穂線/C5市民バス大休線/E2平岡線",
    "pref_id": 20,
@@ -1455,19 +1972,8 @@
    "n_stops": 152
   },
   {
-   "key": "nabaricity__communitybus",
-   "organization_name": "名張市",
-   "feed_name": "名張市コミュニティバス",
-   "pref_id": 24,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 163,
-   "n_stops": 142
-  },
-  {
    "key": "shinshirocity__sbus",
+   "source": "gtfs-data.jp",
    "organization_name": "新城市",
    "feed_name": "新城市Ｓバス",
    "pref_id": 23,
@@ -1480,6 +1986,7 @@
   },
   {
    "key": "tagawacity__TagawaCityCommunityBus",
+   "source": "gtfs-data.jp",
    "organization_name": "田川市",
    "feed_name": "田川市コミュニティバス",
    "pref_id": 40,
@@ -1492,6 +1999,7 @@
   },
   {
    "key": "nakatsugawacity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "中津川市",
    "feed_name": "中津川市コミュニティバス",
    "pref_id": 21,
@@ -1504,6 +2012,7 @@
   },
   {
    "key": "isecity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "伊勢市",
    "feed_name": "伊勢市コミュニティバス「おかげバス」",
    "pref_id": 24,
@@ -1516,6 +2025,7 @@
   },
   {
    "key": "fukutsucity__minibus",
+   "source": "gtfs-data.jp",
    "organization_name": "福津市",
    "feed_name": "ふくつミニバス・ふくつ乗合タクシー",
    "pref_id": 40,
@@ -1528,6 +2038,7 @@
   },
   {
    "key": "kamicity__GTFS-Kamicity_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "香美市",
    "feed_name": "香美市営バス",
    "pref_id": 39,
@@ -1540,6 +2051,7 @@
   },
   {
    "key": "misawacity__misawacity-mebus",
+   "source": "gtfs-data.jp",
    "organization_name": "三沢市",
    "feed_name": "三沢市コミュニティバス「みーばす」",
    "pref_id": 2,
@@ -1547,11 +2059,12 @@
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 156,
-   "n_stops": 127
+   "n_segments": 158,
+   "n_stops": 128
   },
   {
    "key": "mie-kotsu__sancoinanki",
+   "source": "gtfs-data.jp",
    "organization_name": "三重交通",
    "feed_name": "南紀営業所",
    "pref_id": 24,
@@ -1564,6 +2077,7 @@
   },
   {
    "key": "nishikawatown__NishikawaTown",
+   "source": "gtfs-data.jp",
    "organization_name": "西川町",
    "feed_name": "西川町営バス",
    "pref_id": 6,
@@ -1575,7 +2089,21 @@
    "n_stops": 117
   },
   {
+   "key": "minamiisetown__choeibus",
+   "source": "gtfs-data.jp",
+   "organization_name": "南伊勢町",
+   "feed_name": "南伊勢町営バス",
+   "pref_id": 24,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 152,
+   "n_stops": 125
+  },
+  {
    "key": "tonamicity__tonamishieibasu",
+   "source": "gtfs-data.jp",
    "organization_name": "砺波市",
    "feed_name": "砺波市営バス",
    "pref_id": 16,
@@ -1588,6 +2116,7 @@
   },
   {
    "key": "toyamacity__fuchucommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "富山市",
    "feed_name": "婦中コミュニティバス",
    "pref_id": 16,
@@ -1600,6 +2129,7 @@
   },
   {
    "key": "hekinancity__kurukuru-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "碧南市",
    "feed_name": "くるくるバス",
    "pref_id": 23,
@@ -1612,6 +2142,7 @@
   },
   {
    "key": "kochi-konancity__GTFS-Konancity_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "香南市",
    "feed_name": "香南市営バス",
    "pref_id": 39,
@@ -1624,6 +2155,7 @@
   },
   {
    "key": "tsuruokacity__TsuruokaCity",
+   "source": "gtfs-data.jp",
    "organization_name": "鶴岡市",
    "feed_name": "鶴岡市営バス",
    "pref_id": 6,
@@ -1635,19 +2167,8 @@
    "n_stops": 148
   },
   {
-   "key": "minamiisetown__choeibus",
-   "organization_name": "南伊勢町",
-   "feed_name": "南伊勢町営バス",
-   "pref_id": 24,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 148,
-   "n_stops": 123
-  },
-  {
    "key": "kitanagoyacity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "北名古屋市",
    "feed_name": "北名古屋市　市内循環バス「きたバス」",
    "pref_id": 23,
@@ -1660,6 +2181,7 @@
   },
   {
    "key": "joetsucity__joetsu",
+   "source": "gtfs-data.jp",
    "organization_name": "上越市",
    "feed_name": "上越市市営バス",
    "pref_id": 15,
@@ -1668,10 +2190,11 @@
    "status": "ok",
    "note": "",
    "n_segments": 145,
-   "n_stops": 135
+   "n_stops": 136
   },
   {
    "key": "kariyacity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "刈谷市",
    "feed_name": "刈谷市コミュニティバス「かりまる」",
    "pref_id": 23,
@@ -1683,7 +2206,21 @@
    "n_stops": 125
   },
   {
+   "key": "shichinohetown__shichinohe_community-bus",
+   "source": "gtfs-data.jp",
+   "organization_name": "七戸町",
+   "feed_name": "七戸町コミュニティバス・シャトルバス",
+   "pref_id": 2,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 142,
+   "n_stops": 113
+  },
+  {
    "key": "hyogo-kamikawatown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "神河町",
    "feed_name": "コミュニティバス",
    "pref_id": 28,
@@ -1692,10 +2229,11 @@
    "status": "ok",
    "note": "",
    "n_segments": 141,
-   "n_stops": 127
+   "n_stops": 128
   },
   {
    "key": "nasushiobaracity__chiikibasu",
+   "source": "gtfs-data.jp",
    "organization_name": "那須塩原市",
    "feed_name": "那須塩原市地域バス",
    "pref_id": 9,
@@ -1708,6 +2246,7 @@
   },
   {
    "key": "kihotown__chominbus",
+   "source": "gtfs-data.jp",
    "organization_name": "紀宝町",
    "feed_name": "紀宝町民バス",
    "pref_id": 24,
@@ -1720,6 +2259,7 @@
   },
   {
    "key": "minamishinshu__Minamishinshu-achi-1",
+   "source": "gtfs-data.jp",
    "organization_name": "南信州地域交通問題協議会（南信州広域連合）",
    "feed_name": "【阿智村】W2巡回バス伍和線/W3巡回バス春日・智里線/W4巡回バス浪合線/W5巡回バス清内路線/W6巡回バス智里東線",
    "pref_id": 20,
@@ -1732,6 +2272,7 @@
   },
   {
    "key": "setocity__setocitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "瀬戸市",
    "feed_name": "瀬戸市コミュニティバス",
    "pref_id": 23,
@@ -1743,19 +2284,8 @@
    "n_stops": 127
   },
   {
-   "key": "shichinohetown__shichinohe_community-bus",
-   "organization_name": "七戸町",
-   "feed_name": "七戸町コミュニティバス・シャトルバス",
-   "pref_id": 2,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 137,
-   "n_stops": 112
-  },
-  {
    "key": "nangokucity__GTFS-Nankokucity_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "南国市",
    "feed_name": "南国市コミュニティバス「NACOバス」",
    "pref_id": 39,
@@ -1768,6 +2298,7 @@
   },
   {
    "key": "kasaicity__kasaineppihappybus",
+   "source": "gtfs-data.jp",
    "organization_name": "加西市",
    "feed_name": "KASAIねっぴー号/はっぴーバス",
    "pref_id": 28,
@@ -1776,10 +2307,11 @@
    "status": "ok",
    "note": "",
    "n_segments": 134,
-   "n_stops": 119
+   "n_stops": 120
   },
   {
    "key": "kisotown__kisotown",
+   "source": "gtfs-data.jp",
    "organization_name": "木曽町",
    "feed_name": "木曽町公共交通",
    "pref_id": 20,
@@ -1792,6 +2324,7 @@
   },
   {
    "key": "minamishinshu__Minamishinshu-takagi-1",
+   "source": "gtfs-data.jp",
    "organization_name": "南信州地域交通問題協議会（南信州広域連合）",
    "feed_name": "【喬木村】E3喬木大島線せせらぎ/E4氏乗線そよかぜ/E5 たかぎコミュニティバス阿島線/E6 たかぎコミュニティバス伊久間線/E7たかぎコミュニティバス厚生病院線/E8上平線/E9富田線",
    "pref_id": 20,
@@ -1804,6 +2337,7 @@
   },
   {
    "key": "nonoichicity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "野々市市",
    "feed_name": "コミュニティバス",
    "pref_id": 17,
@@ -1816,6 +2350,7 @@
   },
   {
    "key": "toyama-asahitown__asahimachibus",
+   "source": "gtfs-data.jp",
    "organization_name": "富山県朝日町",
    "feed_name": "あさひまちバス",
    "pref_id": 16,
@@ -1828,6 +2363,7 @@
   },
   {
    "key": "yanagawacity__YanagawaCityCommunityBus",
+   "source": "gtfs-data.jp",
    "organization_name": "柳川市",
    "feed_name": "柳川市コミュニティバス",
    "pref_id": 40,
@@ -1840,6 +2376,7 @@
   },
   {
    "key": "kamocity__kamonbus",
+   "source": "gtfs-data.jp",
    "organization_name": "加茂市",
    "feed_name": "加茂市営バス かもんバス",
    "pref_id": 15,
@@ -1852,6 +2389,7 @@
   },
   {
    "key": "mamurogawatown__MamurogawaTown",
+   "source": "gtfs-data.jp",
    "organization_name": "真室川町",
    "feed_name": "真室川町営バス",
    "pref_id": 6,
@@ -1864,6 +2402,7 @@
   },
   {
    "key": "munakatacity__MunakataCityFureaiBus",
+   "source": "gtfs-data.jp",
    "organization_name": "宗像市",
    "feed_name": "宗像市ふれあいバス",
    "pref_id": 40,
@@ -1875,7 +2414,21 @@
    "n_stops": 102
   },
   {
+   "key": "tokyo_taito_city_megurin_ccby40__megurinCCBY40",
+   "source": "odpt",
+   "organization_name": "台東区コミュニティバス",
+   "feed_name": "tokyo_taito_city_megurin_ccby40",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 129,
+   "n_stops": 128
+  },
+  {
    "key": "tsucity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "津市",
    "feed_name": "津市コミュニティバス",
    "pref_id": 24,
@@ -1888,6 +2441,7 @@
   },
   {
    "key": "sembokucity__bus-city-semboku",
+   "source": "gtfs-data.jp",
    "organization_name": "仙北市",
    "feed_name": "仙北市民バス（たっこちゃんバス・スマイルバス）",
    "pref_id": 5,
@@ -1900,6 +2454,7 @@
   },
   {
    "key": "akocity__yuranosuke",
+   "source": "gtfs-data.jp",
    "organization_name": "赤穂市",
    "feed_name": "ゆらのすけ",
    "pref_id": 28,
@@ -1912,6 +2467,7 @@
   },
   {
    "key": "kandatown__KandaTownCommunityBus",
+   "source": "gtfs-data.jp",
    "organization_name": "苅田町",
    "feed_name": "苅田町コミュニティバス",
    "pref_id": 40,
@@ -1924,6 +2480,7 @@
   },
   {
    "key": "kusatsucity__kusatsusimamebus",
+   "source": "gtfs-data.jp",
    "organization_name": "草津市",
    "feed_name": "草津市コミュニティバス　まめバス",
    "pref_id": 25,
@@ -1935,7 +2492,21 @@
    "n_stops": 116
   },
   {
+   "key": "ryugasakicity__Ryugasakishi-communitybus",
+   "source": "gtfs-data.jp",
+   "organization_name": "龍ケ崎市",
+   "feed_name": "龍ケ崎市コミュニティバス",
+   "pref_id": 8,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 126,
+   "n_stops": 116
+  },
+  {
    "key": "gunma-otacity__ootacitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "太田市",
    "feed_name": "太田市営バス",
    "pref_id": 10,
@@ -1947,7 +2518,21 @@
    "n_stops": 117
   },
   {
+   "key": "keisei-transitbus__keiseitransitbus",
+   "source": "gtfs-data.jp",
+   "organization_name": "京成バス千葉ウエスト株式会社",
+   "feed_name": "京成バス千葉ウエスト　塩浜営業所（市川市コミュニティバス　南部ルート　わくわくバス含む）",
+   "pref_id": 12,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 125,
+   "n_stops": 115
+  },
+  {
    "key": "tokicity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "土岐市",
    "feed_name": "土岐市民バス",
    "pref_id": 21,
@@ -1959,19 +2544,21 @@
    "n_stops": 115
   },
   {
-   "key": "ryugasakicity__Ryugasakishi-communitybus",
-   "organization_name": "龍ケ崎市",
-   "feed_name": "龍ケ崎市コミュニティバス",
-   "pref_id": 8,
-   "license": "CC BY 4.0",
+   "key": "awajicity__awajinawahimebus",
+   "source": "gtfs-data.jp",
+   "organization_name": "淡路市",
+   "feed_name": "あわ神あわ姫バス",
+   "pref_id": 28,
+   "license": "CC BY 2.1 JP",
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 124,
-   "n_stops": 115
+   "n_segments": 123,
+   "n_stops": 112
   },
   {
    "key": "ibigawatown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "揖斐川町",
    "feed_name": "揖斐川町ふれあいバス",
    "pref_id": 21,
@@ -1983,7 +2570,21 @@
    "n_stops": 113
   },
   {
+   "key": "machida_city_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "東京都町田市　コミュニティバス、市民バス",
+   "feed_name": "machida_city_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 123,
+   "n_stops": 116
+  },
+  {
    "key": "tosacity__GTFS-Tosacity_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "土佐市",
    "feed_name": "土佐市コミュニティバス「ドラゴンバス」",
    "pref_id": 39,
@@ -1995,31 +2596,8 @@
    "n_stops": 115
   },
   {
-   "key": "awajicity__awajinawahimebus",
-   "organization_name": "淡路市",
-   "feed_name": "あわ神あわ姫バス",
-   "pref_id": 28,
-   "license": "CC BY 2.1 JP",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 121,
-   "n_stops": 111
-  },
-  {
-   "key": "keisei-transitbus__keiseitransitbus",
-   "organization_name": "京成バス千葉ウエスト株式会社",
-   "feed_name": "京成バス千葉ウエスト　塩浜営業所（市川市コミュニティバス　南部ルート　わくわくバス含む）",
-   "pref_id": 12,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 121,
-   "n_stops": 113
-  },
-  {
    "key": "nagakutecity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "長久手市",
    "feed_name": "長久手市N-バス",
    "pref_id": 23,
@@ -2032,6 +2610,7 @@
   },
   {
    "key": "shonaitown__ShonaiTown",
+   "source": "gtfs-data.jp",
    "organization_name": "庄内町",
    "feed_name": "庄内町営バス",
    "pref_id": 6,
@@ -2044,6 +2623,7 @@
   },
   {
    "key": "hirosakicity__hokusei-noriai",
+   "source": "gtfs-data.jp",
    "organization_name": "弘前市",
    "feed_name": "弘前市乗合タクシー（北星交通）",
    "pref_id": 2,
@@ -2052,10 +2632,24 @@
    "status": "ok",
    "note": "",
    "n_segments": 118,
-   "n_stops": 121
+   "n_stops": 122
+  },
+  {
+   "key": "yonezawacity__Yonezawa",
+   "source": "gtfs-data.jp",
+   "organization_name": "米沢市",
+   "feed_name": "米沢市営バス",
+   "pref_id": 6,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 118,
+   "n_stops": 96
   },
   {
    "key": "kotosan__kotohira-local",
+   "source": "gtfs-data.jp",
    "organization_name": "琴参バス株式会社",
    "feed_name": "琴平路線",
    "pref_id": 37,
@@ -2067,19 +2661,21 @@
    "n_stops": 115
   },
   {
-   "key": "yonezawacity__Yonezawa",
-   "organization_name": "米沢市",
-   "feed_name": "米沢市営バス",
-   "pref_id": 6,
+   "key": "nagano-ikedatown__IkedaTownBus",
+   "source": "gtfs-data.jp",
+   "organization_name": "池田町",
+   "feed_name": "池田町営バス",
+   "pref_id": 20,
    "license": "CC BY 4.0",
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 116,
-   "n_stops": 95
+   "n_segments": 115,
+   "n_stops": 98
   },
   {
    "key": "sotogahamatown__sotogahama-townbus",
+   "source": "gtfs-data.jp",
    "organization_name": "外ヶ浜町",
    "feed_name": "外ヶ浜町営バス",
    "pref_id": 2,
@@ -2092,6 +2688,7 @@
   },
   {
    "key": "buzencity__BuzenCityBus",
+   "source": "gtfs-data.jp",
    "organization_name": "豊前市",
    "feed_name": "豊前市バス",
    "pref_id": 40,
@@ -2104,6 +2701,7 @@
   },
   {
    "key": "kurobecity__shinkansenikuji-ishida-aimoto-minibus",
+   "source": "gtfs-data.jp",
    "organization_name": "黒部市",
    "feed_name": "新幹線生地、石田三日市、愛本、電動ミニバス",
    "pref_id": 16,
@@ -2116,6 +2714,7 @@
   },
   {
    "key": "shiga-hinotown__choueibus",
+   "source": "gtfs-data.jp",
    "organization_name": "日野町",
    "feed_name": "日野町営バス",
    "pref_id": 25,
@@ -2128,6 +2727,7 @@
   },
   {
    "key": "gerocity__gerobus",
+   "source": "gtfs-data.jp",
    "organization_name": "下呂市",
    "feed_name": "下呂市　げろバス",
    "pref_id": 21,
@@ -2139,19 +2739,21 @@
    "n_stops": 100
   },
   {
-   "key": "nagano-ikedatown__IkedaTownBus",
-   "organization_name": "池田町",
-   "feed_name": "池田町営バス",
-   "pref_id": 20,
+   "key": "hanamakicity__hanamaki",
+   "source": "gtfs-data.jp",
+   "organization_name": "花巻市",
+   "feed_name": "花巻市コミュニティバス",
+   "pref_id": 3,
    "license": "CC BY 4.0",
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
    "n_segments": 113,
-   "n_stops": 97
+   "n_stops": 108
   },
   {
    "key": "fukusakitown__junkai-fukuhime-fukusakikasairenkei",
+   "source": "gtfs-data.jp",
    "organization_name": "福崎町",
    "feed_name": "巡回バス/ふくひめ号/福崎町・加西市連携コミュニティバス",
    "pref_id": 28,
@@ -2164,6 +2766,7 @@
   },
   {
    "key": "hiranaitown__hiranaitownbus",
+   "source": "gtfs-data.jp",
    "organization_name": "平内町",
    "feed_name": "平内町民バス",
    "pref_id": 2,
@@ -2176,6 +2779,7 @@
   },
   {
    "key": "nagareyamacity__nagareyamagreenbus",
+   "source": "gtfs-data.jp",
    "organization_name": "流山市",
    "feed_name": "流山ぐりーんバス",
    "pref_id": 12,
@@ -2188,6 +2792,7 @@
   },
   {
    "key": "suetown__SueTownCommunityBus",
+   "source": "gtfs-data.jp",
    "organization_name": "須恵町",
    "feed_name": "須恵町コミュニティバス",
    "pref_id": 40,
@@ -2199,7 +2804,21 @@
    "n_stops": 88
   },
   {
+   "key": "takasaki_city_yosiibus__yosiibus",
+   "source": "odpt",
+   "organization_name": "よしいバス",
+   "feed_name": "takasaki_city_yosiibus",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 112,
+   "n_stops": 91
+  },
+  {
    "key": "tateyamatown__tateyama",
+   "source": "gtfs-data.jp",
    "organization_name": "立山町",
    "feed_name": "立山町営バス",
    "pref_id": 16,
@@ -2212,6 +2831,7 @@
   },
   {
    "key": "fujiedacity__gtfsfjed",
+   "source": "gtfs-data.jp",
    "organization_name": "藤枝市",
    "feed_name": "藤枝市自主運行バス（駅南循環+アクセスバス）",
    "pref_id": 22,
@@ -2223,19 +2843,8 @@
    "n_stops": 106
   },
   {
-   "key": "hanamakicity__hanamaki",
-   "organization_name": "花巻市",
-   "feed_name": "花巻市コミュニティバス",
-   "pref_id": 3,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 111,
-   "n_stops": 107
-  },
-  {
    "key": "kagaminotown__kagaminotownbus",
+   "source": "gtfs-data.jp",
    "organization_name": "鏡野町",
    "feed_name": "鏡野町営バス",
    "pref_id": 33,
@@ -2248,6 +2857,7 @@
   },
   {
    "key": "fukuoka-kawasakitown__KawasakiTownFureaiBus",
+   "source": "gtfs-data.jp",
    "organization_name": "川崎町",
    "feed_name": "川崎町ふれあいバス",
    "pref_id": 40,
@@ -2260,6 +2870,7 @@
   },
   {
    "key": "minamishinshu__Minamishinshu-toyooka-1",
+   "source": "gtfs-data.jp",
    "organization_name": "南信州地域交通問題協議会（南信州広域連合）",
    "feed_name": "【豊丘村】T3豊丘村村営バス堀越線/T4豊丘村村営バス佐原線/T5豊丘村村営バス福島線/T6豊丘村村営バス壬生沢福島線/T7豊丘村村営バス壬生沢線/T2豊丘村村営バス滝川阿島北県道線",
    "pref_id": 20,
@@ -2272,6 +2883,7 @@
   },
   {
    "key": "motosucity__shieibus",
+   "source": "gtfs-data.jp",
    "organization_name": "本巣市",
    "feed_name": "本巣市営バス",
    "pref_id": 21,
@@ -2283,7 +2895,21 @@
    "n_stops": 90
   },
   {
+   "key": "suwacity__karinchanbas",
+   "source": "gtfs-data.jp",
+   "organization_name": "諏訪市",
+   "feed_name": "かりんちゃんバス",
+   "pref_id": 20,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 110,
+   "n_stops": 93
+  },
+  {
    "key": "chiryucity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "知立市",
    "feed_name": "知立市「ミニバス」（コミュニティバス）",
    "pref_id": 23,
@@ -2295,19 +2921,8 @@
    "n_stops": 91
   },
   {
-   "key": "suwacity__karinchanbas",
-   "organization_name": "諏訪市",
-   "feed_name": "かりんちゃんバス",
-   "pref_id": 20,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 108,
-   "n_stops": 92
-  },
-  {
    "key": "uedacity__uedashigaitizyunkanbus",
+   "source": "gtfs-data.jp",
    "organization_name": "上田市",
    "feed_name": "上田市街地循環バス・オレンジバス",
    "pref_id": 20,
@@ -2320,6 +2935,7 @@
   },
   {
    "key": "higashinecity__HigashineCity",
+   "source": "gtfs-data.jp",
    "organization_name": "東根市",
    "feed_name": "東根市営バス",
    "pref_id": 6,
@@ -2332,6 +2948,7 @@
   },
   {
    "key": "katoricity__katori-junkan",
+   "source": "gtfs-data.jp",
    "organization_name": "香取市",
    "feed_name": "香取市循環バス",
    "pref_id": 12,
@@ -2344,6 +2961,7 @@
   },
   {
    "key": "oguchitown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "大口町",
    "feed_name": "大口町コミュニティバス",
    "pref_id": 23,
@@ -2356,6 +2974,7 @@
   },
   {
    "key": "tanabecity__Jumin-Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "田辺市",
    "feed_name": "田辺市住民バス",
    "pref_id": 30,
@@ -2368,6 +2987,7 @@
   },
   {
    "key": "yamagata-kaneyamatown__KaneyamaTown",
+   "source": "gtfs-data.jp",
    "organization_name": "山形県金山町",
    "feed_name": "金山町営バス",
    "pref_id": 6,
@@ -2380,6 +3000,7 @@
   },
   {
    "key": "inagawatown__fureaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "猪名川町",
    "feed_name": "ふれあいバス",
    "pref_id": 28,
@@ -2388,10 +3009,11 @@
    "status": "ok",
    "note": "",
    "n_segments": 106,
-   "n_stops": 85
+   "n_stops": 86
   },
   {
    "key": "takaokacity__koueibus",
+   "source": "gtfs-data.jp",
    "organization_name": "高岡市",
    "feed_name": "高岡市公営バス",
    "pref_id": 16,
@@ -2404,6 +3026,7 @@
   },
   {
    "key": "kanonjicity__kanonjishi-noriaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "観音寺市",
    "feed_name": "観音寺市のりあいバス",
    "pref_id": 37,
@@ -2416,6 +3039,7 @@
   },
   {
    "key": "odaitown__choeibus",
+   "source": "gtfs-data.jp",
    "organization_name": "大台町",
    "feed_name": "大台町営バス",
    "pref_id": 24,
@@ -2428,6 +3052,7 @@
   },
   {
    "key": "iwadecity__junkaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "岩出市",
    "feed_name": "岩出市巡回バス",
    "pref_id": 30,
@@ -2440,6 +3065,7 @@
   },
   {
    "key": "toyamacity__kurehaikiikibus",
+   "source": "gtfs-data.jp",
    "organization_name": "富山市",
    "feed_name": "呉羽いきいきバス",
    "pref_id": 16,
@@ -2451,7 +3077,47 @@
    "n_stops": 77
   },
   {
+   "key": "higashiuratown__communitybus",
+   "source": "gtfs-data.jp",
+   "organization_name": "東浦町",
+   "feed_name": "東浦町運行バス　う・ら・ら",
+   "pref_id": 23,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 101,
+   "n_stops": 87
+  },
+  {
+   "key": "kokubunji_city_kokubunji_city_bunbus__kokubunji_city_bunbus",
+   "source": "odpt",
+   "organization_name": "東京都国分寺市地域バスぶんバス",
+   "feed_name": "kokubunji_city_kokubunji_city_bunbus",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 101,
+   "n_stops": 95
+  },
+  {
+   "key": "tobacity__communitybus",
+   "source": "gtfs-data.jp",
+   "organization_name": "鳥羽市",
+   "feed_name": "鳥羽市　かもめバス",
+   "pref_id": 24,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 101,
+   "n_stops": 84
+  },
+  {
    "key": "hashikamitown__hashikamibus",
+   "source": "gtfs-data.jp",
    "organization_name": "階上町",
    "feed_name": "階上町コミュニティバス",
    "pref_id": 2,
@@ -2464,6 +3130,7 @@
   },
   {
    "key": "kuroiwa-kanko__GTFS-Kuroiwakanko_Localbus",
+   "source": "gtfs-data.jp",
    "organization_name": "有限会社黒岩観光",
    "feed_name": "路線バス",
    "pref_id": 39,
@@ -2475,7 +3142,34 @@
    "n_stops": 97
   },
   {
+   "key": "nishiocity__meitestu_tobu",
+   "source": "gtfs-data.jp",
+   "organization_name": "西尾市",
+   "feed_name": "名鉄東部交通バス",
+   "pref_id": 23,
+   "license": "CC0 1.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 100,
+   "n_stops": 94
+  },
+  {
+   "key": "nishitokyo_city_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "西東京市はなバス",
+   "feed_name": "nishitokyo_city_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 100,
+   "n_stops": 93
+  },
+  {
    "key": "owasecity__fureaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "尾鷲市",
    "feed_name": "尾鷲市ふれあいバス",
    "pref_id": 24,
@@ -2487,31 +3181,21 @@
    "n_stops": 87
   },
   {
-   "key": "higashiuratown__communitybus",
-   "organization_name": "東浦町",
-   "feed_name": "東浦町運行バス　う・ら・ら",
-   "pref_id": 23,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 99,
-   "n_stops": 86
-  },
-  {
-   "key": "tobacity__communitybus",
-   "organization_name": "鳥羽市",
-   "feed_name": "鳥羽市　かもめバス",
+   "key": "tointown__communitybus",
+   "source": "gtfs-data.jp",
+   "organization_name": "東員町",
+   "feed_name": "東員町「オレンジバス」",
    "pref_id": 24,
    "license": "CC BY 4.0",
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 99,
-   "n_stops": 83
+   "n_segments": 100,
+   "n_stops": 81
   },
   {
    "key": "hiradocity__fureaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "平戸市",
    "feed_name": "ふれあいバス",
    "pref_id": 42,
@@ -2523,31 +3207,8 @@
    "n_stops": 90
   },
   {
-   "key": "nishiocity__meitestu_tobu",
-   "organization_name": "西尾市",
-   "feed_name": "名鉄東部交通バス",
-   "pref_id": 23,
-   "license": "CC0 1.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 98,
-   "n_stops": 93
-  },
-  {
-   "key": "tointown__communitybus",
-   "organization_name": "東員町",
-   "feed_name": "東員町「オレンジバス」",
-   "pref_id": 24,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 98,
-   "n_stops": 80
-  },
-  {
    "key": "kobecity__kobe-shiokaze",
+   "source": "gtfs-data.jp",
    "organization_name": "神戸市",
    "feed_name": "神戸市コミュニティバス",
    "pref_id": 28,
@@ -2560,6 +3221,7 @@
   },
   {
    "key": "oyabecity__oyabecitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "小矢部市",
    "feed_name": "小矢部市営バス",
    "pref_id": 16,
@@ -2572,6 +3234,7 @@
   },
   {
    "key": "shichigahamatown__Gururinko",
+   "source": "gtfs-data.jp",
    "organization_name": "七ヶ浜町",
    "feed_name": "七ヶ浜町民バス「ぐるりんこ」",
    "pref_id": 4,
@@ -2584,6 +3247,7 @@
   },
   {
    "key": "uchinadatown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "内灘町",
    "feed_name": "コミュニティバス",
    "pref_id": 17,
@@ -2596,6 +3260,7 @@
   },
   {
    "key": "nagadenbus__nagadenbus-exp",
+   "source": "gtfs-data.jp",
    "organization_name": "長電バス株式会社",
    "feed_name": "長電バス急行",
    "pref_id": 20,
@@ -2608,6 +3273,7 @@
   },
   {
    "key": "nogatacity__NogataCityCommunityBus",
+   "source": "gtfs-data.jp",
    "organization_name": "直方市",
    "feed_name": "直方市コミュニティバス",
    "pref_id": 40,
@@ -2620,6 +3286,7 @@
   },
   {
    "key": "toyookacity__inacar",
+   "source": "gtfs-data.jp",
    "organization_name": "豊岡市",
    "feed_name": "イナカー",
    "pref_id": 28,
@@ -2632,6 +3299,7 @@
   },
   {
    "key": "hokushin-bus__ibaraaiaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "北振バス株式会社",
    "feed_name": "井原あいあいバス",
    "pref_id": 33,
@@ -2644,6 +3312,7 @@
   },
   {
    "key": "owariasahicity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "尾張旭市",
    "feed_name": "尾張旭市あさぴー号",
    "pref_id": 23,
@@ -2656,6 +3325,7 @@
   },
   {
    "key": "kusutown__kusucommunity-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "玖珠町",
    "feed_name": "玖珠町コミュニティバス",
    "pref_id": 44,
@@ -2667,7 +3337,21 @@
    "n_stops": 78
   },
   {
+   "key": "murayamacity__MurayamaCity",
+   "source": "gtfs-data.jp",
+   "organization_name": "村山市",
+   "feed_name": "村山市営バス",
+   "pref_id": 6,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 94,
+   "n_stops": 87
+  },
+  {
    "key": "shootown__shoochofureaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "勝央町",
    "feed_name": "勝央町ふれあいバス",
    "pref_id": 33,
@@ -2680,6 +3364,7 @@
   },
   {
    "key": "yukicity__junkaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "結城市",
    "feed_name": "結城市巡回バス",
    "pref_id": 8,
@@ -2691,7 +3376,60 @@
    "n_stops": 91
   },
   {
+   "key": "gifu-yamagatacity__communitybus",
+   "source": "gtfs-data.jp",
+   "organization_name": "山県市",
+   "feed_name": "山県市自主運行バス",
+   "pref_id": 21,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 93,
+   "n_stops": 89
+  },
+  {
+   "key": "hitachi_automobile_transportation_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "文京区コミュニティバス「Bーぐる」",
+   "feed_name": "hitachi_automobile_transportation_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 93,
+   "n_stops": 86
+  },
+  {
+   "key": "hitachi_automobile_transportation_chiyoda_alllines__Chiyoda_ALLLINES",
+   "source": "odpt",
+   "organization_name": "千代田区地域福祉交通「風ぐるま」",
+   "feed_name": "hitachi_automobile_transportation_chiyoda_alllines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 93,
+   "n_stops": 76
+  },
+  {
+   "key": "miyake_vill_all_line__AllLine",
+   "source": "odpt",
+   "organization_name": "三宅村営バス",
+   "feed_name": "miyake_vill_all_line",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 93,
+   "n_stops": 76
+  },
+  {
    "key": "annakacity__annakashi-rosenbus",
+   "source": "gtfs-data.jp",
    "organization_name": "安中市",
    "feed_name": "安中市路線バス（あんバス）",
    "pref_id": 10,
@@ -2704,6 +3442,7 @@
   },
   {
    "key": "hashimacity__HashimaCityCommunityBus",
+   "source": "gtfs-data.jp",
    "organization_name": "羽島市",
    "feed_name": "羽島市コミュニティバス",
    "pref_id": 21,
@@ -2716,6 +3455,7 @@
   },
   {
    "key": "kimitsucity__Kimitsu_City_Community_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "君津市",
    "feed_name": "君津市コミュニティバス",
    "pref_id": 12,
@@ -2727,19 +3467,8 @@
    "n_stops": 89
   },
   {
-   "key": "murayamacity__MurayamaCity",
-   "organization_name": "村山市",
-   "feed_name": "村山市営バス",
-   "pref_id": 6,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 92,
-   "n_stops": 86
-  },
-  {
    "key": "akocity__teijuurou",
+   "source": "gtfs-data.jp",
    "organization_name": "赤穂市",
    "feed_name": "ていじゅうろう",
    "pref_id": 28,
@@ -2752,6 +3481,7 @@
   },
   {
    "key": "amacity__amashijunkaibasu",
+   "source": "gtfs-data.jp",
    "organization_name": "あま市",
    "feed_name": "あま市巡回バス",
    "pref_id": 23,
@@ -2763,19 +3493,8 @@
    "n_stops": 82
   },
   {
-   "key": "gifu-yamagatacity__communitybus",
-   "organization_name": "山県市",
-   "feed_name": "山県市自主運行バス",
-   "pref_id": 21,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 91,
-   "n_stops": 88
-  },
-  {
    "key": "shinjocity__ShinjoCity",
+   "source": "gtfs-data.jp",
    "organization_name": "新庄市",
    "feed_name": "新庄市営バス",
    "pref_id": 6,
@@ -2788,6 +3507,7 @@
   },
   {
    "key": "wakocity__Wako-City-junkanbus",
+   "source": "gtfs-data.jp",
    "organization_name": "和光市",
    "feed_name": "和光市内循環バス（わこば）",
    "pref_id": 11,
@@ -2800,6 +3520,7 @@
   },
   {
    "key": "suzakicity__suzakashiminbus",
+   "source": "gtfs-data.jp",
    "organization_name": "須坂市",
    "feed_name": "すざか市民バス",
    "pref_id": 20,
@@ -2811,7 +3532,21 @@
    "n_stops": 86
   },
   {
+   "key": "shirotori-kotsu__shirotorikotsu",
+   "source": "gtfs-data.jp",
+   "organization_name": "白鳥交通",
+   "feed_name": "白鳥交通",
+   "pref_id": 21,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 88,
+   "n_stops": 86
+  },
+  {
    "key": "chukibus__chukibus",
+   "source": "gtfs-data.jp",
    "organization_name": "中紀バス",
    "feed_name": "中紀バス",
    "pref_id": 30,
@@ -2824,6 +3559,7 @@
   },
   {
    "key": "niyodogawatown__GTFS-Niyodogawatown_Townsbus",
+   "source": "gtfs-data.jp",
    "organization_name": "仁淀川町",
    "feed_name": "仁淀川町町民バス",
    "pref_id": 39,
@@ -2835,19 +3571,21 @@
    "n_stops": 86
   },
   {
-   "key": "shirotori-kotsu__shirotorikotsu",
-   "organization_name": "白鳥交通",
-   "feed_name": "白鳥交通",
-   "pref_id": 21,
-   "license": "CC BY 4.0",
+   "key": "kamigoritown__ainorigo",
+   "source": "gtfs-data.jp",
+   "organization_name": "上郡町",
+   "feed_name": "愛のり号",
+   "pref_id": 28,
+   "license": "CC BY 2.1 JP",
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
    "n_segments": 86,
-   "n_stops": 84
+   "n_stops": 81
   },
   {
    "key": "kamiichitown__kamiichi",
+   "source": "gtfs-data.jp",
    "organization_name": "上市町",
    "feed_name": "上市町営バス",
    "pref_id": 16,
@@ -2860,6 +3598,7 @@
   },
   {
    "key": "hisayamatown__HisayamaIkoBus",
+   "source": "gtfs-data.jp",
    "organization_name": "久山町",
    "feed_name": "久山町コミュニティバス イコバス",
    "pref_id": 40,
@@ -2871,19 +3610,8 @@
    "n_stops": 62
   },
   {
-   "key": "kamigoritown__ainorigo",
-   "organization_name": "上郡町",
-   "feed_name": "愛のり号",
-   "pref_id": 28,
-   "license": "CC BY 2.1 JP",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 84,
-   "n_stops": 80
-  },
-  {
    "key": "komonotown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "菰野町",
    "feed_name": "菰野町「かもしか号」",
    "pref_id": 24,
@@ -2895,7 +3623,21 @@
    "n_stops": 67
   },
   {
+   "key": "ongatown__OngaTownCommunityBus",
+   "source": "gtfs-data.jp",
+   "organization_name": "遠賀町",
+   "feed_name": "遠賀町コミュニティバス",
+   "pref_id": 40,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 84,
+   "n_stops": 62
+  },
+  {
    "key": "chikujotown__ChikujoTownCommunityBus",
+   "source": "gtfs-data.jp",
    "organization_name": "築上町",
    "feed_name": "築上町コミュニティバス",
    "pref_id": 40,
@@ -2908,6 +3650,7 @@
   },
   {
    "key": "kahokutown__KahokuTown",
+   "source": "gtfs-data.jp",
    "organization_name": "河北町",
    "feed_name": "河北町営バス",
    "pref_id": 6,
@@ -2919,7 +3662,21 @@
    "n_stops": 64
   },
   {
+   "key": "tatsunocity__communitybus",
+   "source": "gtfs-data.jp",
+   "organization_name": "たつの市",
+   "feed_name": "コミュニティバス",
+   "pref_id": 28,
+   "license": "CC BY 2.1 JP",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 83,
+   "n_stops": 74
+  },
+  {
    "key": "yamagata-ogunitown__OguniTown",
+   "source": "gtfs-data.jp",
    "organization_name": "山形県小国町",
    "feed_name": "小国町営バス",
    "pref_id": 6,
@@ -2931,31 +3688,8 @@
    "n_stops": 76
   },
   {
-   "key": "tatsunocity__communitybus",
-   "organization_name": "たつの市",
-   "feed_name": "コミュニティバス",
-   "pref_id": 28,
-   "license": "CC BY 2.1 JP",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 82,
-   "n_stops": 73
-  },
-  {
-   "key": "ongatown__OngaTownCommunityBus",
-   "organization_name": "遠賀町",
-   "feed_name": "遠賀町コミュニティバス",
-   "pref_id": 40,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 81,
-   "n_stops": 61
-  },
-  {
    "key": "aichi-miyoshicity__sansanbus",
+   "source": "gtfs-data.jp",
    "organization_name": "みよし市",
    "feed_name": "みよし市さんさんバス",
    "pref_id": 23,
@@ -2968,6 +3702,7 @@
   },
   {
    "key": "kaiyotown__kaiyotownbus",
+   "source": "gtfs-data.jp",
    "organization_name": "海陽町",
    "feed_name": "海陽町営バス",
    "pref_id": 36,
@@ -2980,6 +3715,7 @@
   },
   {
    "key": "karuizawatown__junkan-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "軽井沢町",
    "feed_name": "軽井沢町町内循環バス",
    "pref_id": 20,
@@ -2992,6 +3728,7 @@
   },
   {
    "key": "namegatacity__bus-namegata-ibaraki-jp",
+   "source": "gtfs-data.jp",
    "organization_name": "行方市",
    "feed_name": "行方市営路線バス",
    "pref_id": 8,
@@ -3004,6 +3741,7 @@
   },
   {
    "key": "aokivillage__aokisoneibus",
+   "source": "gtfs-data.jp",
    "organization_name": "青木村",
    "feed_name": "青木村営バス",
    "pref_id": 20,
@@ -3016,6 +3754,7 @@
   },
   {
    "key": "kanicity__satsukibus",
+   "source": "gtfs-data.jp",
    "organization_name": "可児市",
    "feed_name": "さつきバス",
    "pref_id": 21,
@@ -3028,6 +3767,7 @@
   },
   {
    "key": "kochi-tsunotown__GTFS-Tsunotown_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "津野町",
    "feed_name": "津野町コミュニティバス「つのバス」",
    "pref_id": 39,
@@ -3040,6 +3780,7 @@
   },
   {
    "key": "minamishinshu__Minamishinshu-Nanbu-1",
+   "source": "gtfs-data.jp",
    "organization_name": "南信州地域交通問題協議会（南信州広域連合）",
    "feed_name": "S0南部公共バス阿南線/S1南部公共バス温田線",
    "pref_id": 20,
@@ -3052,6 +3793,7 @@
   },
   {
    "key": "moriyamacity__kuruttobus",
+   "source": "gtfs-data.jp",
    "organization_name": "守山市",
    "feed_name": "草津市、守山市、栗東市　くるっとバス",
    "pref_id": 25,
@@ -3064,6 +3806,7 @@
   },
   {
    "key": "akicity__GTFS-Akicity_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "安芸市",
    "feed_name": "安芸市「元気バス」",
    "pref_id": 39,
@@ -3076,6 +3819,7 @@
   },
   {
    "key": "tozawavillage__tozawavillagebus",
+   "source": "gtfs-data.jp",
    "organization_name": "戸沢村",
    "feed_name": "戸沢村営バス",
    "pref_id": 6,
@@ -3088,6 +3832,7 @@
   },
   {
    "key": "imaricity__imarinbus",
+   "source": "gtfs-data.jp",
    "organization_name": "伊万里市",
    "feed_name": "いまりんバス",
    "pref_id": 41,
@@ -3100,6 +3845,7 @@
   },
   {
    "key": "nakadomaritown__nakadomari-communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "中泊町",
    "feed_name": "中泊町コミュニティバス",
    "pref_id": 2,
@@ -3111,7 +3857,21 @@
    "n_stops": 72
   },
   {
+   "key": "yamagata-yamagatacity__YamagataCity",
+   "source": "gtfs-data.jp",
+   "organization_name": "山形市",
+   "feed_name": "山形市営バス",
+   "pref_id": 6,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 75,
+   "n_stops": 67
+  },
+  {
    "key": "nagadenbus__nagadenbus-iizuna",
+   "source": "gtfs-data.jp",
    "organization_name": "長電バス株式会社",
    "feed_name": "長電バス飯綱営業所管内",
    "pref_id": 20,
@@ -3124,6 +3884,7 @@
   },
   {
    "key": "sakegawavillage__SakegawaVillage",
+   "source": "gtfs-data.jp",
    "organization_name": "鮭川村",
    "feed_name": "鮭川村営バス",
    "pref_id": 6,
@@ -3136,6 +3897,7 @@
   },
   {
    "key": "takeyakoutu__takeyakotsu",
+   "source": "gtfs-data.jp",
    "organization_name": "株式会社タケヤ交通",
    "feed_name": "株式会社タケヤ交通",
    "pref_id": 4,
@@ -3147,19 +3909,8 @@
    "n_stops": 48
   },
   {
-   "key": "yamagata-yamagatacity__YamagataCity",
-   "organization_name": "山形市",
-   "feed_name": "山形市営バス",
-   "pref_id": 6,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 74,
-   "n_stops": 66
-  },
-  {
    "key": "yamatotakadacity__communitybuskibougou",
+   "source": "gtfs-data.jp",
    "organization_name": "大和高田市",
    "feed_name": "コミュニティバスきぼう号",
    "pref_id": 29,
@@ -3172,6 +3923,7 @@
   },
   {
    "key": "minamishinshu__Minamishinshu-takamori-1",
+   "source": "gtfs-data.jp",
    "organization_name": "南信州地域交通問題協議会（南信州広域連合）",
    "feed_name": "【高森町】K1 柿丸あったかバス山吹エリア/K2柿丸あったかバス市田エリア/K3おはようバス山吹回り/K4おはようバス市田回り",
    "pref_id": 20,
@@ -3183,7 +3935,21 @@
    "n_stops": 54
   },
   {
+   "key": "tokushima-shiei__tokushimacitybus",
+   "source": "gtfs-data.jp",
+   "organization_name": "徳島市交通局",
+   "feed_name": "徳島市営バス",
+   "pref_id": 36,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 73,
+   "n_stops": 59
+  },
+  {
    "key": "tsubamecity__tsubame_bus",
+   "source": "gtfs-data.jp",
    "organization_name": "燕市",
    "feed_name": "燕市コミュニティバス",
    "pref_id": 15,
@@ -3196,6 +3962,7 @@
   },
   {
    "key": "hachinohecity__hachinohe-nango",
+   "source": "gtfs-data.jp",
    "organization_name": "八戸市",
    "feed_name": "八戸市南郷コミュニティバス",
    "pref_id": 2,
@@ -3208,6 +3975,7 @@
   },
   {
    "key": "ichikawatown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "市川町",
    "feed_name": "コミュニティバス",
    "pref_id": 28,
@@ -3219,19 +3987,34 @@
    "n_stops": 66
   },
   {
-   "key": "tokushima-shiei__tokushimacitybus",
-   "organization_name": "徳島市交通局",
-   "feed_name": "徳島市営バス",
-   "pref_id": 36,
-   "license": "CC BY 4.0",
+   "key": "higashi_murayama_city_alllines__Alllines",
+   "source": "odpt",
+   "organization_name": "東村山市コミュニティバス グリーンバス",
+   "feed_name": "higashi_murayama_city_alllines",
+   "pref_id": 0,
+   "license": "",
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
    "n_segments": 71,
-   "n_stops": 58
+   "n_stops": 66
+  },
+  {
+   "key": "hokkaido_takushoku_bus_takusyoku_highway_line__Takusyoku_highway_line",
+   "source": "odpt",
+   "organization_name": "拓殖バス　都市間高速バス・空港連絡バス（市内ホテル回り線）",
+   "feed_name": "hokkaido_takushoku_bus_takusyoku_highway_line",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 71,
+   "n_stops": 57
   },
   {
    "key": "towadacity__towadacity_communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "十和田市",
    "feed_name": "十和田市コミュニティバス",
    "pref_id": 2,
@@ -3244,6 +4027,7 @@
   },
   {
    "key": "minamichitatown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "南知多町",
    "feed_name": "南知多町海っ子バス",
    "pref_id": 23,
@@ -3256,6 +4040,7 @@
   },
   {
    "key": "nagadenbus__nagadenbus-nakano",
+   "source": "gtfs-data.jp",
    "organization_name": "長電バス株式会社",
    "feed_name": "長電バス中野３路線",
    "pref_id": 20,
@@ -3268,6 +4053,7 @@
   },
   {
    "key": "shingutown__ShinguTownCommunityBus",
+   "source": "gtfs-data.jp",
    "organization_name": "新宮町",
    "feed_name": "新宮町コミュニティバス マリンクス",
    "pref_id": 40,
@@ -3280,6 +4066,7 @@
   },
   {
    "key": "ugokotsu__ugokotsu_tazawako",
+   "source": "gtfs-data.jp",
    "organization_name": "羽後交通株式会社",
    "feed_name": "羽後交通（田沢湖地区）",
    "pref_id": 5,
@@ -3291,7 +4078,21 @@
    "n_stops": 64
   },
   {
+   "key": "yanbaru-expressbus__yanbaru-express-bus",
+   "source": "gtfs-data.jp",
+   "organization_name": "合同会社やんばる急行バス",
+   "feed_name": "やんばる急行バス",
+   "pref_id": 47,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 70,
+   "n_stops": 56
+  },
+  {
    "key": "yamatokoriyamacity__kingyobus",
+   "source": "gtfs-data.jp",
    "organization_name": "大和郡山市",
    "feed_name": "大和郡山市コミュニティバス",
    "pref_id": 29,
@@ -3304,6 +4105,7 @@
   },
   {
    "key": "chitacity__chita-aiaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "知多市",
    "feed_name": "知多市コミュニティバス「あいあいバス」",
    "pref_id": 23,
@@ -3316,6 +4118,7 @@
   },
   {
    "key": "hachikanbus__hachimanbus",
+   "source": "gtfs-data.jp",
    "organization_name": "八幡観光バス",
    "feed_name": "八幡バス",
    "pref_id": 21,
@@ -3328,6 +4131,7 @@
   },
   {
    "key": "ishikariwanshinko__on-demandtransit_itsumo",
+   "source": "gtfs-data.jp",
    "organization_name": "石狩湾新港地域公共交通サービス推進協議会",
    "feed_name": "石狩市AIデマンド交通「いつモ」",
    "pref_id": 1,
@@ -3340,6 +4144,7 @@
   },
   {
    "key": "kitakyushucity__edamitsu",
+   "source": "gtfs-data.jp",
    "organization_name": "北九州市",
    "feed_name": "八幡東区枝光地区",
    "pref_id": 40,
@@ -3352,6 +4157,7 @@
   },
   {
    "key": "shimantocity__GTFS-Shimantocity_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "四万十市",
    "feed_name": "四万十市営バス",
    "pref_id": 39,
@@ -3363,19 +4169,21 @@
    "n_stops": 71
   },
   {
-   "key": "yanbaru-expressbus__yanbaru-express-bus",
-   "organization_name": "合同会社やんばる急行バス",
-   "feed_name": "やんばる急行バス",
-   "pref_id": 47,
-   "license": "CC BY 4.0",
+   "key": "tokyo_chuo_city_alldata__Alldata",
+   "source": "odpt",
+   "organization_name": "コミュニティバス（江戸バス）",
+   "feed_name": "tokyo_chuo_city_alldata",
+   "pref_id": 0,
+   "license": "",
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
-   "n_segments": 68,
-   "n_stops": 55
+   "n_segments": 67,
+   "n_stops": 63
   },
   {
    "key": "soedatown__soedamachibus",
+   "source": "gtfs-data.jp",
    "organization_name": "添田町",
    "feed_name": "添田町バス",
    "pref_id": 40,
@@ -3388,6 +4196,7 @@
   },
   {
    "key": "kaicity__kaicitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "甲斐市",
    "feed_name": "甲斐市民バス",
    "pref_id": 19,
@@ -3400,6 +4209,7 @@
   },
   {
    "key": "miyamacity__MiyamaCityCommunityBus",
+   "source": "gtfs-data.jp",
    "organization_name": "みやま市",
    "feed_name": "みやま市コミュニティバス",
    "pref_id": 40,
@@ -3412,6 +4222,7 @@
   },
   {
    "key": "motomiyacity__motomiyashibus",
+   "source": "gtfs-data.jp",
    "organization_name": "本宮市",
    "feed_name": "本宮市コミュニティバス",
    "pref_id": 7,
@@ -3424,6 +4235,7 @@
   },
   {
    "key": "ohkuravillage__OhkuraVillage",
+   "source": "gtfs-data.jp",
    "organization_name": "大蔵村",
    "feed_name": "大蔵村営バス",
    "pref_id": 6,
@@ -3436,6 +4248,7 @@
   },
   {
    "key": "toyamacity__oyamacommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "富山市",
    "feed_name": "大山コミュニティバス",
    "pref_id": 16,
@@ -3448,6 +4261,7 @@
   },
   {
    "key": "kasaicity__unifureaitomi",
+   "source": "gtfs-data.jp",
    "organization_name": "加西市",
    "feed_name": "宇仁ふれあいバス/とみバス",
    "pref_id": 28,
@@ -3460,6 +4274,7 @@
   },
   {
    "key": "kusakarukotsu__kusakarubus",
+   "source": "gtfs-data.jp",
    "organization_name": "草軽交通株式会社",
    "feed_name": "軽井沢草津長野原草津口バス",
    "pref_id": 20,
@@ -3472,6 +4287,7 @@
   },
   {
    "key": "matsushigetown__matsushigetownbus",
+   "source": "gtfs-data.jp",
    "organization_name": "松茂町",
    "feed_name": "松茂町地域コミュニティバス",
    "pref_id": 36,
@@ -3484,6 +4300,7 @@
   },
   {
    "key": "nasutown__nasutown",
+   "source": "gtfs-data.jp",
    "organization_name": "那須町",
    "feed_name": "那須町町民バス",
    "pref_id": 9,
@@ -3496,6 +4313,7 @@
   },
   {
    "key": "owanitown__owanitown-sunekarabus",
+   "source": "gtfs-data.jp",
    "organization_name": "大鰐町",
    "feed_name": "大鰐町スネカラバス",
    "pref_id": 2,
@@ -3508,6 +4326,7 @@
   },
   {
    "key": "hichisotown__choeibus",
+   "source": "gtfs-data.jp",
    "organization_name": "七宗町",
    "feed_name": "七宗町営バス",
    "pref_id": 21,
@@ -3520,6 +4339,7 @@
   },
   {
    "key": "tsurugitown__tsurugitownbus",
+   "source": "gtfs-data.jp",
    "organization_name": "つるぎ町",
    "feed_name": "つるぎ町コミュニティーバス",
    "pref_id": 36,
@@ -3532,6 +4352,7 @@
   },
   {
    "key": "nanyocity__NanyoCity",
+   "source": "gtfs-data.jp",
    "organization_name": "南陽市",
    "feed_name": "南陽市営バス",
    "pref_id": 6,
@@ -3544,6 +4365,7 @@
   },
   {
    "key": "tachikawacity__kururinbus",
+   "source": "gtfs-data.jp",
    "organization_name": "立川市",
    "feed_name": "くるりんバス",
    "pref_id": 13,
@@ -3556,6 +4378,7 @@
   },
   {
    "key": "tsuchiuracity__tsuchimarubus",
+   "source": "gtfs-data.jp",
    "organization_name": "土浦市",
    "feed_name": "つちまるバス",
    "pref_id": 8,
@@ -3568,6 +4391,7 @@
   },
   {
    "key": "nouhibus__takayama_shuyu",
+   "source": "gtfs-data.jp",
    "organization_name": "濃飛乗合自動車（濃飛バス）",
    "feed_name": "飛騨高山周遊バス",
    "pref_id": 21,
@@ -3580,6 +4404,7 @@
   },
   {
    "key": "otonekotu__otonekotubus",
+   "source": "gtfs-data.jp",
    "organization_name": "大利根交通自動車株式会社",
    "feed_name": "大利根交通バス",
    "pref_id": 8,
@@ -3592,6 +4417,7 @@
   },
   {
    "key": "tokonamecity__Gruun",
+   "source": "gtfs-data.jp",
    "organization_name": "常滑市",
    "feed_name": "コミュニティバスグルーン",
    "pref_id": 23,
@@ -3603,7 +4429,21 @@
    "n_stops": 55
   },
   {
+   "key": "aoi-komaki__aoikotsu",
+   "source": "gtfs-data.jp",
+   "organization_name": "あおい交通",
+   "feed_name": "あおい交通",
+   "pref_id": 23,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 59,
+   "n_stops": 50
+  },
+  {
    "key": "nishinomiyacity__guruttonamaze",
+   "source": "gtfs-data.jp",
    "organization_name": "西宮市",
    "feed_name": "ぐるっと生瀬",
    "pref_id": 28,
@@ -3616,6 +4456,7 @@
   },
   {
    "key": "okuwavillage__kuwachan-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "大桑村",
    "feed_name": "くわちゃんバス",
    "pref_id": 20,
@@ -3628,6 +4469,7 @@
   },
   {
    "key": "toyoakecity__himawaribus",
+   "source": "gtfs-data.jp",
    "organization_name": "豊明市",
    "feed_name": "豊明市ひまわりバス",
    "pref_id": 23,
@@ -3640,6 +4482,7 @@
   },
   {
    "key": "nakatosatown__GTFS-Nakatosatown_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "中土佐町",
    "feed_name": "中土佐町コミュニティバス",
    "pref_id": 39,
@@ -3652,6 +4495,7 @@
   },
   {
    "key": "tsugarucity__tsugarucity_localtransportation",
+   "source": "gtfs-data.jp",
    "organization_name": "つがる市",
    "feed_name": "つがる市地域内交通",
    "pref_id": 2,
@@ -3663,19 +4507,8 @@
    "n_stops": 61
   },
   {
-   "key": "aoi-komaki__aoikotsu",
-   "organization_name": "あおい交通",
-   "feed_name": "あおい交通",
-   "pref_id": 23,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 57,
-   "n_stops": 49
-  },
-  {
    "key": "inzaicity__rosenbus",
+   "source": "gtfs-data.jp",
    "organization_name": "印西市",
    "feed_name": "宗像路線、六合路線",
    "pref_id": 12,
@@ -3687,7 +4520,21 @@
    "n_stops": 53
   },
   {
+   "key": "oshima_bus_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "大島バス",
+   "feed_name": "oshima_bus_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 57,
+   "n_stops": 53
+  },
+  {
    "key": "tsurutatown__tsuruta-townbus",
+   "source": "gtfs-data.jp",
    "organization_name": "鶴田町",
    "feed_name": "鶴田町地域巡回バス",
    "pref_id": 2,
@@ -3700,6 +4547,7 @@
   },
   {
    "key": "hamabus__iwata_seikatsubus",
+   "source": "gtfs-data.jp",
    "organization_name": "浜松バス株式会社",
    "feed_name": "磐田市生活バス路線",
    "pref_id": 22,
@@ -3712,6 +4560,7 @@
   },
   {
    "key": "masudacity__noriai",
+   "source": "gtfs-data.jp",
    "organization_name": "益田市",
    "feed_name": "益田市乗合タクシー",
    "pref_id": 32,
@@ -3724,6 +4573,7 @@
   },
   {
    "key": "shimantotown__GTFS-Shimantotown_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "四万十町",
    "feed_name": "四万十町コミュニティバス",
    "pref_id": 39,
@@ -3736,6 +4586,7 @@
   },
   {
    "key": "shingovillage__shingo-mizubashogo",
+   "source": "gtfs-data.jp",
    "organization_name": "新郷村",
    "feed_name": "新郷村営バス",
    "pref_id": 2,
@@ -3748,6 +4599,7 @@
   },
   {
    "key": "gan-wu__shiokazeline",
+   "source": "gtfs-data.jp",
    "organization_name": "岩宇地域公共交通活性化協議会",
    "feed_name": "しおかぜライン",
    "pref_id": 1,
@@ -3760,6 +4612,7 @@
   },
   {
    "key": "hayashimatown__hayashimatowncommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "早島町",
    "feed_name": "早島町コミュニティバス",
    "pref_id": 33,
@@ -3772,6 +4625,7 @@
   },
   {
    "key": "kuroishicity__kuroishi",
+   "source": "gtfs-data.jp",
    "organization_name": "黒石市",
    "feed_name": "ぷらっと号",
    "pref_id": 2,
@@ -3784,6 +4638,7 @@
   },
   {
    "key": "shisocity__shitanbus",
+   "source": "gtfs-data.jp",
    "organization_name": "宍粟市",
    "feed_name": "しーたんバス（蔦沢線・大谷線）",
    "pref_id": 28,
@@ -3796,6 +4651,7 @@
   },
   {
    "key": "himejicity__ieshima-boze-yukihiko",
+   "source": "gtfs-data.jp",
    "organization_name": "姫路市",
    "feed_name": "家島コミュニティバス/坊勢コミュニティバス/コミュニティバス雪彦",
    "pref_id": 28,
@@ -3808,6 +4664,7 @@
   },
   {
    "key": "tajimicity__kikyobus",
+   "source": "gtfs-data.jp",
    "organization_name": "多治見市",
    "feed_name": "ききょうバス",
    "pref_id": 21,
@@ -3820,6 +4677,7 @@
   },
   {
    "key": "yomogitavillage__yomogita-communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "蓬田村",
    "feed_name": "蓬田村コミュニティバス",
    "pref_id": 2,
@@ -3832,6 +4690,7 @@
   },
   {
    "key": "fukauratown__fukaura-town-communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "深浦町",
    "feed_name": "深浦町コミュニティバス",
    "pref_id": 2,
@@ -3844,6 +4703,7 @@
   },
   {
    "key": "nakatown__nakatownbus",
+   "source": "gtfs-data.jp",
    "organization_name": "那賀町",
    "feed_name": "那賀町営バス",
    "pref_id": 36,
@@ -3855,7 +4715,21 @@
    "n_stops": 53
   },
   {
+   "key": "higashiyamato_city_all_lines_cc0__AllLines_CC0",
+   "source": "odpt",
+   "organization_name": "東大和市コミュニティバス「ちょこバス」",
+   "feed_name": "higashiyamato_city_all_lines_cc0",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 51,
+   "n_stops": 50
+  },
+  {
    "key": "kisovillage__kisovill",
+   "source": "gtfs-data.jp",
    "organization_name": "木祖村",
    "feed_name": "木祖村公共交通",
    "pref_id": 20,
@@ -3868,6 +4742,7 @@
   },
   {
    "key": "narutocity__narutocitychiikibus",
+   "source": "gtfs-data.jp",
    "organization_name": "鳴門市",
    "feed_name": "鳴門市地域バス",
    "pref_id": 36,
@@ -3879,7 +4754,21 @@
    "n_stops": 47
   },
   {
+   "key": "nishinomiyacity__sakurayamanami",
+   "source": "gtfs-data.jp",
+   "organization_name": "西宮市",
+   "feed_name": "さくらやまなみバス",
+   "pref_id": 28,
+   "license": "CC BY 2.1 JP",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 51,
+   "n_stops": 43
+  },
+  {
    "key": "sagaecity__SagaeCity",
+   "source": "gtfs-data.jp",
    "organization_name": "寒河江市",
    "feed_name": "寒河江市営バス",
    "pref_id": 6,
@@ -3892,6 +4781,7 @@
   },
   {
    "key": "nagisotown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "南木曽町",
    "feed_name": "南木曽町地域バス",
    "pref_id": 20,
@@ -3904,6 +4794,7 @@
   },
   {
    "key": "takasagocity__jotonbus",
+   "source": "gtfs-data.jp",
    "organization_name": "高砂市",
    "feed_name": "じょうとんバス",
    "pref_id": 28,
@@ -3916,6 +4807,7 @@
   },
   {
    "key": "taketoyotown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "武豊町",
    "feed_name": "武豊町コミュニティバス「ゆめころん」",
    "pref_id": 23,
@@ -3928,6 +4820,7 @@
   },
   {
    "key": "yamagata-asahitown__AsahiTown",
+   "source": "gtfs-data.jp",
    "organization_name": "朝日町",
    "feed_name": "朝日町営バス",
    "pref_id": 6,
@@ -3939,19 +4832,34 @@
    "n_stops": 49
   },
   {
-   "key": "nishinomiyacity__sakurayamanami",
-   "organization_name": "西宮市",
-   "feed_name": "さくらやまなみバス",
-   "pref_id": 28,
-   "license": "CC BY 2.1 JP",
+   "key": "hitachi_automobile_transportation_kita_all_lines__KitaAllLines",
+   "source": "odpt",
+   "organization_name": "北区コミュニティバス「Kバス」",
+   "feed_name": "hitachi_automobile_transportation_kita_all_lines",
+   "pref_id": 0,
+   "license": "",
    "target_date": "2026-07-27",
    "status": "ok",
    "note": "",
    "n_segments": 49,
-   "n_stops": 42
+   "n_stops": 46
+  },
+  {
+   "key": "midori_city_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "群馬県みどり市路線バス",
+   "feed_name": "midori_city_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 49,
+   "n_stops": 45
   },
   {
    "key": "sakawatown__GTFS-Sakawatown_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "佐川町",
    "feed_name": "佐川町コミュニティバス「さかわぐるぐるバス」",
    "pref_id": 39,
@@ -3964,6 +4872,7 @@
   },
   {
    "key": "sekicity__itadorifureaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "関市",
    "feed_name": "板取ふれあいバス",
    "pref_id": 21,
@@ -3976,6 +4885,7 @@
   },
   {
    "key": "sumotocity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "洲本市",
    "feed_name": "コミュニティバス",
    "pref_id": 28,
@@ -3987,7 +4897,21 @@
    "n_stops": 50
   },
   {
+   "key": "kasamatsutown__communitybus",
+   "source": "gtfs-data.jp",
+   "organization_name": "笠松町",
+   "feed_name": "笠松町公共施設巡回町民バス",
+   "pref_id": 21,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 48,
+   "n_stops": 39
+  },
+  {
    "key": "minamishinshu__Minamishinshu-seibu-1",
+   "source": "gtfs-data.jp",
    "organization_name": "南信州地域交通問題協議会（南信州広域連合）",
    "feed_name": "【阿智村・根羽村・平谷村】W1　西部コミュニティバス",
    "pref_id": 20,
@@ -4000,6 +4924,7 @@
   },
   {
    "key": "yaesetown__yaese-town-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "八重瀬町",
    "feed_name": "八重瀬町バス",
    "pref_id": 47,
@@ -4012,6 +4937,7 @@
   },
   {
    "key": "minamishinshu__Minamishinshu-Matsukawa-1",
+   "source": "gtfs-data.jp",
    "organization_name": "南信州地域交通問題協議会（南信州広域連合）",
    "feed_name": "【松川町】M3まつかわフルーツバス部奈線/M6 まつかわフルーツバス 上片桐・大島通学便/M7 まつかわフルーツバス 生田線",
    "pref_id": 20,
@@ -4024,6 +4950,7 @@
   },
   {
    "key": "nyuzentown__noranmaicar",
+   "source": "gtfs-data.jp",
    "organization_name": "入善町",
    "feed_name": "のらんマイ・カー",
    "pref_id": 16,
@@ -4036,6 +4963,7 @@
   },
   {
    "key": "takitown__choeibus",
+   "source": "gtfs-data.jp",
    "organization_name": "多気町",
    "feed_name": "多気町営バス",
    "pref_id": 24,
@@ -4048,6 +4976,7 @@
   },
   {
    "key": "toyamacity__yamadacommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "富山市",
    "feed_name": "山田コミュニティバス",
    "pref_id": 16,
@@ -4060,6 +4989,7 @@
   },
   {
    "key": "kaizucity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "海津市",
    "feed_name": "海津市コミュニティバス",
    "pref_id": 21,
@@ -4071,19 +5001,8 @@
    "n_stops": 43
   },
   {
-   "key": "kasamatsutown__communitybus",
-   "organization_name": "笠松町",
-   "feed_name": "笠松町公共施設巡回町民バス",
-   "pref_id": 21,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 46,
-   "n_stops": 38
-  },
-  {
    "key": "mizuhotown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "瑞穂町",
    "feed_name": "瑞穂町コミュニティバス",
    "pref_id": 13,
@@ -4096,6 +5015,7 @@
   },
   {
    "key": "rinkan__hashimoto-rinkandenentoshi",
+   "source": "gtfs-data.jp",
    "organization_name": "南海りんかんバス株式会社",
    "feed_name": "南海りんかんバス橋本・林間田園都市エリア",
    "pref_id": 30,
@@ -4108,6 +5028,7 @@
   },
   {
    "key": "saitamacity__iwatsukikucommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "岩槻区コミュニティバス",
    "pref_id": 11,
@@ -4120,6 +5041,7 @@
   },
   {
    "key": "jr-east-morioka__JReast_wandotaxi",
+   "source": "gtfs-data.jp",
    "organization_name": "JR東日本盛岡支社",
    "feed_name": "わんタク定時便",
    "pref_id": 2,
@@ -4132,6 +5054,7 @@
   },
   {
    "key": "kisosakitown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "木曽岬町",
    "feed_name": "木曽岬町自主運行バス",
    "pref_id": 24,
@@ -4144,6 +5067,7 @@
   },
   {
    "key": "nakatsucity__Yakata",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "屋形線",
    "pref_id": 44,
@@ -4156,6 +5080,7 @@
   },
   {
    "key": "seikatsubus-yokkaichi__sbusyokkaichi",
+   "source": "gtfs-data.jp",
    "organization_name": "生活バス四日市",
    "feed_name": "生活バスよっかいち",
    "pref_id": 24,
@@ -4168,6 +5093,7 @@
   },
   {
    "key": "hannocity__odekakemuma-seimei-kaji",
+   "source": "gtfs-data.jp",
    "organization_name": "飯能市",
    "feed_name": "飯能市乗合ワゴン　精明・加治",
    "pref_id": 11,
@@ -4180,6 +5106,7 @@
   },
   {
    "key": "inotown__GTFS-Inotown_Loopbus",
+   "source": "gtfs-data.jp",
    "organization_name": "いの町",
    "feed_name": "いの町営バス「伊野循環線」",
    "pref_id": 39,
@@ -4192,6 +5119,7 @@
   },
   {
    "key": "kaetsunou__kaetsunousekaiisan",
+   "source": "gtfs-data.jp",
    "organization_name": "加越能バス",
    "feed_name": "加越能バス（世界遺産バス）",
    "pref_id": 16,
@@ -4204,6 +5132,7 @@
   },
   {
    "key": "nagano-kawakamivillage__kawakamibus",
+   "source": "gtfs-data.jp",
    "organization_name": "川上村",
    "feed_name": "川上村営バス",
    "pref_id": 20,
@@ -4216,6 +5145,7 @@
   },
   {
    "key": "saitamacity__ajisaigou",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "西区指扇地区乗合タクシーあじさい号",
    "pref_id": 11,
@@ -4228,6 +5158,7 @@
   },
   {
    "key": "takayamacity__takanego",
+   "source": "gtfs-data.jp",
    "organization_name": "高山市",
    "feed_name": "たかね号",
    "pref_id": 21,
@@ -4240,6 +5171,7 @@
   },
   {
    "key": "toshinkanko-bus__rosenbus",
+   "source": "gtfs-data.jp",
    "organization_name": "東信観光バス株式会社",
    "feed_name": "路線バス",
    "pref_id": 20,
@@ -4252,6 +5184,7 @@
   },
   {
    "key": "chitetsu__chitetsushinaidensha",
+   "source": "gtfs-data.jp",
    "organization_name": "富山地方鉄道",
    "feed_name": "富山地方鉄道市内電車",
    "pref_id": 16,
@@ -4264,6 +5197,7 @@
   },
   {
    "key": "nagahamacity__nishiazaiodekakewagon",
+   "source": "gtfs-data.jp",
    "organization_name": "長浜市",
    "feed_name": "長浜市コミュニティバス　西浅井おでかけワゴン　",
    "pref_id": 25,
@@ -4276,6 +5210,7 @@
   },
   {
    "key": "nishinomiyacity__najio-ikunokogen",
+   "source": "gtfs-data.jp",
    "organization_name": "西宮市",
    "feed_name": "名塩・生野高原ふれあいバス",
    "pref_id": 28,
@@ -4288,6 +5223,7 @@
   },
   {
    "key": "oetown__Oetown",
+   "source": "gtfs-data.jp",
    "organization_name": "大江町",
    "feed_name": "大江町営バス",
    "pref_id": 6,
@@ -4300,6 +5236,7 @@
   },
   {
    "key": "katsuragitown__community-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "かつらぎ町",
    "feed_name": "かつらぎ町コミュニティバス",
    "pref_id": 30,
@@ -4312,6 +5249,7 @@
   },
   {
    "key": "saitamacity__minumakucommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "見沼区コミュニティバス",
    "pref_id": 11,
@@ -4324,6 +5262,7 @@
   },
   {
    "key": "toyookacity__kobus",
+   "source": "gtfs-data.jp",
    "organization_name": "豊岡市",
    "feed_name": "コバス",
    "pref_id": 28,
@@ -4336,6 +5275,7 @@
   },
   {
    "key": "agematsutown__agematu",
+   "source": "gtfs-data.jp",
    "organization_name": "上松町",
    "feed_name": "上松町公共交通",
    "pref_id": 20,
@@ -4348,6 +5288,7 @@
   },
   {
    "key": "isecity__numakibus",
+   "source": "gtfs-data.jp",
    "organization_name": "伊勢市",
    "feed_name": "伊勢市沼木地区自主運行バス「沼木バス」",
    "pref_id": 24,
@@ -4360,6 +5301,7 @@
   },
   {
    "key": "amagikankobus__AmagiKankoBus",
+   "source": "gtfs-data.jp",
    "organization_name": "株式会社甘木観光バス",
    "feed_name": "株式会社甘木観光バス",
    "pref_id": 40,
@@ -4372,6 +5314,7 @@
   },
   {
    "key": "kunitachicity__kunikko",
+   "source": "gtfs-data.jp",
    "organization_name": "国立市",
    "feed_name": "国立市コミュニティバス「くにっこ」",
    "pref_id": 13,
@@ -4384,6 +5327,7 @@
   },
   {
    "key": "miharavillage__GTFS-Miharavill_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "三原村",
    "feed_name": "三原村「三原バス」",
    "pref_id": 39,
@@ -4396,6 +5340,7 @@
   },
   {
    "key": "sayotown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "佐用町",
    "feed_name": "コミュニティバス",
    "pref_id": 28,
@@ -4408,6 +5353,7 @@
   },
   {
    "key": "shizuokacity__ryougouchi",
+   "source": "gtfs-data.jp",
    "organization_name": "静岡市",
    "feed_name": "清水区両河内地区：両河内線但沼系統、大平系統、板井沢系統（ココバス）",
    "pref_id": 22,
@@ -4420,6 +5366,7 @@
   },
   {
    "key": "yotsukaidocity__yoppii",
+   "source": "gtfs-data.jp",
    "organization_name": "四街道市",
    "feed_name": "市内循環バス「ヨッピィ」",
    "pref_id": 12,
@@ -4432,6 +5379,7 @@
   },
   {
    "key": "kamishihorotown__kamishihoro",
+   "source": "gtfs-data.jp",
    "organization_name": "上士幌町",
    "feed_name": "上士幌町コミュニティバス",
    "pref_id": 1,
@@ -4444,6 +5392,7 @@
   },
   {
    "key": "komatsucity__orange",
+   "source": "gtfs-data.jp",
    "organization_name": "小松市",
    "feed_name": "市内循環線南コース",
    "pref_id": 17,
@@ -4456,6 +5405,7 @@
   },
   {
    "key": "toyamacity__maidohayabus",
+   "source": "gtfs-data.jp",
    "organization_name": "富山市",
    "feed_name": "まいどはやバス",
    "pref_id": 16,
@@ -4467,7 +5417,21 @@
    "n_stops": 36
   },
   {
+   "key": "toyoyamatown__communitybus",
+   "source": "gtfs-data.jp",
+   "organization_name": "豊山町",
+   "feed_name": "とよやまタウンバス",
+   "pref_id": 23,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 37,
+   "n_stops": 30
+  },
+  {
    "key": "yaotsutown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "八百津町",
    "feed_name": "八百津町コミュニティバス",
    "pref_id": 21,
@@ -4480,6 +5444,7 @@
   },
   {
    "key": "higashimiyoshitown__higashimiyoshitownbus",
+   "source": "gtfs-data.jp",
    "organization_name": "東みよし町",
    "feed_name": "東みよし町営バス",
    "pref_id": 36,
@@ -4492,6 +5457,7 @@
   },
   {
    "key": "ichikawamisatotown__ichikawamisatobus",
+   "source": "gtfs-data.jp",
    "organization_name": "市川三郷町",
    "feed_name": "市川三郷町コミュニティバス",
    "pref_id": 19,
@@ -4504,6 +5470,7 @@
   },
   {
    "key": "mie-meiwatown__chominbus",
+   "source": "gtfs-data.jp",
    "organization_name": "明和町",
    "feed_name": "明和町町民バス",
    "pref_id": 24,
@@ -4516,6 +5483,7 @@
   },
   {
    "key": "shiratakatown__ShiratakaTown",
+   "source": "gtfs-data.jp",
    "organization_name": "白鷹町",
    "feed_name": "白鷹町営バス",
    "pref_id": 6,
@@ -4528,6 +5496,7 @@
   },
   {
    "key": "tendocity__TendoCity",
+   "source": "gtfs-data.jp",
    "organization_name": "天童市",
    "feed_name": "天童市営バス",
    "pref_id": 6,
@@ -4539,7 +5508,21 @@
    "n_stops": 36
   },
   {
+   "key": "komatsucity__blue",
+   "source": "gtfs-data.jp",
+   "organization_name": "小松市",
+   "feed_name": "市内循環線北コース",
+   "pref_id": 17,
+   "license": "CC0 1.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 35,
+   "n_stops": 31
+  },
+  {
    "key": "oizumitown__kouikikoukyoubasuaozora",
+   "source": "gtfs-data.jp",
    "organization_name": "大泉町",
    "feed_name": "広域公共バス「あおぞら」",
    "pref_id": 10,
@@ -4552,6 +5535,7 @@
   },
   {
    "key": "sukumocity__GTFS-Sukumocity_Hanabus",
+   "source": "gtfs-data.jp",
    "organization_name": "宿毛市",
    "feed_name": "宿毛市コミュニティバス「はなちゃんバス」",
    "pref_id": 39,
@@ -4563,19 +5547,8 @@
    "n_stops": 26
   },
   {
-   "key": "toyoyamatown__communitybus",
-   "organization_name": "豊山町",
-   "feed_name": "とよやまタウンバス",
-   "pref_id": 23,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 35,
-   "n_stops": 29
-  },
-  {
    "key": "ashiyatown__AshiyaTownBus",
+   "source": "gtfs-data.jp",
    "organization_name": "芦屋町",
    "feed_name": "芦屋町コミュニティバス 芦屋タウンバス",
    "pref_id": 40,
@@ -4588,6 +5561,7 @@
   },
   {
    "key": "kawagoetown__fureaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "川越町",
    "feed_name": "川越町ふれあいバス",
    "pref_id": 24,
@@ -4600,6 +5574,7 @@
   },
   {
    "key": "kuratetown__KurateTownSmileBusMiyawakaLine",
+   "source": "gtfs-data.jp",
    "organization_name": "鞍手町",
    "feed_name": "すまいるバスみやわか線",
    "pref_id": 40,
@@ -4612,6 +5587,7 @@
   },
   {
    "key": "mitaketown__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "御嵩町",
    "feed_name": "御嵩町コミュニティバス「ふれあいバス」",
    "pref_id": 21,
@@ -4624,6 +5600,7 @@
   },
   {
    "key": "ninomiyatown__Ninomiyatowncommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "二宮町",
    "feed_name": "二宮町コミュニティバス",
    "pref_id": 14,
@@ -4636,6 +5613,7 @@
   },
   {
    "key": "rinkan__koyasan",
+   "source": "gtfs-data.jp",
    "organization_name": "南海りんかんバス株式会社",
    "feed_name": "南海りんかんバス高野山エリア",
    "pref_id": 30,
@@ -4648,6 +5626,7 @@
   },
   {
    "key": "saitamacity__nisikucommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "西区コミュニティバス",
    "pref_id": 11,
@@ -4660,6 +5639,7 @@
   },
   {
    "key": "shizuokacity__yui",
+   "source": "gtfs-data.jp",
    "organization_name": "静岡市",
    "feed_name": "清水区由比地区：ゆいばす",
    "pref_id": 22,
@@ -4672,6 +5652,7 @@
   },
   {
    "key": "kaminoyamacity__KaminoyamaCity",
+   "source": "gtfs-data.jp",
    "organization_name": "上山市",
    "feed_name": "上山市営バス",
    "pref_id": 6,
@@ -4683,19 +5664,8 @@
    "n_stops": 33
   },
   {
-   "key": "komatsucity__blue",
-   "organization_name": "小松市",
-   "feed_name": "市内循環線北コース",
-   "pref_id": 17,
-   "license": "CC0 1.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 33,
-   "n_stops": 30
-  },
-  {
    "key": "murotocity__GTFS-Murotocity_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "室戸市",
    "feed_name": "室戸市コミュニティバス「むろはぴ号」",
    "pref_id": 39,
@@ -4708,6 +5678,7 @@
   },
   {
    "key": "nakatsucity__Nishitani",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "西谷線",
    "pref_id": 44,
@@ -4720,6 +5691,7 @@
   },
   {
    "key": "nakayamatown__NakayamaTown",
+   "source": "gtfs-data.jp",
    "organization_name": "中山町",
    "feed_name": "中山町営バス",
    "pref_id": 6,
@@ -4732,6 +5704,7 @@
   },
   {
    "key": "saitamacity__kitakucommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "北区コミュニティバス",
    "pref_id": 11,
@@ -4743,7 +5716,21 @@
    "n_stops": 34
   },
   {
+   "key": "shizuokacity__yui-kanbara",
+   "source": "gtfs-data.jp",
+   "organization_name": "静岡市",
+   "feed_name": "清水区由比・蒲原地区：由比・蒲原病院線",
+   "pref_id": 22,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 33,
+   "n_stops": 33
+  },
+  {
    "key": "tosashimizucity__GTFS-Tosashimizucity_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "土佐清水市",
    "feed_name": "土佐清水市デマンド交通「おでかけ号」",
    "pref_id": 39,
@@ -4756,6 +5743,7 @@
   },
   {
    "key": "tsukubacity__TSUKUBANEGO",
+   "source": "gtfs-data.jp",
    "organization_name": "つくば市",
    "feed_name": "つくばね号",
    "pref_id": 8,
@@ -4767,7 +5755,21 @@
    "n_stops": 34
   },
   {
+   "key": "juo_bus_isesaki_honjo_line__Isesaki_Honjo_Line",
+   "source": "odpt",
+   "organization_name": "十王自動車",
+   "feed_name": "juo_bus_isesaki_honjo_line",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 32,
+   "n_stops": 33
+  },
+  {
    "key": "nakatsucity__Kawaraguchi",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "川原口線",
    "pref_id": 44,
@@ -4780,6 +5782,7 @@
   },
   {
    "key": "nakatsucity__Kii",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "城井線",
    "pref_id": 44,
@@ -4792,6 +5795,7 @@
   },
   {
    "key": "nishinomiyacity__koyoen",
+   "source": "gtfs-data.jp",
    "organization_name": "西宮市",
    "feed_name": "甲陽地区コミュニティバス（こよたんバス）",
    "pref_id": 28,
@@ -4804,6 +5808,7 @@
   },
   {
    "key": "saitamacity__sakurakucommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "桜区コミュニティバス",
    "pref_id": 11,
@@ -4815,19 +5820,8 @@
    "n_stops": 33
   },
   {
-   "key": "shizuokacity__yui-kanbara",
-   "organization_name": "静岡市",
-   "feed_name": "清水区由比・蒲原地区：由比・蒲原病院線",
-   "pref_id": 22,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 32,
-   "n_stops": 32
-  },
-  {
    "key": "wataraitown__choeibus",
+   "source": "gtfs-data.jp",
    "organization_name": "度会町",
    "feed_name": "度会町営バス",
    "pref_id": 24,
@@ -4840,6 +5834,7 @@
   },
   {
    "key": "jr-shikoku-bus-kochi__GTFS-JRbus_Otochi",
+   "source": "gtfs-data.jp",
    "organization_name": "ジェイアール四国バス株式会社 高知支店",
    "feed_name": "路線バス",
    "pref_id": 39,
@@ -4852,6 +5847,7 @@
   },
   {
    "key": "kitagawavillage__GTFS-Kitagawavill_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "北川村",
    "feed_name": "北川村営バス",
    "pref_id": 39,
@@ -4863,7 +5859,21 @@
    "n_stops": 30
   },
   {
+   "key": "kiyose_city_kiyo_bus__KiyoBus",
+   "source": "odpt",
+   "organization_name": "きよバス",
+   "feed_name": "kiyose_city_kiyo_bus",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 31,
+   "n_stops": 30
+  },
+  {
    "key": "nagitown__nagibus",
+   "source": "gtfs-data.jp",
    "organization_name": "奈義町",
    "feed_name": "なぎバス",
    "pref_id": 33,
@@ -4876,6 +5886,7 @@
   },
   {
    "key": "nakatsucity__Higashitani",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "東谷線",
    "pref_id": 44,
@@ -4888,6 +5899,7 @@
   },
   {
    "key": "shimanto-kotsu__GTFS-Shimantotraffic_Feederbus",
+   "source": "gtfs-data.jp",
    "organization_name": "株式会社四万十交通",
    "feed_name": "路線バス フィーダー線",
    "pref_id": 39,
@@ -4900,6 +5912,7 @@
   },
   {
    "key": "chikugocity__HainuzukaStationAreaLoopBus",
+   "source": "gtfs-data.jp",
    "organization_name": "筑後市",
    "feed_name": "羽犬塚駅周辺循環バス",
    "pref_id": 40,
@@ -4912,6 +5925,7 @@
   },
   {
    "key": "kosugevillage__kosugesoneibus",
+   "source": "gtfs-data.jp",
    "organization_name": "小菅村",
    "feed_name": "小菅村営バス",
    "pref_id": 19,
@@ -4924,6 +5938,7 @@
   },
   {
    "key": "nakatsucity__UenokawauchiMasaki",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "上ノ川内柾木線",
    "pref_id": 44,
@@ -4936,6 +5951,7 @@
   },
   {
    "key": "iiyamacity__nanohanabus",
+   "source": "gtfs-data.jp",
    "organization_name": "飯山市",
    "feed_name": "菜の花バス市街地循環線",
    "pref_id": 20,
@@ -4947,7 +5963,21 @@
    "n_stops": 23
   },
   {
+   "key": "nakatsucity__BuzenNakatsu",
+   "source": "gtfs-data.jp",
+   "organization_name": "中津市",
+   "feed_name": "豊前・中津線",
+   "pref_id": 44,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 29,
+   "n_stops": 27
+  },
+  {
    "key": "nakatsucity__Tsutami",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "津民線",
    "pref_id": 44,
@@ -4960,6 +5990,7 @@
   },
   {
    "key": "toyamacity__horikawaminamicommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "富山市",
    "feed_name": "堀川南地域コミュニティバス",
    "pref_id": 16,
@@ -4972,6 +6003,7 @@
   },
   {
    "key": "yokkaichicity__communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "四日市市",
    "feed_name": "四日市市自主運行バス",
    "pref_id": 24,
@@ -4984,6 +6016,7 @@
   },
   {
    "key": "saitamacity__minamikucommunitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "南区コミュニティバス",
    "pref_id": 11,
@@ -4996,6 +6029,7 @@
   },
   {
    "key": "hannocity__odekakemuma-haraichiba",
+   "source": "gtfs-data.jp",
    "organization_name": "飯能市",
    "feed_name": "飯能市乗合ワゴン　原市場",
    "pref_id": 11,
@@ -5008,6 +6042,7 @@
   },
   {
    "key": "kitakyushucity__okura",
+   "source": "gtfs-data.jp",
    "organization_name": "北九州市",
    "feed_name": "八幡東区大蔵地区",
    "pref_id": 40,
@@ -5020,6 +6055,7 @@
   },
   {
    "key": "kochi-suzakicity__GTFS-Susakicity_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "須崎市",
    "feed_name": "須崎市営バス",
    "pref_id": 39,
@@ -5032,6 +6068,7 @@
   },
   {
    "key": "mibutown__mibubu",
+   "source": "gtfs-data.jp",
    "organization_name": "壬生町",
    "feed_name": "壬生町コミュニティバス「みぶーぶ」",
    "pref_id": 9,
@@ -5044,6 +6081,7 @@
   },
   {
    "key": "miyawakacity__MiyawakaMunakataLine",
+   "source": "gtfs-data.jp",
    "organization_name": "宮若市",
    "feed_name": "宮田・百合野線",
    "pref_id": 40,
@@ -5056,6 +6094,7 @@
   },
   {
    "key": "motoyamatown__GTFS-Motoyamatown_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "本山町",
    "feed_name": "本山町コミュニティバス「さくらバス」",
    "pref_id": 39,
@@ -5067,19 +6106,8 @@
    "n_stops": 25
   },
   {
-   "key": "nakatsucity__BuzenNakatsu",
-   "organization_name": "中津市",
-   "feed_name": "豊前・中津線",
-   "pref_id": 44,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 27,
-   "n_stops": 26
-  },
-  {
    "key": "nakatsucity__OshimaIfuku",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "大島伊福線",
    "pref_id": 44,
@@ -5092,6 +6120,7 @@
   },
   {
    "key": "saitamacity__musashigou",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "桜区大久保・中央区西与野地区乗合タクシーむさし号",
    "pref_id": 11,
@@ -5104,6 +6133,7 @@
   },
   {
    "key": "samukawatown__mokusei-go_eastroute",
+   "source": "gtfs-data.jp",
    "organization_name": "寒川町",
    "feed_name": "寒川町コミュニティバス「もくせい号」東ルート",
    "pref_id": 14,
@@ -5116,6 +6146,7 @@
   },
   {
    "key": "tokushimacity__oujinfureaibus",
+   "source": "gtfs-data.jp",
    "organization_name": "徳島市",
    "feed_name": "応神ふれあいバス",
    "pref_id": 36,
@@ -5128,6 +6159,7 @@
   },
   {
    "key": "kozushimavillage__kozushimavillagebus",
+   "source": "gtfs-data.jp",
    "organization_name": "神津島村",
    "feed_name": "神津島村営バス",
    "pref_id": 13,
@@ -5140,6 +6172,7 @@
   },
   {
    "key": "kitakyushucity__koyanose-kusubashi-hoshigaoka",
+   "source": "gtfs-data.jp",
    "organization_name": "北九州市",
    "feed_name": "八幡西区木屋瀬・楠橋・星ヶ丘地区",
    "pref_id": 40,
@@ -5152,6 +6185,7 @@
   },
   {
    "key": "saitamacity__rainbowgou",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "岩槻区和土地区乗合タクシーレインボー号",
    "pref_id": 11,
@@ -5164,6 +6198,7 @@
   },
   {
    "key": "fukuoka-kogacity__KogaBus",
+   "source": "gtfs-data.jp",
    "organization_name": "古賀市",
    "feed_name": "コガバス",
    "pref_id": 40,
@@ -5176,6 +6211,7 @@
   },
   {
    "key": "kitakyushucity__tsunemi-kitaku",
+   "source": "gtfs-data.jp",
    "organization_name": "北九州市",
    "feed_name": "門司区恒見・喜多久地区",
    "pref_id": 40,
@@ -5187,7 +6223,21 @@
    "n_stops": 21
   },
   {
+   "key": "tokyu_bus_tokyubus_community_meguro_city__tokyubus_community_MeguroCity",
+   "source": "odpt",
+   "organization_name": "目黒区コミュニティバス",
+   "feed_name": "tokyu_bus_tokyubus_community_meguro_city",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 24,
+   "n_stops": 20
+  },
+  {
    "key": "busnet-tsu__guruttotsubus",
+   "source": "gtfs-data.jp",
    "organization_name": "バスネット津",
    "feed_name": "ぐるっと・つーバス",
    "pref_id": 24,
@@ -5200,6 +6250,7 @@
   },
   {
    "key": "hannocity__odekakemuma-minamikoma",
+   "source": "gtfs-data.jp",
    "organization_name": "飯能市",
    "feed_name": "飯能市乗合ワゴン　南高麗",
    "pref_id": 11,
@@ -5212,6 +6263,7 @@
   },
   {
    "key": "komatsucity__kibagatasen",
+   "source": "gtfs-data.jp",
    "organization_name": "小松市",
    "feed_name": "木場潟線",
    "pref_id": 17,
@@ -5224,6 +6276,7 @@
   },
   {
    "key": "matsudocity__matsudo",
+   "source": "gtfs-data.jp",
    "organization_name": "松戸市",
    "feed_name": "松戸市ゆめいろバス",
    "pref_id": 12,
@@ -5236,6 +6289,7 @@
   },
   {
    "key": "nakatsucity__ShinyabaHigashi",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "深耶馬東線",
    "pref_id": 44,
@@ -5248,6 +6302,7 @@
   },
   {
    "key": "nakatsucity__UraYabakei",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "裏耶馬溪線",
    "pref_id": 44,
@@ -5260,6 +6315,7 @@
   },
   {
    "key": "samukawatown__mokusei-go_kuramiomuraroute",
+   "source": "gtfs-data.jp",
    "organization_name": "寒川町",
    "feed_name": "寒川町コミュニティバス「もくせい号」倉見大村ルート",
    "pref_id": 14,
@@ -5272,6 +6328,7 @@
   },
   {
    "key": "yamanobetown__YamanobeTown",
+   "source": "gtfs-data.jp",
    "organization_name": "山辺町",
    "feed_name": "山辺町営バス",
    "pref_id": 6,
@@ -5284,6 +6341,7 @@
   },
   {
    "key": "kakegawacity__kakegawaosuka",
+   "source": "gtfs-data.jp",
    "organization_name": "掛川市",
    "feed_name": "掛川大須賀線",
    "pref_id": 22,
@@ -5296,6 +6354,7 @@
   },
   {
    "key": "kitakyushucity__oma-dobaru",
+   "source": "gtfs-data.jp",
    "organization_name": "北九州市",
    "feed_name": "小倉南区合馬・道原地区",
    "pref_id": 40,
@@ -5308,6 +6367,7 @@
   },
   {
    "key": "munakatacity__MiyawakaMunakataLine",
+   "source": "gtfs-data.jp",
    "organization_name": "宗像市",
    "feed_name": "宮若・宗像線",
    "pref_id": 40,
@@ -5320,6 +6380,7 @@
   },
   {
    "key": "nakatsucity__YamautsuriMinami",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "山移南線",
    "pref_id": 44,
@@ -5332,6 +6393,7 @@
   },
   {
    "key": "otakivillage__otaki-village",
+   "source": "gtfs-data.jp",
    "organization_name": "王滝村",
    "feed_name": "王滝村",
    "pref_id": 20,
@@ -5344,6 +6406,7 @@
   },
   {
    "key": "saitamacity__miyaharanakayoshigou",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "北区吉野町乗合タクシー宮原なかよし号",
    "pref_id": 11,
@@ -5356,6 +6419,7 @@
   },
   {
    "key": "shizuokacity__ikawa",
+   "source": "gtfs-data.jp",
    "organization_name": "静岡市",
    "feed_name": "葵区井川地区：井川地区自主運行バス",
    "pref_id": 22,
@@ -5368,6 +6432,7 @@
   },
   {
    "key": "tosaden-kotsu__GTFS-Tosadentraffic_Airportbus",
+   "source": "gtfs-data.jp",
    "organization_name": "とさでん交通株式会社",
    "feed_name": "空港連絡バス",
    "pref_id": 39,
@@ -5380,6 +6445,7 @@
   },
   {
    "key": "kamicity__GTFS-Kamicity_Demandbus",
+   "source": "gtfs-data.jp",
    "organization_name": "香美市",
    "feed_name": "香美市営バス デマンド",
    "pref_id": 39,
@@ -5391,7 +6457,21 @@
    "n_stops": 22
   },
   {
+   "key": "kitakyushucity__higashitani",
+   "source": "gtfs-data.jp",
+   "organization_name": "北九州市",
+   "feed_name": "小倉南区東谷地区",
+   "pref_id": 40,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 21,
+   "n_stops": 21
+  },
+  {
    "key": "nakatsucity__HiyamajiKamagi",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "樋山路鎌城線",
    "pref_id": 44,
@@ -5404,6 +6484,7 @@
   },
   {
    "key": "nakatsucity__ShinyabaNishi",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "深耶馬西線",
    "pref_id": 44,
@@ -5416,6 +6497,7 @@
   },
   {
    "key": "ogasawaravillage__o",
+   "source": "gtfs-data.jp",
    "organization_name": "小笠原村",
    "feed_name": "小笠原村営バス",
    "pref_id": 13,
@@ -5428,6 +6510,7 @@
   },
   {
    "key": "kitajimatown__kitajimatownfukushibus",
+   "source": "gtfs-data.jp",
    "organization_name": "北島町",
    "feed_name": "北島町福祉バス",
    "pref_id": 36,
@@ -5440,6 +6523,7 @@
   },
   {
    "key": "nakatsucity__OshimadaiKanayoshi",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "大島台金吉線",
    "pref_id": 44,
@@ -5452,6 +6536,7 @@
   },
   {
    "key": "saitamacity__kawasemigou",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "見沼区片柳西地区乗合タクシーカワセミ号",
    "pref_id": 11,
@@ -5464,6 +6549,7 @@
   },
   {
    "key": "tohtetsu__tohtetsu_ena",
+   "source": "gtfs-data.jp",
    "organization_name": "東濃鉄道",
    "feed_name": "東濃鉄道（東鉄バス）恵那営業所管内",
    "pref_id": 21,
@@ -5476,6 +6562,7 @@
   },
   {
    "key": "fukuokacity__ImajukuMeinohamaLine",
+   "source": "gtfs-data.jp",
    "organization_name": "福岡市",
    "feed_name": "今宿姪浜線乗合バス",
    "pref_id": 40,
@@ -5487,19 +6574,8 @@
    "n_stops": 20
   },
   {
-   "key": "kitakyushucity__higashitani",
-   "organization_name": "北九州市",
-   "feed_name": "小倉南区東谷地区",
-   "pref_id": 40,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 19,
-   "n_stops": 20
-  },
-  {
    "key": "kunitachicity__aoyagikko",
+   "source": "gtfs-data.jp",
    "organization_name": "国立市",
    "feed_name": "国立市コミュニティワゴン「あおやぎっこ」",
    "pref_id": 13,
@@ -5511,7 +6587,21 @@
    "n_stops": 15
   },
   {
+   "key": "nakatsucity__Miho",
+   "source": "gtfs-data.jp",
+   "organization_name": "中津市",
+   "feed_name": "三保線",
+   "pref_id": 44,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 19,
+   "n_stops": 18
+  },
+  {
    "key": "otamavillage__otamavillage-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "大玉村",
    "feed_name": "大玉村通勤通学バス",
    "pref_id": 7,
@@ -5524,6 +6614,7 @@
   },
   {
    "key": "yanaizutown__yanaizutown-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "柳津町",
    "feed_name": "柳津町町民バス”ふれあい号”",
    "pref_id": 7,
@@ -5536,6 +6627,7 @@
   },
   {
    "key": "jr-east-morioka__JR-east_tsugaruline",
+   "source": "gtfs-data.jp",
    "organization_name": "JR東日本盛岡支社",
    "feed_name": "JR津軽線代行バス（蟹田駅～三厩体育館）",
    "pref_id": 2,
@@ -5548,6 +6640,7 @@
   },
   {
    "key": "minamishinshu__Minamishinshu-Ooshika-1",
+   "source": "gtfs-data.jp",
    "organization_name": "南信州地域交通問題協議会（南信州広域連合）",
    "feed_name": "【大鹿村】M1　大鹿線",
    "pref_id": 20,
@@ -5559,7 +6652,21 @@
    "n_stops": 19
   },
   {
+   "key": "tsukuba_kankou_kotsu_co_co_bus_nogawa__CoCoBusNogawa",
+   "source": "odpt",
+   "organization_name": "小金井市CoCoバス（野川・七軒家循環）",
+   "feed_name": "tsukuba_kankou_kotsu_co_co_bus_nogawa",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 18,
+   "n_stops": 17
+  },
+  {
    "key": "yaotsutown__yaobus",
+   "source": "gtfs-data.jp",
    "organization_name": "八百津町",
    "feed_name": "YAOバス",
    "pref_id": 21,
@@ -5572,6 +6679,7 @@
   },
   {
    "key": "yasudatown__GTFS-Yasudatown_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "安田町",
    "feed_name": "安田町コミュニティバス「やすら号」",
    "pref_id": 39,
@@ -5584,6 +6692,7 @@
   },
   {
    "key": "arakawacity__sakura",
+   "source": "gtfs-data.jp",
    "organization_name": "荒川区",
    "feed_name": "コミュニティバスさくら",
    "pref_id": 13,
@@ -5596,6 +6705,7 @@
   },
   {
    "key": "dazaifucity__DazaifuCityCommunityBus",
+   "source": "gtfs-data.jp",
    "organization_name": "太宰府市",
    "feed_name": "太宰府市コミュニティバスまほろば号",
    "pref_id": 40,
@@ -5608,6 +6718,7 @@
   },
   {
    "key": "geiseivillage__GTFS-Geiseivill_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "芸西村",
    "feed_name": "芸西村「おでかけバス」",
    "pref_id": 39,
@@ -5620,6 +6731,7 @@
   },
   {
    "key": "hirakawacity__hirakawa-sharedtaxi",
+   "source": "gtfs-data.jp",
    "organization_name": "平川市",
    "feed_name": "予約型乗り合いタクシー東部・平賀線",
    "pref_id": 2,
@@ -5632,6 +6744,7 @@
   },
   {
    "key": "kaetsunou__kaetsunouhimi",
+   "source": "gtfs-data.jp",
    "organization_name": "加越能バス",
    "feed_name": "加越能バス（氷見市街地周遊バス）",
    "pref_id": 16,
@@ -5643,19 +6756,8 @@
    "n_stops": 17
   },
   {
-   "key": "nakatsucity__Miho",
-   "organization_name": "中津市",
-   "feed_name": "三保線",
-   "pref_id": 44,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 17,
-   "n_stops": 17
-  },
-  {
    "key": "shimacity__anori",
+   "source": "gtfs-data.jp",
    "organization_name": "志摩市",
    "feed_name": "安乗線代替バス",
    "pref_id": 24,
@@ -5668,6 +6770,7 @@
   },
   {
    "key": "aridagawatown__aridagawatownbus",
+   "source": "gtfs-data.jp",
    "organization_name": "有田川町",
    "feed_name": "有田川町コミュニティバス",
    "pref_id": 30,
@@ -5680,6 +6783,7 @@
   },
   {
    "key": "nakatsucity__YamautsuriKita",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "山移北線",
    "pref_id": 44,
@@ -5692,6 +6796,7 @@
   },
   {
    "key": "naoshimatown__naoshima",
+   "source": "gtfs-data.jp",
    "organization_name": "直島町",
    "feed_name": "直島町",
    "pref_id": 37,
@@ -5704,6 +6809,7 @@
   },
   {
    "key": "saitamacity__orizurugou",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "岩槻区河合地区乗合タクシーおりづる号",
    "pref_id": 11,
@@ -5716,6 +6822,7 @@
   },
   {
    "key": "saitamacity__rakurakugou",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "岩槻区並木・加倉地区乗合タクシーらくらく号",
    "pref_id": 11,
@@ -5728,6 +6835,7 @@
   },
   {
    "key": "tokushimacity__kamihachimanbus",
+   "source": "gtfs-data.jp",
    "organization_name": "徳島市",
    "feed_name": "上八万コミュニティバス",
    "pref_id": 36,
@@ -5740,6 +6848,7 @@
   },
   {
    "key": "yoshinogawacity__yoshinogawacitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "吉野川市",
    "feed_name": "吉野川市代替バス",
    "pref_id": 36,
@@ -5752,6 +6861,7 @@
   },
   {
    "key": "kochi-seinan-kotsu__GTFS-Seinantraffic_Shimaashi",
+   "source": "gtfs-data.jp",
    "organization_name": "高知西南交通株式会社",
    "feed_name": "しまんと・あしずり号",
    "pref_id": 39,
@@ -5764,6 +6874,7 @@
   },
   {
    "key": "nouhibus__nouhibus_kanko",
+   "source": "gtfs-data.jp",
    "organization_name": "濃飛乗合自動車（濃飛バス）",
    "feed_name": "濃飛バス（観光路線）",
    "pref_id": 21,
@@ -5776,6 +6887,7 @@
   },
   {
    "key": "samukawatown__mokusei-go_southroute",
+   "source": "gtfs-data.jp",
    "organization_name": "寒川町",
    "feed_name": "寒川町コミュニティバス「もくせい号」南ルート",
    "pref_id": 14,
@@ -5788,6 +6900,7 @@
   },
   {
    "key": "yaitacity__chuuou-junkan",
+   "source": "gtfs-data.jp",
    "organization_name": "矢板市",
    "feed_name": "中央部循環路線",
    "pref_id": 9,
@@ -5800,6 +6913,7 @@
   },
   {
    "key": "yokosukacity__hamachanbus",
+   "source": "gtfs-data.jp",
    "organization_name": "横須賀市",
    "feed_name": "ハマちゃんバス",
    "pref_id": 14,
@@ -5812,6 +6926,7 @@
   },
   {
    "key": "kobecity__kobe-satoyama",
+   "source": "gtfs-data.jp",
    "organization_name": "神戸市",
    "feed_name": "北区青葉台・柏尾台地区「さとやま」",
    "pref_id": 28,
@@ -5824,6 +6939,7 @@
   },
   {
    "key": "kochi-ekimae-kanko__GTFS-Ekimae_Airportbus",
+   "source": "gtfs-data.jp",
    "organization_name": "株式会社高知駅前観光",
    "feed_name": "空港連絡バス",
    "pref_id": 39,
@@ -5836,6 +6952,7 @@
   },
   {
    "key": "tanotown__GTFS-Tanotown_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "田野町",
    "feed_name": "田野町コミュニティーバス「たのくるバス」",
    "pref_id": 39,
@@ -5847,7 +6964,21 @@
    "n_stops": 15
   },
   {
+   "key": "tokyu_bus_tokyubus_community_ota_city__tokyubus_community_OtaCity",
+   "source": "odpt",
+   "organization_name": "大田区コミュニティバス",
+   "feed_name": "tokyu_bus_tokyubus_community_ota_city",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 14,
+   "n_stops": 14
+  },
+  {
    "key": "inotown__GTFS-Inotown_HongawaArea",
+   "source": "gtfs-data.jp",
    "organization_name": "いの町",
    "feed_name": "いの町営バス「本川地区」",
    "pref_id": 39,
@@ -5860,6 +6991,7 @@
   },
   {
    "key": "kochi-seinan-kotsu__GTFS-Seinan_Expressbus",
+   "source": "gtfs-data.jp",
    "organization_name": "高知西南交通株式会社",
    "feed_name": "高速バス",
    "pref_id": 39,
@@ -5872,6 +7004,7 @@
   },
   {
    "key": "kochi-seinan-kotsu__GTFS-Seinantraffic_Riverbus",
+   "source": "gtfs-data.jp",
    "organization_name": "高知西南交通株式会社",
    "feed_name": "四万十川バス",
    "pref_id": 39,
@@ -5883,7 +7016,21 @@
    "n_stops": 12
   },
   {
+   "key": "nagoya_housing_city_planning_bureau_nagoya_srt_all_lines__NagoyaSRT_AllLines",
+   "source": "odpt",
+   "organization_name": "名古屋市　SRT",
+   "feed_name": "nagoya_housing_city_planning_bureau_nagoya_srt_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-09-11",
+   "status": "ok",
+   "note": "",
+   "n_segments": 13,
+   "n_stops": 10
+  },
+  {
    "key": "nakatsucity__Nishimakusa",
+   "source": "gtfs-data.jp",
    "organization_name": "中津市",
    "feed_name": "西秣線",
    "pref_id": 44,
@@ -5896,6 +7043,7 @@
   },
   {
    "key": "goshogawaracity__goshogawara-communitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "五所川原市",
    "feed_name": "五所川原市コミュニティバス",
    "pref_id": 2,
@@ -5908,6 +7056,7 @@
   },
   {
    "key": "hirakawacity__hirakwacitybus",
+   "source": "gtfs-data.jp",
    "organization_name": "平川市",
    "feed_name": "平川市碇ヶ関・平賀線バス",
    "pref_id": 2,
@@ -5919,7 +7068,21 @@
    "n_stops": 13
   },
   {
+   "key": "joshin_hire_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "上信ハイヤー株式会社",
+   "feed_name": "joshin_hire_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 12,
+   "n_stops": 13
+  },
+  {
    "key": "kochi-kanko-convention__GTFS-KVCA_MY-YUbus",
+   "source": "gtfs-data.jp",
    "organization_name": "公益財団法人高知県観光コンベンション協会",
    "feed_name": "MY遊バス",
    "pref_id": 39,
@@ -5932,6 +7095,7 @@
   },
   {
    "key": "otsukitown__GTFS-Otsukitown_Bus",
+   "source": "gtfs-data.jp",
    "organization_name": "大月町",
    "feed_name": "大月町「まちなか循環線」",
    "pref_id": 39,
@@ -5944,6 +7108,7 @@
   },
   {
    "key": "katsushikacity__sakura",
+   "source": "gtfs-data.jp",
    "organization_name": "葛飾区",
    "feed_name": "さくら",
    "pref_id": 13,
@@ -5956,6 +7121,7 @@
   },
   {
    "key": "kochi-seinan-kotsu__GTFS-Seinantraffic_Akamego",
+   "source": "gtfs-data.jp",
    "organization_name": "高知西南交通株式会社",
    "feed_name": "まちなかぐるっと循環周遊バス",
    "pref_id": 39,
@@ -5968,6 +7134,7 @@
   },
   {
    "key": "seisan-kanko__seisankanko_limousine",
+   "source": "gtfs-data.jp",
    "organization_name": "西讃観光",
    "feed_name": "西讃観光（高松空港リムジンバス）",
    "pref_id": 37,
@@ -5980,6 +7147,7 @@
   },
   {
    "key": "saitamacity__minumagou",
+   "source": "gtfs-data.jp",
    "organization_name": "さいたま市",
    "feed_name": "見沼区大砂土東地区乗合タクシーみぬま号",
    "pref_id": 11,
@@ -5992,6 +7160,7 @@
   },
   {
    "key": "shizuokacity__iryo-fukushi",
+   "source": "gtfs-data.jp",
    "organization_name": "静岡市",
    "feed_name": "葵区中心市街地：医療・福祉施設路線",
    "pref_id": 22,
@@ -6004,6 +7173,7 @@
   },
   {
    "key": "takarazukacity__runrunbus",
+   "source": "gtfs-data.jp",
    "organization_name": "宝塚市",
    "feed_name": "ランランバス",
    "pref_id": 28,
@@ -6015,7 +7185,21 @@
    "n_stops": 10
   },
   {
+   "key": "tokyu_bus_tokyubus_community_shinagawa_city__tokyubus_community_ShinagawaCity",
+   "source": "odpt",
+   "organization_name": "品川区コミュニティバス",
+   "feed_name": "tokyu_bus_tokyubus_community_shinagawa_city",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 10,
+   "n_stops": 10
+  },
+  {
    "key": "kitakyushucity__tashiro-kawachi",
+   "source": "gtfs-data.jp",
    "organization_name": "北九州市",
    "feed_name": "八幡東区田代・河内地区",
    "pref_id": 40,
@@ -6028,6 +7212,7 @@
   },
   {
    "key": "shinkikanko__limonbus",
+   "source": "gtfs-data.jp",
    "organization_name": "神姫観光",
    "feed_name": "Limon Bus",
    "pref_id": 27,
@@ -6040,6 +7225,7 @@
   },
   {
    "key": "daishinto__Radiant-City",
+   "source": "gtfs-data.jp",
    "organization_name": "大新東株式会社",
    "feed_name": "レイディアントシティ横濱",
    "pref_id": 14,
@@ -6052,6 +7238,7 @@
   },
   {
    "key": "kamishihorotown__kamishihoro-self-bus",
+   "source": "gtfs-data.jp",
    "organization_name": "上士幌町",
    "feed_name": "上士幌町自動運転バス",
    "pref_id": 1,
@@ -6064,6 +7251,7 @@
   },
   {
    "key": "kochi-ekimae-kanko__GTFS-Ekimae_Expressbus",
+   "source": "gtfs-data.jp",
    "organization_name": "株式会社高知駅前観光",
    "feed_name": "高速バス",
    "pref_id": 39,
@@ -6076,6 +7264,7 @@
   },
   {
    "key": "kushimoto__bus-kushimotokankoshuyu-wakayama-jp",
+   "source": "gtfs-data.jp",
    "organization_name": "くしもと観光周遊バス推進協議会（事務局：和歌山県立南紀熊野ジオパークセンター））",
    "feed_name": "くしもと観光周遊バス　まぐトル号",
    "pref_id": 30,
@@ -6088,6 +7277,7 @@
   },
   {
    "key": "nagadenbus__obuse-romango",
+   "source": "gtfs-data.jp",
    "organization_name": "長電バス株式会社",
    "feed_name": "おぶせロマン号",
    "pref_id": 20,
@@ -6100,6 +7290,7 @@
   },
   {
    "key": "sukumocity__GTFS-Sukumocity_Yururinbus",
+   "source": "gtfs-data.jp",
    "organization_name": "宿毛市",
    "feed_name": "宿毛市「ゆるりんバス」",
    "pref_id": 39,
@@ -6111,7 +7302,21 @@
    "n_stops": 7
   },
   {
+   "key": "towadakankodentetsu__toutetsu_airport_line",
+   "source": "gtfs-data.jp",
+   "organization_name": "十和田観光電鉄株式会社",
+   "feed_name": "十和田観光電鉄（八戸～三沢空港線）",
+   "pref_id": 2,
+   "license": "CC BY 4.0",
+   "target_date": "2026-07-27",
+   "status": "ok",
+   "note": "",
+   "n_segments": 7,
+   "n_stops": 7
+  },
+  {
    "key": "asatetu__asakaigantetsudo",
+   "source": "gtfs-data.jp",
    "organization_name": "阿佐海岸鉄道株式会社",
    "feed_name": "阿佐海岸鉄道株式会社【DMV】",
    "pref_id": 36,
@@ -6123,19 +7328,8 @@
    "n_stops": 7
   },
   {
-   "key": "towadakankodentetsu__toutetsu_airport_line",
-   "organization_name": "十和田観光電鉄株式会社",
-   "feed_name": "十和田観光電鉄（八戸～三沢空港線）",
-   "pref_id": 2,
-   "license": "CC BY 4.0",
-   "target_date": "2026-07-27",
-   "status": "ok",
-   "note": "",
-   "n_segments": 6,
-   "n_stops": 6
-  },
-  {
    "key": "mogamigawakotsu__MOGAMIGAWAKOTSU",
+   "source": "gtfs-data.jp",
    "organization_name": "最上川交通",
    "feed_name": "最上川交通",
    "pref_id": 6,
@@ -6148,6 +7342,7 @@
   },
   {
    "key": "rokkashovillage__rokkasho-sharedtaxi",
+   "source": "gtfs-data.jp",
    "organization_name": "六ヶ所村",
    "feed_name": "六ヶ所村乗合タクシー",
    "pref_id": 2,
@@ -6160,6 +7355,7 @@
   },
   {
    "key": "nangokucity__GTFS-Nankokucity_AirportShare",
+   "source": "gtfs-data.jp",
    "organization_name": "南国市",
    "feed_name": "南国市「空港乗合タクシー」",
    "pref_id": 39,
@@ -6172,6 +7368,7 @@
   },
   {
    "key": "kochiap__GTFS-KochIAP_AirportShare",
+   "source": "gtfs-data.jp",
    "organization_name": "高知県航空利用促進協議会",
    "feed_name": "高知県航空利用促進協議会「空港乗合タクシー」",
    "pref_id": 39,
@@ -6183,7 +7380,21 @@
    "n_stops": 2
   },
   {
+   "key": "a_line_ferry_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "マルエーフェリー フェリー関連情報",
+   "feed_name": "a_line_ferry_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "aketetsu__akechirailway",
+   "source": "gtfs-data.jp",
    "organization_name": "明知鉄道",
    "feed_name": "明知鉄道",
    "pref_id": 21,
@@ -6196,6 +7407,7 @@
   },
   {
    "key": "awajicity__awaji-jenova-line-akashi-iwaya",
+   "source": "gtfs-data.jp",
    "organization_name": "淡路市",
    "feed_name": "淡路ジェノバライン明石岩屋航路",
    "pref_id": 28,
@@ -6207,7 +7419,229 @@
    "n_stops": 0
   },
   {
+   "key": "b_bus_gtfs_jp-city_joetsu_niigata__data-1",
+   "source": "odpt",
+   "organization_name": "上越市（新潟県） バス関連情報",
+   "feed_name": "b_bus_gtfs_jp-city_joetsu_niigata",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "b_bus_gtfs_jp-city_mitoyo_kagawa__data-1",
+   "source": "odpt",
+   "organization_name": "三豊市（香川県） バス関連情報",
+   "feed_name": "b_bus_gtfs_jp-city_mitoyo_kagawa",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "b_bus_gtfs_jp-town_shodoshima_kagawa__data-1",
+   "source": "odpt",
+   "organization_name": "小豆島町（香川県） バス関連情報",
+   "feed_name": "b_bus_gtfs_jp-town_shodoshima_kagawa",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "b_bus_gtfs_jp-town_shodoshima_kagawa__gtfs-_2022v01",
+   "source": "odpt",
+   "organization_name": "小豆島町（香川県） バス関連情報",
+   "feed_name": "b_bus_gtfs_jp-town_shodoshima_kagawa",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "bingo_shosen_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "備後商船 フェリー関連情報",
+   "feed_name": "bingo_shosen_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "daishinto_radiantcity_yokohama__Radiantcity_Yokohama",
+   "source": "odpt",
+   "organization_name": "大新東株式会社",
+   "feed_name": "daishinto_radiantcity_yokohama",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "duplicate",
+   "note": "daishinto__Radiant-City (gtfs-data.jp) と重複（停留所の重なり 100%）",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "f_ferry_gtfs-fujikyumarineresort__output",
+   "source": "odpt",
+   "organization_name": "富士急マリンリゾート フェリー関連情報",
+   "feed_name": "f_ferry_gtfs-fujikyumarineresort",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "f_ferry_gtfs-fujikyumarineresort__output-202107-202203",
+   "source": "odpt",
+   "organization_name": "富士急マリンリゾート フェリー関連情報",
+   "feed_name": "f_ferry_gtfs-fujikyumarineresort",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "f_ferry_gtfs-haboroenkaiferry__GTFS",
+   "source": "odpt",
+   "organization_name": "羽幌沿海フェリー フェリー関連情報",
+   "feed_name": "f_ferry_gtfs-haboroenkaiferry",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "f_ferry_gtfs-nippokisen__Nippou_Kisen",
+   "source": "odpt",
+   "organization_name": "日豊汽船 フェリー関連情報",
+   "feed_name": "f_ferry_gtfs-nippokisen",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "f_ferry_gtfs-sakataferryoffice__output-3",
+   "source": "odpt",
+   "organization_name": "酒田市定期航路事業所 フェリー関連情報",
+   "feed_name": "f_ferry_gtfs-sakataferryoffice",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "f_ferry_gtfs-shimizucruise__output",
+   "source": "odpt",
+   "organization_name": "富士山清水港クルーズ フェリー関連情報",
+   "feed_name": "f_ferry_gtfs-shimizucruise",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "hakodate_city_alllines__Alllines",
+   "source": "odpt",
+   "organization_name": "函館市電",
+   "feed_name": "hakodate_city_alllines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['0'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "hankyu_ferry_schedul_hankyu__schedul_hankyu",
+   "source": "odpt",
+   "organization_name": "阪九フェリー株式会社",
+   "feed_name": "hankyu_ferry_schedul_hankyu",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "higashiyamato_city_all_lines_ccby4__AllLines_CCBY4",
+   "source": "odpt",
+   "organization_name": "東大和市コミュニティバス「ちょこバス」",
+   "feed_name": "higashiyamato_city_all_lines_ccby4",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "duplicate",
+   "note": "higashiyamato_city_all_lines_cc0__AllLines_CC0 (odpt) と重複（停留所の重なり 100%）",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "higashiyamato_city_all_lines_odpt__AllLines_ODPT",
+   "source": "odpt",
+   "organization_name": "東大和市コミュニティバス「ちょこバス」",
+   "feed_name": "higashiyamato_city_all_lines_odpt",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "duplicate",
+   "note": "higashiyamato_city_all_lines_cc0__AllLines_CC0 (odpt) と重複（停留所の重なり 100%）",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "himeshima_vill_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "姫島村（大分県） フェリー関連情報",
+   "feed_name": "himeshima_vill_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "hirosakicity__kounan-tetsudou",
+   "source": "gtfs-data.jp",
    "organization_name": "弘前市",
    "feed_name": "弘南鉄道",
    "pref_id": 2,
@@ -6219,7 +7653,21 @@
    "n_stops": 0
   },
   {
+   "key": "inagi_city_ibas_a_course__ibas_A_course",
+   "source": "odpt",
+   "organization_name": "東京都稲城市　コミュニティバス（iバス）",
+   "feed_name": "inagi_city_ibas_a_course",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "isetetu__iserailway",
+   "source": "gtfs-data.jp",
    "organization_name": "伊勢鉄道",
    "feed_name": "伊勢鉄道",
    "pref_id": 24,
@@ -6231,7 +7679,60 @@
    "n_stops": 0
   },
   {
+   "key": "itsukishima_kisen_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "斎島汽船 フェリー関連情報",
+   "feed_name": "itsukishima_kisen_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "kagoshima_city_maritime_bureau_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "桜島フェリー定期航路",
+   "feed_name": "kagoshima_city_maritime_bureau_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "kanto_bus_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "関東バス株式会社",
+   "feed_name": "kanto_bus_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "keisei_transit_bus_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "京成バス千葉ウエスト",
+   "feed_name": "keisei_transit_bus_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "duplicate",
+   "note": "keisei-transitbus__keiseitransitbus (gtfs-data.jp) と重複（停留所の重なり 100%）",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "kitakyushucity__hiraodai",
+   "source": "gtfs-data.jp",
    "organization_name": "北九州市",
    "feed_name": "小倉南区平尾台地区",
    "pref_id": 40,
@@ -6244,6 +7745,7 @@
   },
   {
    "key": "kochi-suzakicity__GTFS-Susakicity_Ferry",
+   "source": "gtfs-data.jp",
    "organization_name": "須崎市",
    "feed_name": "須崎市営巡航船",
    "pref_id": 39,
@@ -6256,6 +7758,7 @@
   },
   {
    "key": "kochi_pref__GTFS-Kochipref_Ferry",
+   "source": "gtfs-data.jp",
    "organization_name": "高知県",
    "feed_name": "高知県営渡船",
    "pref_id": 39,
@@ -6268,6 +7771,7 @@
   },
   {
    "key": "kumamoto-shiden__kumamotoshiden",
+   "source": "gtfs-data.jp",
    "organization_name": "熊本市交通局",
    "feed_name": "熊本市電",
    "pref_id": 43,
@@ -6280,6 +7784,7 @@
   },
   {
    "key": "kumamotodentetsu__kumamotodentetsu",
+   "source": "gtfs-data.jp",
    "organization_name": "熊本電鉄",
    "feed_name": "熊本電鉄電車",
    "pref_id": 43,
@@ -6292,6 +7797,7 @@
   },
   {
    "key": "kumanocity__shuyubus",
+   "source": "gtfs-data.jp",
    "organization_name": "熊野市",
    "feed_name": "熊野市市街地周遊バス",
    "pref_id": 24,
@@ -6303,7 +7809,73 @@
    "n_stops": 0
   },
   {
+   "key": "kunitachi_city_kunitachi_city_aoyagikko__kunitachi_city_aoyagikko",
+   "source": "odpt",
+   "organization_name": "東京都国立市コミュニティワゴンあおやぎっこ",
+   "feed_name": "kunitachi_city_kunitachi_city_aoyagikko",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "duplicate",
+   "note": "kunitachicity__aoyagikko (gtfs-data.jp) と重複（停留所の重なり 100%）",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "kunitachi_city_kunitachi_city_kunikko__kunitachi_city_kunikko",
+   "source": "odpt",
+   "organization_name": "国立市コミュニティバスくにっこ",
+   "feed_name": "kunitachi_city_kunitachi_city_kunikko",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "duplicate",
+   "note": "kunitachicity__kunikko (gtfs-data.jp) と重複（停留所の重なり 100%）",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "kyoto_bus_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "京都バス",
+   "feed_name": "kyoto_bus_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "duplicate",
+   "note": "kyoto_bus_all_lines_anotherversion__AllLinesAnotherversion (odpt) と重複（停留所の重なり 100%）",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "kyoto_municipal_transportation_kyoto_city_subway_gtfs__Kyoto_City_Subway_GTFS",
+   "source": "odpt",
+   "organization_name": "京都市営地下鉄",
+   "feed_name": "kyoto_municipal_transportation_kyoto_city_subway_gtfs",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['1'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "kyusho_ferry_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "九商フェリー フェリー関連情報",
+   "feed_name": "kyusho_ferry_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "manyosen__manyosen",
+   "source": "gtfs-data.jp",
    "organization_name": "万葉線",
    "feed_name": "万葉線",
    "pref_id": 16,
@@ -6315,7 +7887,21 @@
    "n_stops": 0
   },
   {
+   "key": "marubun_kisen_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "丸文松島汽船 フェリー関連情報",
+   "feed_name": "marubun_kisen_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "meikaijo__ship",
+   "source": "gtfs-data.jp",
    "organization_name": "名鉄海上観光船株式会社",
    "feed_name": "高速船",
    "pref_id": 23,
@@ -6327,7 +7913,21 @@
    "n_stops": 0
   },
   {
+   "key": "meimon_taiyo_ferry_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "株式会社名門大洋フェリー",
+   "feed_name": "meimon_taiyo_ferry_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "minamishinshu__Minamishinshu-iida-2",
+   "source": "gtfs-data.jp",
    "organization_name": "南信州地域交通問題協議会（南信州広域連合）",
    "feed_name": "電気小型バス「プッチー」（飯田市内）",
    "pref_id": 20,
@@ -6339,7 +7939,21 @@
    "n_stops": 0
   },
   {
+   "key": "mizuho_town_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "瑞穂町コミュニティバス",
+   "feed_name": "mizuho_town_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "duplicate",
+   "note": "mizuhotown__communitybus (gtfs-data.jp) と重複（停留所の重なり 100%）",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "mizuhotown__DemandResponsiveTransport",
+   "source": "gtfs-data.jp",
    "organization_name": "瑞穂町",
    "feed_name": "瑞穂町デマンド交通「チョイソコみずほまち」",
    "pref_id": 13,
@@ -6352,6 +7966,7 @@
   },
   {
    "key": "munakatacity__MunakataCityJinoshimaFerry",
+   "source": "gtfs-data.jp",
    "organization_name": "宗像市",
    "feed_name": "宗像市営渡船地島航路",
    "pref_id": 40,
@@ -6364,6 +7979,7 @@
   },
   {
    "key": "munakatacity__MunakataCityOshimaFerry",
+   "source": "gtfs-data.jp",
    "organization_name": "宗像市",
    "feed_name": "宗像市営渡船大島航路",
    "pref_id": 40,
@@ -6375,7 +7991,34 @@
    "n_stops": 0
   },
   {
+   "key": "nagai_transportation_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "永井バス（永井運輸株式会社）",
+   "feed_name": "nagai_transportation_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "duplicate",
+   "note": "nagai-unyu__Nagaibus (gtfs-data.jp) と重複（停留所の重なり 100%）",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "nagai_transportation_tamarin__Tamarin",
+   "source": "odpt",
+   "organization_name": "（2024年10月1日廃止）玉村町乗合タクシーたまりん",
+   "feed_name": "nagai_transportation_tamarin",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "narutocity__narutocitytosen",
+   "source": "gtfs-data.jp",
    "organization_name": "鳴門市",
    "feed_name": "鳴門市営渡船",
    "pref_id": 36,
@@ -6387,7 +8030,21 @@
    "n_stops": 0
   },
   {
+   "key": "nippon_chuo_bus_okutano_area__Okutano_Area",
+   "source": "odpt",
+   "organization_name": "日本中央バス　奥多野線",
+   "feed_name": "nippon_chuo_bus_okutano_area",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "nishiocity__tosen",
+   "source": "gtfs-data.jp",
    "organization_name": "西尾市",
    "feed_name": "佐久島渡船",
    "pref_id": 23,
@@ -6400,6 +8057,7 @@
   },
   {
    "key": "nishiwakicity__loopbus-orihimebus",
+   "source": "gtfs-data.jp",
    "organization_name": "西脇市",
    "feed_name": "ループバス/おりひめバス",
    "pref_id": 28,
@@ -6411,7 +8069,21 @@
    "n_stops": 0
   },
   {
+   "key": "okushiri_island_ferry_okushiri_esashi_ferry_route__Okushiri_Esashi_Ferry_Route",
+   "source": "odpt",
+   "organization_name": "オクシリアイランドフェリー",
+   "feed_name": "okushiri_island_ferry_okushiri_esashi_ferry_route",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "omachicity__omachiraicholiner",
+   "source": "gtfs-data.jp",
    "organization_name": "大町市",
    "feed_name": "特急バス「雷鳥ライナー」",
    "pref_id": 20,
@@ -6423,7 +8095,47 @@
    "n_stops": 0
   },
   {
+   "key": "orange_ferry_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "四国開発フェリー株式会社（オレンジフェリー）",
+   "feed_name": "orange_ferry_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "otone_kotsu_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "大利根交通バス",
+   "feed_name": "otone_kotsu_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "duplicate",
+   "note": "otonekotu__otonekotubus (gtfs-data.jp) と重複（停留所の重なり 100%）",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "sanwa_merchant_vessel_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "三和商船株式会社",
+   "feed_name": "sanwa_merchant_vessel_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "shimacity__agowanteikisen",
+   "source": "gtfs-data.jp",
    "organization_name": "志摩市",
    "feed_name": "あご湾定期船",
    "pref_id": 24,
@@ -6435,7 +8147,21 @@
    "n_stops": 0
   },
   {
+   "key": "shimoden_shimoden_gtfs_static__Shimoden_GTFS_Static",
+   "source": "odpt",
+   "organization_name": "下津井電鉄株式会社（路線バス GTFS-RUライセンス版）",
+   "feed_name": "shimoden_shimoden_gtfs_static",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "duplicate",
+   "note": "shimoden_shimoden_bus_gtfs_realtime__Shimoden_BUS_GTFS_Realtime (odpt) と重複（停留所の重なり 100%）",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "shingutown__TownFerryShingu",
+   "source": "gtfs-data.jp",
    "organization_name": "新宮町",
    "feed_name": "町営渡船しんぐう",
    "pref_id": 40,
@@ -6448,6 +8174,7 @@
   },
   {
    "key": "shinonsentown__yumetsubame",
+   "source": "gtfs-data.jp",
    "organization_name": "新温泉町",
    "feed_name": "町民バス夢つばめ",
    "pref_id": 28,
@@ -6460,6 +8187,7 @@
   },
   {
    "key": "sukumocity__GTFS-Sukumocity_Ferry",
+   "source": "gtfs-data.jp",
    "organization_name": "宿毛市",
    "feed_name": "宿毛市営定期船航路「沖の島航路」",
    "pref_id": 39,
@@ -6471,7 +8199,47 @@
    "n_stops": 0
   },
   {
+   "key": "suonada_ferry_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "周防灘フェリー フェリー関連情報",
+   "feed_name": "suonada_ferry_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "tachikawa_city_kururin_bus_alllines__kururin_bus_alllines",
+   "source": "odpt",
+   "organization_name": "立川市　くるりんバス",
+   "feed_name": "tachikawa_city_kururin_bus_alllines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "duplicate",
+   "note": "tachikawacity__kururinbus (gtfs-data.jp) と重複（停留所の重なり 100%）",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "taneyaku_kousokusen_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "種子屋久高速船 フェリー関連情報",
+   "feed_name": "taneyaku_kousokusen_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "tobacity__teikisen",
+   "source": "gtfs-data.jp",
    "organization_name": "鳥羽市",
    "feed_name": "鳥羽市営定期船",
    "pref_id": 24,
@@ -6483,7 +8251,60 @@
    "n_stops": 0
   },
   {
+   "key": "tokai_kisen_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "東海汽船",
+   "feed_name": "tokai_kisen_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "tokyo_cruise_ship_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "TOKYO CRUISE",
+   "feed_name": "tokyo_cruise_ship_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "tokyo_suginami_city_green_slow_mobility__GreenSlowMobility",
+   "source": "odpt",
+   "organization_name": "杉並区グリーンスローモビリティ",
+   "feed_name": "tokyo_suginami_city_green_slow_mobility",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "tosa_city_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "土佐市ドラゴンバス",
+   "feed_name": "tosa_city_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": "2026-07-27",
+   "status": "duplicate",
+   "note": "tosacity__GTFS-Tosacity_Bus (gtfs-data.jp) と重複（停留所の重なり 100%）",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "tosaden-kotsu__GTFS-Tosadentraffic_Streetcar",
+   "source": "gtfs-data.jp",
    "organization_name": "とさでん交通株式会社",
    "feed_name": "路面電車",
    "pref_id": 39,
@@ -6495,7 +8316,73 @@
    "n_stops": 0
   },
   {
+   "key": "train-mir__MIR-Train-GTFS",
+   "source": "odpt",
+   "organization_name": "首都圏新都市鉄道（つくばエクスプレス） 鉄道関連情報",
+   "feed_name": "train-mir",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['2'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "train-tamamonorail__TamaMonorail-Train-GTFS",
+   "source": "odpt",
+   "organization_name": "多摩都市モノレール 鉄道関連情報",
+   "feed_name": "train-tamamonorail",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['12'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "train-toei__Toei-Train-GTFS",
+   "source": "odpt",
+   "organization_name": "東京都交通局 鉄道関連情報",
+   "feed_name": "train-toei",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['0', '1', '2'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "train-tokyometro__TokyoMetro-Train-GTFS",
+   "source": "odpt",
+   "organization_name": "東京メトロ 鉄道関連情報",
+   "feed_name": "train-tokyometro",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['1'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "train-twr__TWR-Train-GTFS",
+   "source": "odpt",
+   "organization_name": "東京臨海高速鉄道 鉄道関連情報",
+   "feed_name": "train-twr",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['2'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "tsu-airportline__airportline",
+   "source": "gtfs-data.jp",
    "organization_name": "津エアポートライン",
    "feed_name": "津ベルライン・津エアポートライン",
    "pref_id": 24,
@@ -6508,6 +8395,7 @@
   },
   {
    "key": "tsukubacity__TSUKUBUS",
+   "source": "gtfs-data.jp",
    "organization_name": "つくば市",
    "feed_name": "つくバス",
    "pref_id": 8,
@@ -6519,7 +8407,21 @@
    "n_stops": 0
   },
   {
+   "key": "uwajima_unyu_all_lines__AllLines",
+   "source": "odpt",
+   "organization_name": "宇和島運輸株式会社",
+   "feed_name": "uwajima_unyu_all_lines",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['4'])",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
    "key": "yamagatatetsudo__flowerliner",
+   "source": "gtfs-data.jp",
    "organization_name": "山形鉄道株式会社",
    "feed_name": "山形鉄道",
    "pref_id": 6,
@@ -6532,6 +8434,7 @@
   },
   {
    "key": "yamanashi-nanbutown__nanbucyoueibasu",
+   "source": "gtfs-data.jp",
    "organization_name": "南部町",
    "feed_name": "南部町営バス",
    "pref_id": 19,
@@ -6539,6 +8442,19 @@
    "target_date": null,
    "status": "skip",
    "note": "有効期間 2026-04-01〜2027-03-31 内に平日ダイヤの運行日が見つからない",
+   "n_segments": 0,
+   "n_stops": 0
+  },
+  {
+   "key": "yokohama_municipal_train__Train",
+   "source": "odpt",
+   "organization_name": "横浜市営地下鉄",
+   "feed_name": "yokohama_municipal_train",
+   "pref_id": 0,
+   "license": "",
+   "target_date": null,
+   "status": "skip",
+   "note": "バス以外のモード (route_type=['1'])",
    "n_segments": 0,
    "n_stops": 0
   }

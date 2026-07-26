@@ -4,8 +4,9 @@
 
 **地図: https://shiwaku.github.io/japan-gtfs-frequency-converter/**
 
-[gtfs-data.jp（GTFSデータリポジトリ）](https://gtfs-data.jp/) の全フィードを取得 → 平日1日の
-便数を停留所間の区間単位で集計 → tippecanoe でベクタータイル化、までを3つのスクリプトで行います。
+[gtfs-data.jp（GTFSデータリポジトリ）](https://gtfs-data.jp/) と
+[公共交通オープンデータセンター（ODPT）](https://ckan.odpt.org/) の両方からフィードを取得 →
+平日1日の便数を停留所間の区間単位で集計 → tippecanoe でベクタータイル化、までを行います。
 
 生成物の `build/bus_frequency.pmtiles` はこのリポジトリに含めてあるので、clone すればすぐ地図が見られます。
 
@@ -14,15 +15,25 @@
 
 ## 成果物
 
-`build/bus_frequency.pmtiles` — 543フィード / 62,391区間 / 54,467停留所、19MB、z4–14。
+`build/bus_frequency.pmtiles` — 648フィード / 85,553区間 / 73,999停留所、26MB、z4–14。
 
 | レイヤー | 地物 | 主なプロパティ |
 |---|---|---|
 | `routes` | 停留所間の区間（LineString） | `frequency`（両方向計の便数/日）、`frequency_ab` / `frequency_ba`（方向別）、`stop_a` / `stop_b`、`agency`、`operators`（事業者数）、`routes`（系統数）、`pref` |
 | `stops` | 停留所（Point） | `name`、`count`（延べ停車回数/日）、`agency`、`operators`、`pref` |
 
-便数の分布は 1–5便:25% / 6–11:33% / 12–23:26% / 24–47:11% / 48–95:3.6% / 96便以上:1.3%。
+便数の分布は 1–5便:21% / 6–11:27% / 12–23:24% / 24–47:14% / 48–95:6.8% / 96便以上:6.9%。
 階級を切るならこのあたりが目安です。
+
+### データソース
+
+| ソース | フィード | 取得 |
+|---|---|---|
+| [gtfs-data.jp](https://gtfs-data.jp/) | 543 | `src/fetch.py`。API で全件取得できる |
+| [ODPT](https://ckan.odpt.org/) | 105 | `src/fetch_odpt.py`。都営バス・京王バス・横浜市営バスなど大都市圏の主要事業者はこちらにしかない |
+
+集計できたのは 565 フィード。69 はバス以外のモード等でスキップ、13 はソース間の重複、
+1 はフィード側の不備（`stop_times.txt` に `stop_id` 列が無い）です。
 
 ## 使い方
 
@@ -30,10 +41,16 @@
 確認用に [pmtiles CLI](https://github.com/protomaps/go-pmtiles)。
 
 ```sh
-python3 src/fetch.py              # gtfs-data.jp から全フィード取得 → data/
+python3 src/fetch.py              # gtfs-data.jp から取得 → data/feeds/
+python3 src/fetch_odpt.py         # ODPT から取得       → data/feeds_odpt/
 python3 src/aggregate.py --jobs 4 # 集計 → build/routes.geojsonl, build/stops.geojsonl
 bash src/tiles.sh                 # → build/bus_frequency.pmtiles
 ```
+
+ODPT の 108 データセットのうち 60 は取得にアクセストークンが要ります
+（[developer.odpt.org](https://developer.odpt.org/) で無料登録）。`--token`、環境変数
+`ODPT_ACCESS_TOKEN`、`~/.odpt_token` のいずれかで渡します。無くても残り 48（都営バスを含む）は
+取得でき、`src/aggregate.py --no-odpt` で ODPT 自体を外すこともできます。
 
 ビューア（PMTiles は HTTP Range を使うので、`file://` では開けません。同梱のサーバ経由で）:
 
@@ -48,7 +65,8 @@ python3 src/serve.py              # → http://127.0.0.1:8787/
 
 | ファイル | 役割 |
 |---|---|
-| `src/fetch.py` | フィード取得。`gtfs_file_uid` を前回の manifest と比較して**変わったものだけ**再取得する。廃止フィードの除外と ZIP の健全性検証つき |
+| `src/fetch.py` | gtfs-data.jp から取得。`gtfs_file_uid` を前回の manifest と比較して**変わったものだけ**再取得する。廃止フィードの除外と ZIP の健全性検証つき |
+| `src/fetch_odpt.py` | ODPT から取得。カタログAPIが無いので CKAN の HTML を辿る。版違いは最新だけ選ぶ |
 | `src/aggregate.py` | 集計本体。`--jobs` で並列。`build/aggregate_report.json` にフィードごとの採用日・件数・スキップ理由を出力 |
 | `src/tiles.sh` | tippecanoe 呼び出し。z4–14 |
 | `index.html` | MapLibre ビューア。ホバーで区間の方向別内訳が出る。GitHub Pages のトップページ |
@@ -63,6 +81,21 @@ python3 src/serve.py              # → http://127.0.0.1:8787/
 **対象日はフィードごとに自動で選ぶ。** 543フィードは有効期間がばらばらで、全国共通の1日を
 指定するとその日が期間外のフィードが丸ごと欠落します。各フィードについて「有効期間内・平日
 （祝日を除く）・実際に便がある」最初の日を選びます。採用日は `aggregate_report.json` に記録。
+
+**ソース間の重複フィードを落とす。** 同じ事業者が gtfs-data.jp と ODPT の両方で配信している
+ことがあります（実測11者）。そのまま足すと下の停留所統合が両方を合算し、便数が倍になります。
+「正規化した事業者名が一致」かつ「停留所名の重なりが80%以上」の両方を満たすものだけを重複と
+判定します。名前だけでは足りません（日立自動車交通は gtfs-data.jp に葛飾さくら、ODPT に
+文京Bーぐると千代田風ぐるまがあり、同じ事業者でも別サービス）。停留所の重なりだけでも足りません
+（熊本の九州産交バスと熊本都市バスは別事業者だが市内の停留所をほぼ共有している）。除外した
+13フィードは `aggregate_report.json` に `status: duplicate` として理由つきで残ります。
+
+**同名停留所をまとめるときは距離に上限を置く。** 「中野」「四谷」「七日町」のような一般名は
+1つのフィード内の離れた場所に別々に存在します。名前だけでまとめると重心が両者の中間に飛び、
+実在しない長距離区間ができます（西東京バスの「中野」で8km・295便、都営バスの「富岡一丁目」で
+25km・436便の直線が出ていました）。同名グループの広がりを実測すると200m以内が98.5%
+（50m:77.5% / 100m:91.3%）なので、200m を上限に単連結でクラスタへ割ります
+（`--unify-threshold`）。
 
 **事業者をまたぐ同一停留所をまとめる。** フィードは事業者ごとに分かれているため、同じ区間が
 事業者ごとに別地物になります。例えば熊本の「市役所前（熊本）⇄桜町バスターミナル」は九州産交バス
@@ -81,26 +114,28 @@ python3 src/serve.py              # → http://127.0.0.1:8787/
 
 **最小ズームは地物ごとに指定する。** tippecanoe の `--drop-densest-as-needed` に任せると密度だけで
 間引かれ、全国ズームで「たまたま残った区間」が見える絵になります。便数の多い幹線から順に現れるよう
-明示し、各ズームで見える区間数を z4:797 / z5:2,917 / z6:9,537 / z7:26,487 / z8:46,799 / z9以降:全件
-としています。
+明示し、各ズームで見える区間数を z4:5,634 / z5:11,369 / z6:22,350 / z7:43,889 / z8:67,228 /
+z9:83,235 / z10:全件 としています。
 
 **線幅や色はタイルに焼き込まない。** MapLibre の式で `frequency` から描けば、スタイル調整だけで
 見た目を変えられます。
 
 ## 既知の制約
 
-- **東京23区がほぼ空白。** 都営バスや大手私鉄系バスは gtfs-data.jp に無く、
-  [ODPT](https://developer.odpt.org/) 側にあります。第2のソースとして追加するのが今後の課題です。
+- **ODPT 側の都道府県コードが無い。** カタログに含まれないため、ODPT 由来の地物は `pref` が 0 です。
 - **全国ズーム（z4–5）は点の散布に見える。** 1区間が数百mなので、線として読ませるには
   同頻度の連続区間を1本のポリラインに結合する処理が要ります。
 - **平日1日のみ。** 土休日ダイヤや時間帯別（`--begin-time` / `--end-time` はあるが未検証）は
   現状スコープ外です。
-- 543フィード中、集計できたのは513件。29件はバス以外のモードや平日運行日なしでスキップ、
-  1件（瑞穂町デマンド交通）は `stop_times.txt` に `stop_id` 列が無くエラーです。
+- **区間は停留所どうしの直線。** 実際の走行経路（`shapes.txt`）は使っていないので、
+  途中停車のない区間は道路と無関係な直線になります。30km超は除外していますが、
+  松山駅前→松山空港（4.6km・69便）のような空港連絡バスは残ります。
 
 ## ライセンスと出典
 
 - コード: MIT License（`LICENSE`）
-- データ: [GTFSデータリポジトリ](https://gtfs-data.jp/)（フィードごとのライセンスは
-  `data/manifest.json` および `build/aggregate_report.json` の `license` を参照。多くは CC BY 4.0）
+- データ: [GTFSデータリポジトリ](https://gtfs-data.jp/) と
+  [公共交通オープンデータセンター](https://ckan.odpt.org/)。ライセンスはフィードごとに異なります
+  （gtfs-data.jp 分は `data/manifest.json` の `license`、ODPT 分は `data/manifest_odpt.json` の
+  `dataset_url` から各データセットのページを参照。多くは CC BY 4.0）
 - `build/bus_frequency.pmtiles` は上記データの派生物です。利用時は出典を表示してください。

@@ -3,11 +3,15 @@
 
   python3 src/aggregate.py [--data data] [--out build] [--jobs 4]
 
+入力は2つのソース。gtfs-data.jp（data/feeds/, src/fetch.py）を主とし、そこに無い
+都営バス・京王バス・横浜市営バスなどを ODPT（data/feeds_odpt/, src/fetch_odpt.py）で
+補う。両方に同じ事業者がいることがあるので、重複フィードは dedupe_feeds() で落とす。
+
 集計ロジックは QGIS プラグイン GTFS-GO / japan-gtfs-frequency-viewer を踏襲しつつ、
 全国・多フィードを1枚の地図にする都合で以下を変えている。
 
   * 対象日はフィードごとに自動選択する
-      全524フィードは有効期間がばらばらなので、全国共通の1日を指定すると
+      フィードごとに有効期間がばらばらなので、全国共通の1日を指定すると
       その日が有効期間外のフィードは丸ごと欠落する。そこで各フィードについて
       「有効期間内・平日（祝日を除く）・実際に便がある」最初の日を選ぶ。
 
@@ -46,6 +50,7 @@ import datetime
 import io
 import json
 import math
+import re
 import sys
 import zipfile
 from collections import defaultdict
@@ -188,6 +193,7 @@ def aggregate_feed(task: dict) -> dict:
     opts = task["opts"]
     result: dict = {
         "key": key,
+        "source": task.get("source", ""),
         "organization_name": entry["organization_name"],
         "feed_name": entry["feed_name"],
         "pref_id": entry["pref_id"],
@@ -245,6 +251,8 @@ def aggregate_feed(task: dict) -> dict:
                 a.get("agency_name") or ""
             ).strip()
         default_agency = agency_raw[0].get("agency_name", "").strip() if agency_raw else ""
+        # ソース間の重複判定に使う（gtfs-data.jp と ODPT に同じ事業者が両方いる）
+        result["agencies"] = sorted({v for v in agency_by_id.values() if v})
 
         route_meta = {
             (r.get("route_id") or "").strip(): (
@@ -366,30 +374,59 @@ def aggregate_feed(task: dict) -> dict:
 
         similar: dict[str, tuple[str, str, float, float]] = {}
         rep_info: dict[str, tuple[str, float, float]] = {}
+        unify_m = opts["unify_threshold"]
         for name, group in groups.items():
-            lats, lons = [], []
-            for s in group:
-                try:
-                    lats.append(float(s["stop_lat"]))
-                    lons.append(float(s["stop_lon"]))
-                except (KeyError, ValueError, TypeError):
-                    continue
-            if not lats:
-                continue
-            lat, lon = sum(lats) / len(lats), sum(lons) / len(lons)
-            rep = (group[0].get("stop_id") or "").strip()
-            rep_info[rep] = (name, lat, lon)
+            pts: list[tuple[str, float, float]] = []
             for s in group:
                 sid = (s.get("stop_id") or "").strip()
-                if not opts["unify_stops"]:
-                    try:
-                        slat, slon = float(s["stop_lat"]), float(s["stop_lon"])
-                    except (KeyError, ValueError, TypeError):
-                        continue
-                    rep_info[sid] = ((s.get("stop_name") or "").strip(), slat, slon)
-                    similar[sid] = (sid, (s.get("stop_name") or "").strip(), slat, slon)
-                else:
-                    similar[sid] = (rep, name, lat, lon)
+                try:
+                    pts.append((sid, float(s["stop_lat"]), float(s["stop_lon"])))
+                except (KeyError, ValueError, TypeError):
+                    continue
+            if not pts:
+                continue
+
+            if not opts["unify_stops"]:
+                for sid, slat, slon in pts:
+                    rep_info[sid] = (name, slat, slon)
+                    similar[sid] = (sid, name, slat, slon)
+                continue
+
+            # 同名でも離れていれば別の停留所。「中野」「四谷」のような一般名は
+            # 1フィード内の別々の場所にあり、まとめると存在しない長距離区間が
+            # 生まれる（西東京バスの「中野」で 8km、都営バスの「富岡一丁目」で
+            # 25km の直線ができていた）。同名グループを距離で単連結クラスタに割る。
+            parent = list(range(len(pts)))
+
+            def find(x: int) -> int:
+                while parent[x] != x:
+                    parent[x] = parent[parent[x]]
+                    x = parent[x]
+                return x
+
+            for i in range(len(pts)):
+                _, lat1, lon1 = pts[i]
+                c = math.cos(math.radians(lat1))
+                for j in range(i + 1, len(pts)):
+                    _, lat2, lon2 = pts[j]
+                    dy = (lat2 - lat1) * 111320.0
+                    dx = (lon2 - lon1) * 111320.0 * c
+                    if dy * dy + dx * dx <= unify_m * unify_m:
+                        ri, rj = find(i), find(j)
+                        if ri != rj:
+                            parent[ri] = rj
+
+            clusters: dict[int, list[int]] = defaultdict(list)
+            for i in range(len(pts)):
+                clusters[find(i)].append(i)
+
+            for members in clusters.values():
+                lat = sum(pts[i][1] for i in members) / len(members)
+                lon = sum(pts[i][2] for i in members) / len(members)
+                rep = pts[members[0]][0]
+                rep_info[rep] = (name, lat, lon)
+                for i in members:
+                    similar[pts[i][0]] = (rep, name, lat, lon)
 
         # --- 時間帯フィルタ ---
         begin_s = filter_time_to_seconds(opts["begin_time"])
@@ -480,6 +517,11 @@ def aggregate_feed(task: dict) -> dict:
 # ---------------------------------------------------------------------------
 MERGE_THRESHOLD_M = 50.0
 
+# フィード内で同名の停留所をまとめるときの距離上限。同名グループの広がりを実測すると
+# 200m 以内が 98.5%（50m:77.5% / 100m:91.3%）で、それを超えるのは「中野」「七日町」の
+# ような一般名が離れた場所に別々にあるケース。上限を置かないと幻の長距離区間ができる。
+UNIFY_THRESHOLD_M = 200.0
+
 # 区間は停留所どうしを直線で結んだもの。高速バスの「バスタ新宿→徳島駅前」のように
 # 途中停車のない区間は 500km の直線になり、経路とは無関係な線が地図を横切る。
 # 区間長の中央値は 0.42km、30km を超えるのは全体の 0.06% で、いずれも 1〜2便の
@@ -545,6 +587,81 @@ def cluster_stops(
 
 
 # ---------------------------------------------------------------------------
+# ソースをまたぐ重複フィードの検出
+# ---------------------------------------------------------------------------
+# 同じ事業者が gtfs-data.jp と ODPT の両方で配信していることがある（実測11者）。
+# そのまま足すと事業者横断の停留所統合が両方を合算し、便数が倍になる。
+DUP_OVERLAP = 0.8
+
+_CORP_RE = re.compile(r"(株式会社|有限会社|\(株\)|（株）|一般社団法人|公益社団法人|合同会社)")
+
+
+def normalize_agency(name: str) -> str:
+    return _CORP_RE.sub("", name).replace(" ", "").replace("　", "")
+
+
+def dedupe_feeds(results: list[dict], threshold: float = DUP_OVERLAP) -> list[dict]:
+    """重複フィードに status="duplicate" を立てる。落とした側は集計に入れない。
+
+    事業者名の一致だけでは判定できない。日立自動車交通は gtfs-data.jp に葛飾さくら、
+    ODPT に文京Bーぐると千代田風ぐるまがあり、同じ事業者だが別の路線群になる。
+    逆に停留所の重なりだけでも判定できない。熊本の九州産交バスと熊本都市バスは
+    別事業者だが市内の停留所をほぼ共有しており、これは統合したい重複ではない。
+    そこで「正規化した事業者名が一致」かつ「停留所名の重なりが threshold 以上」
+    の両方を満たすものだけを重複とみなす。
+
+    さらに gtfs-data.jp どうしは比較しない。あちらは1事業者の路線群がフィードに
+    分かれているだけで重複は無く、比較すると誤検出になる（JR東日本盛岡支社の
+    津軽線代行バスとわんどタクシーは停留所が89%重なるが別サービス）。重複が
+    起きるのは ODPT が絡む場合、すなわちソース間か、ODPT 内のライセンス違い
+    （東大和市ちょこバスの CC0 版と CC BY 版）だけ。
+
+    残す側の優先順位は gtfs-data.jp を先にする。全国を網羅していて都道府県コードも
+    持っており、こちらを基準にしたほうが結果が安定するため。
+    """
+    order = sorted(
+        results,
+        key=lambda r: (0 if r.get("source") != "odpt" else 1, -len(r.get("stops", []))),
+    )
+    kept: list[dict] = []
+    by_agency: dict[str, list[int]] = defaultdict(list)
+    for r in order:
+        if r["status"] != "ok" or not r["stops"]:
+            continue
+        names = {s[0] for s in r["stops"]}
+        ags = {normalize_agency(a) for a in r.get("agencies") or []}
+        ags.add(normalize_agency(r["organization_name"]))
+        ags.discard("")
+
+        dup = None
+        for i in {i for a in ags for i in by_agency.get(a, ())}:
+            other = kept[i]
+            if r.get("source") != "odpt" and other.get("source") != "odpt":
+                continue
+            overlap = len(names & other["_stop_names"]) / min(len(names), len(other["_stop_names"]))
+            if overlap >= threshold:
+                dup = (other, overlap)
+                break
+        if dup:
+            other, overlap = dup
+            r["status"] = "duplicate"
+            r["note"] = (
+                f'{other["key"]} ({other.get("source", "?")}) と重複'
+                f"（停留所の重なり {overlap:.0%}）"
+            )
+            r["routes"], r["stops"] = [], []
+            continue
+
+        r["_stop_names"] = names
+        kept.append(r)
+        for a in ags:
+            by_agency[a].append(len(kept) - 1)
+    for r in kept:
+        r.pop("_stop_names", None)
+    return results
+
+
+# ---------------------------------------------------------------------------
 # main
 # ---------------------------------------------------------------------------
 def main() -> int:
@@ -557,6 +674,12 @@ def main() -> int:
     ap.add_argument("--begin-time", default="", help="時間帯フィルタ開始 (HH:MM)")
     ap.add_argument("--end-time", default="", help="時間帯フィルタ終了 (HH:MM)")
     ap.add_argument("--no-unify-stops", action="store_true", help="同名停留所をまとめない")
+    ap.add_argument(
+        "--unify-threshold",
+        type=float,
+        default=UNIFY_THRESHOLD_M,
+        help=f"フィード内で同名停留所をまとめる距離の上限 [m] (default: {UNIFY_THRESHOLD_M:.0f})",
+    )
     ap.add_argument("--delimiter", default="", help="停留所名の区切り文字（前方部分でまとめる）")
     ap.add_argument("--directional", action="store_true", help="上り下りを別地物にする")
     ap.add_argument("--by-route", action="store_true", help="系統ごとに別地物にする")
@@ -580,17 +703,34 @@ def main() -> int:
             f"0 で無効 (default: {MAX_SEGMENT_KM:.0f})"
         ),
     )
+    ap.add_argument("--no-odpt", action="store_true", help="ODPT のフィードを使わない")
+    ap.add_argument(
+        "--dup-overlap",
+        type=float,
+        default=DUP_OVERLAP,
+        help=f"重複フィードとみなす停留所名の重なり (default: {DUP_OVERLAP})",
+    )
     args = ap.parse_args()
 
     data = Path(args.data)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
 
-    manifest_path = data / "manifest.json"
-    if not manifest_path.exists():
-        print(f"ERROR: {manifest_path} がありません。先に src/fetch.py を実行してください。", file=sys.stderr)
-        return 1
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    # ソースは2つ。gtfs-data.jp が主で、ODPT は都営バスなど gtfs-data.jp に無い
+    # 事業者を埋めるためのもの。取り込み方が違うだけで、以降の扱いは同じ。
+    sources = [("gtfs-data.jp", data / "manifest.json", data / "feeds", "src/fetch.py")]
+    if not args.no_odpt:
+        sources.append(("odpt", data / "manifest_odpt.json", data / "feeds_odpt", "src/fetch_odpt.py"))
+
+    manifests: list[tuple[str, dict, Path]] = []
+    for name, mpath, fdir, script in sources:
+        if not mpath.exists():
+            if name == "gtfs-data.jp":
+                print(f"ERROR: {mpath} がありません。先に {script} を実行してください。", file=sys.stderr)
+                return 1
+            print(f"[skip] {mpath} がありません（{script} 未実行）。{name} は使いません。")
+            continue
+        manifests.append((name, json.loads(mpath.read_text(encoding="utf-8")), fdir))
 
     today = parse_date(args.today) or datetime.date.today()
     opts = {
@@ -599,21 +739,27 @@ def main() -> int:
         "begin_time": args.begin_time,
         "end_time": args.end_time,
         "unify_stops": not args.no_unify_stops,
+        "unify_threshold": args.unify_threshold,
         "delimiter": args.delimiter,
         "directional": args.directional,
         "by_route": args.by_route,
     }
 
     tasks = []
-    for key, entry in manifest["feeds"].items():
-        if entry.get("discontinued"):
-            continue
-        zp = data / "feeds" / f"{key}.zip"
-        if not zp.exists():
-            continue
-        tasks.append({"key": key, "entry": entry, "zip_path": str(zp), "opts": opts})
+    per_source: dict[str, int] = defaultdict(int)
+    for name, manifest, fdir in manifests:
+        for key, entry in manifest["feeds"].items():
+            if entry.get("discontinued"):
+                continue
+            zp = fdir / f"{key}.zip"
+            if not zp.exists():
+                continue
+            tasks.append(
+                {"key": key, "entry": entry, "zip_path": str(zp), "opts": opts, "source": name}
+            )
+            per_source[name] += 1
 
-    print(f"集計対象: {len(tasks)} フィード（基準日 {today}）")
+    print(f"集計対象: {len(tasks)} フィード（基準日 {today}）  内訳 {dict(per_source)}")
     print(f"設定: 停留所統合={opts['unify_stops']} 無向={not args.directional} 系統統合={not args.by_route}")
 
     routes_path = out / "routes.geojsonl"
@@ -636,36 +782,48 @@ def main() -> int:
             nodes.append(k)
         return i
 
+    results: list[dict] = []
     with ProcessPoolExecutor(max_workers=args.jobs) as ex:
         futs = [ex.submit(aggregate_feed, t) for t in tasks]
         done = 0
         for fut in as_completed(futs):
-            r = fut.result()
+            results.append(fut.result())
             done += 1
-            status_count[r["status"]] += 1
-            key, pref = r["key"], r["pref_id"]
-            for na, la, oa, nb, lb, ob, fab, fba, nr, agency, rid in r["routes"]:
-                raw_segments.append(
-                    (node_id(na, la, oa), node_id(nb, lb, ob), fab, fba, nr, agency, key, pref, rid)
-                )
-            for nm, la, lo, count, agency in r["stops"]:
-                raw_stops.append((node_id(nm, la, lo), count, agency, key, pref))
-            report.append(
-                {
-                    "key": r["key"],
-                    "organization_name": r["organization_name"],
-                    "feed_name": r["feed_name"],
-                    "pref_id": r["pref_id"],
-                    "license": r["license"],
-                    "target_date": r["target_date"],
-                    "status": r["status"],
-                    "note": r["note"],
-                    "n_segments": len(r["routes"]),
-                    "n_stops": len(r["stops"]),
-                }
-            )
             if done % 100 == 0 or done == len(futs):
                 print(f"  {done}/{len(futs)}", flush=True)
+
+    # 重複の判定は全フィードが揃ってからでないとできない
+    if len(manifests) > 1:
+        dedupe_feeds(results, args.dup_overlap)
+        dups = [r for r in results if r["status"] == "duplicate"]
+        print(f"ソース間の重複: {len(dups)} フィードを除外")
+        for r in sorted(dups, key=lambda x: x["key"]):
+            print(f'  [dup] {r["organization_name"]}/{r["feed_name"]}: {r["note"]}')
+
+    for r in results:
+        status_count[r["status"]] += 1
+        key, pref = r["key"], r["pref_id"]
+        for na, la, oa, nb, lb, ob, fab, fba, nr, agency, rid in r["routes"]:
+            raw_segments.append(
+                (node_id(na, la, oa), node_id(nb, lb, ob), fab, fba, nr, agency, key, pref, rid)
+            )
+        for nm, la, lo, count, agency in r["stops"]:
+            raw_stops.append((node_id(nm, la, lo), count, agency, key, pref))
+        report.append(
+            {
+                "key": r["key"],
+                "source": r.get("source", ""),
+                "organization_name": r["organization_name"],
+                "feed_name": r["feed_name"],
+                "pref_id": r["pref_id"],
+                "license": r["license"],
+                "target_date": r["target_date"],
+                "status": r["status"],
+                "note": r["note"],
+                "n_segments": len(r["routes"]),
+                "n_stops": len(r["stops"]),
+            }
+        )
 
     print(f"\nフィード単位の集計: 区間 {len(raw_segments):,} / 停留所 {len(raw_stops):,}")
 
@@ -848,9 +1006,12 @@ def main() -> int:
                 "options": {
                     **{k: (str(v) if isinstance(v, datetime.date) else v) for k, v in opts.items()},
                     "merge_operators": not args.no_merge_operators,
+                    "unify_threshold_m": args.unify_threshold,
                     "merge_threshold_m": args.merge_threshold,
                     "max_segment_km": args.max_segment_km,
+                    "dup_overlap": args.dup_overlap,
                 },
+                "sources": {name: per_source[name] for name, _, _ in manifests},
                 "totals": {
                     "feeds": len(tasks),
                     "segments": n_routes,
