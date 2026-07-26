@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!--
+  build/bus_frequency.pmtiles の目視確認用ビューア。
+  src/serve.py で配信して開く（PMTiles は HTTP Range を使うため）。
+
+    python3 src/serve.py &
+    open http://127.0.0.1:8787/src/preview.html
+-->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>全国バス運行頻度図 プレビュー</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<style>
+  :root {
+    --surface: #ffffff;
+    --ink: #1a1a19;
+    --ink-muted: #6b6b68;
+    --panel: rgba(255,255,255,.92);
+    --border: rgba(0,0,0,.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #1a1a19;
+      --ink: #f2f1ee;
+      --ink-muted: #9b9b96;
+      --panel: rgba(26,26,25,.92);
+      --border: rgba(255,255,255,.16);
+    }
+  }
+  html, body { margin: 0; height: 100%; background: var(--surface); }
+  #map { position: absolute; inset: 0; }
+  .panel {
+    position: absolute; z-index: 2;
+    background: var(--panel);
+    color: var(--ink);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font: 12px/1.5 system-ui, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    backdrop-filter: blur(6px);
+  }
+  #legend { left: 12px; bottom: 24px; padding: 10px 12px; }
+  #legend h1 { margin: 0 0 2px; font-size: 12px; font-weight: 600; }
+  #legend .sub { margin: 0 0 8px; color: var(--ink-muted); font-size: 11px; }
+  #legend ul { list-style: none; margin: 0; padding: 0; }
+  #legend li { display: flex; align-items: center; gap: 8px; height: 18px; }
+  #legend .sw { width: 26px; border-radius: 2px; }
+  #legend .lb { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+  #hud { right: 12px; top: 12px; padding: 8px 10px; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+  .maplibregl-popup-content {
+    background: var(--panel); color: var(--ink);
+    border: 1px solid var(--border); border-radius: 6px;
+    font: 12px/1.5 system-ui, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    padding: 8px 10px;
+  }
+  .maplibregl-popup-content b { font-weight: 600; }
+  .maplibregl-popup-content .m { color: var(--ink-muted); }
+  .maplibregl-popup-tip { display: none; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<div id="legend" class="panel">
+  <h1>運行本数（平日・両方向計）</h1>
+  <p class="sub">1日あたりの便数 / 区間</p>
+  <ul id="legend-items"></ul>
+</div>
+<div id="hud" class="panel">z<span id="z">–</span></div>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/pmtiles@3.2.0/dist/pmtiles.js"></script>
+<script>
+// 便数の分布は 1-5:25% / 6-11:33% / 12-23:26% / 24-47:11% / 48-95:3.6% / 96+:1.3%。
+// 等間隔ではなくおおよそ倍々で刻む。色は単一色相の連続ランプ（明→暗）、
+// 太さを従属的にもう一段の符号化として重ねる（細線は色だけだと判別しづらいため）。
+const BREAKS = [6, 12, 24, 48, 96];
+const LABELS = ['1–5', '6–11', '12–23', '24–47', '48–95', '96+'];
+const RAMP = {
+  // 明るい地図: 低頻度ほど地色に近く、幹線ほど濃い
+  light: ['#b7d3f6', '#86b6ef', '#5598e7', '#2a78d6', '#1c5cab', '#0d366b'],
+  // 暗い地図: 向きを反転（地色に近い＝低頻度）
+  dark:  ['#184f95', '#256abf', '#3987e5', '#6da7ec', '#9ec5f4', '#cde2fb'],
+};
+const WIDTHS = [0.5, 0.9, 1.4, 2.1, 3.0, 4.2];
+
+const params = new URLSearchParams(location.search);
+const dark = params.get('theme')
+  ? params.get('theme') === 'dark'
+  : matchMedia('(prefers-color-scheme: dark)').matches;
+const colors = dark ? RAMP.dark : RAMP.light;
+
+// step 式: [color0, break0, color1, break1, ...]
+const stepExpr = (vals) => {
+  const e = ['step', ['get', 'frequency'], vals[0]];
+  BREAKS.forEach((b, i) => e.push(b, vals[i + 1]));
+  return e;
+};
+
+document.getElementById('legend-items').innerHTML = LABELS.map((l, i) =>
+  `<li><span class="sw" style="height:${Math.max(WIDTHS[i], 2)}px;background:${colors[i]}"></span>` +
+  `<span class="lb">${l}</span></li>`).join('');
+
+maplibregl.addProtocol('pmtiles', new pmtiles.Protocol().tile);
+
+const basemap = dark
+  ? 'https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
+  : 'https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
+
+const map = new maplibregl.Map({
+  container: 'map',
+  hash: true,
+  center: [138.0, 37.0],
+  zoom: 5,
+  style: {
+    version: 8,
+    glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
+    sources: {
+      base: {
+        type: 'raster', tileSize: 256, maxzoom: 18,
+        tiles: [basemap],
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+      },
+      bus: {
+        type: 'vector',
+        url: 'pmtiles://' + location.origin + '/build/bus_frequency.pmtiles',
+        attribution: '<a href="https://gtfs-data.jp/">GTFSデータリポジトリ</a>',
+      },
+    },
+    layers: [
+      { id: 'bg', type: 'background', paint: { 'background-color': dark ? '#1a1a19' : '#ffffff' } },
+      {
+        id: 'base', type: 'raster', source: 'base',
+        paint: { 'raster-opacity': dark ? 0.55 : 0.7, 'raster-saturation': -0.9 },
+      },
+      {
+        id: 'stops', type: 'circle', source: 'bus', 'source-layer': 'stops',
+        minzoom: 10,
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['zoom'], 10, 1.1, 14, 2.6],
+          'circle-color': dark ? '#f2f1ee' : '#1a1a19',
+          'circle-opacity': 0.5,
+        },
+      },
+      {
+        id: 'routes', type: 'line', source: 'bus', 'source-layer': 'routes',
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': stepExpr(colors),
+          // 低ズームでは幹線しか出ず、1区間が数百 m しかないので、細くすると消える。1px 強を下限にする。
+          'line-width': [
+            'interpolate', ['linear'], ['zoom'],
+            4, ['max', ['*', stepExpr(WIDTHS), 0.45], 1.2],
+            6, ['max', ['*', stepExpr(WIDTHS), 0.7], 1.0],
+            9, stepExpr(WIDTHS),
+            13, ['*', stepExpr(WIDTHS), 1.8],
+          ],
+          'line-opacity': ['interpolate', ['linear'], ['zoom'], 4, 0.75, 9, 0.9],
+        },
+      },
+    ],
+  },
+});
+
+map.addControl(new maplibregl.NavigationControl(), 'top-left');
+map.addControl(new maplibregl.ScaleControl({ maxWidth: 120 }), 'bottom-right');
+
+const zEl = document.getElementById('z');
+const showZoom = () => { zEl.textContent = map.getZoom().toFixed(1); };
+map.on('zoom', showZoom);
+map.on('load', showZoom);
+
+// ホバーで区間の内訳を出す（方向別の便数が集計どおりか確かめるため）
+const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 8 });
+map.on('mousemove', 'routes', (e) => {
+  const p = e.features[0].properties;
+  map.getCanvas().style.cursor = 'pointer';
+  popup.setLngLat(e.lngLat).setHTML(
+    `<b>${p.stop_a} ⇄ ${p.stop_b}</b><br>` +
+    `<b>${p.frequency}</b> 便/日 <span class="m">(→${p.frequency_ab} / ←${p.frequency_ba})</span><br>` +
+    `<span class="m">${p.agency}｜事業者 ${p.operators}・系統 ${p.routes}</span>`
+  ).addTo(map);
+});
+map.on('mouseleave', 'routes', () => {
+  map.getCanvas().style.cursor = '';
+  popup.remove();
+});
+
+// スクリーンショット用: タイル読み込み完了を外から待てるようにする
+window.__idle = false;
+map.on('idle', () => { window.__idle = true; });
+</script>
+</body>
+</html>

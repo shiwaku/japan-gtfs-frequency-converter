@@ -1,0 +1,14 @@
+# 取得した GTFS フィード本体（76MB / 543 本）。src/fetch.py で再取得できる
+data/feeds/
+
+# 中間生成物。build/bus_frequency.pmtiles だけは成果物としてコミットする
+build/*.geojsonl
+
+__pycache__/
+*.pyc
+
+.claude/settings.local.json
+.DS_Store
+
+# tippecanoe の作業ファイル
+build/*.tmp
