@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <!--
-  build/bus_frequency.pmtiles の目視確認用ビューア。
-  src/serve.py で配信して開く（PMTiles は HTTP Range を使うため）。
+  build/bus_frequency.pmtiles のビューア。GitHub Pages のトップページを兼ねる。
+
+  PMTiles は HTTP Range を使うので、ローカルで開くときは file:// ではなく
+  同梱のサーバ経由で。GitHub Pages は Range に対応しているのでそのまま動く。
 
     python3 src/serve.py &
-    open http://127.0.0.1:8787/src/preview.html
+    open http://127.0.0.1:8787/
 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>全国バス運行頻度図 プレビュー</title>
+<title>全国バス運行頻度図</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
 <style>
@@ -47,6 +49,8 @@
   #legend li { display: flex; align-items: center; gap: 8px; height: 18px; }
   #legend .sw { width: 26px; border-radius: 2px; }
   #legend .lb { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+  #legend .src { margin: 8px 0 0; padding-top: 8px; border-top: 1px solid var(--border); font-size: 11px; color: var(--ink-muted); }
+  #legend .src a { color: inherit; }
   #hud { right: 12px; top: 12px; padding: 8px 10px; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
   .maplibregl-popup-content {
     background: var(--panel); color: var(--ink);
@@ -66,6 +70,8 @@
   <h1>運行本数（平日・両方向計）</h1>
   <p class="sub">1日あたりの便数 / 区間</p>
   <ul id="legend-items"></ul>
+  <p class="src"><a href="https://github.com/shiwaku/japan-gtfs-frequency-converter">生成コード</a>
+    ／ 出典 <a href="https://gtfs-data.jp/">GTFSデータリポジトリ</a></p>
 </div>
 <div id="hud" class="panel">z<span id="z">–</span></div>
 
@@ -124,7 +130,8 @@ const map = new maplibregl.Map({
       },
       bus: {
         type: 'vector',
-        url: 'pmtiles://' + location.origin + '/build/bus_frequency.pmtiles',
+        // 相対解決にしておくと、ローカル (/) でも Pages (/<repo>/) でも同じ記述で通る
+        url: 'pmtiles://' + new URL('build/bus_frequency.pmtiles', location.href).href,
         attribution: '<a href="https://gtfs-data.jp/">GTFSデータリポジトリ</a>',
       },
     },

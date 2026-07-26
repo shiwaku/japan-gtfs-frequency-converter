@@ -2,7 +2,7 @@
 """プレビュー用のローカル配信サーバ。
 
     python3 src/serve.py [port]
-    -> http://127.0.0.1:8787/src/preview.html
+    -> http://127.0.0.1:8787/ (index.html。GitHub Pages と同じものが出る)
 
 標準の http.server は Range リクエストに応答しないので PMTiles を配信できない。
 206 Partial Content だけ足した最小実装。
@@ -92,5 +92,5 @@ class Server(socketserver.ThreadingTCPServer):
 if __name__ == "__main__":
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8787
     with Server(("127.0.0.1", port), Handler) as httpd:
-        print(f"http://127.0.0.1:{port}/src/preview.html  (root={ROOT})", flush=True)
+        print(f"http://127.0.0.1:{port}/  (root={ROOT})", flush=True)
         httpd.serve_forever()

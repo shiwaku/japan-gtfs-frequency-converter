@@ -2,6 +2,8 @@
 
 全国のバス GTFS から**区間ごとの運行本数**を集計し、1枚の PMTiles にするツール群です。
 
+**地図: https://shiwaku.github.io/japan-gtfs-frequency-converter/**
+
 [gtfs-data.jp（GTFSデータリポジトリ）](https://gtfs-data.jp/) の全フィードを取得 → 平日1日の
 便数を停留所間の区間単位で集計 → tippecanoe でベクタータイル化、までを3つのスクリプトで行います。
 
@@ -33,11 +35,14 @@ python3 src/aggregate.py --jobs 4 # 集計 → build/routes.geojsonl, build/stop
 bash src/tiles.sh                 # → build/bus_frequency.pmtiles
 ```
 
-確認用ビューア（PMTiles は HTTP Range を使うので、専用のローカルサーバを同梱しています）:
+ビューア（PMTiles は HTTP Range を使うので、`file://` では開けません。同梱のサーバ経由で）:
 
 ```sh
-python3 src/serve.py              # → http://127.0.0.1:8787/src/preview.html
+python3 src/serve.py              # → http://127.0.0.1:8787/
 ```
+
+`index.html` が GitHub Pages のトップページを兼ねているので、ローカルで見えるものと
+公開されているものは同一です。
 
 ### スクリプト
 
@@ -46,8 +51,8 @@ python3 src/serve.py              # → http://127.0.0.1:8787/src/preview.html
 | `src/fetch.py` | フィード取得。`gtfs_file_uid` を前回の manifest と比較して**変わったものだけ**再取得する。廃止フィードの除外と ZIP の健全性検証つき |
 | `src/aggregate.py` | 集計本体。`--jobs` で並列。`build/aggregate_report.json` にフィードごとの採用日・件数・スキップ理由を出力 |
 | `src/tiles.sh` | tippecanoe 呼び出し。z4–14 |
-| `src/preview.html` | 目視確認用の MapLibre ビューア。ホバーで区間の方向別内訳が出る |
-| `src/serve.py` | Range リクエストに応答する最小のローカルサーバ |
+| `index.html` | MapLibre ビューア。ホバーで区間の方向別内訳が出る。GitHub Pages のトップページ |
+| `src/serve.py` | Range リクエストに応答する最小のローカルサーバ（`index.html` の確認用） |
 | `src/jpholidays.py` | 祝日判定（平日ダイヤの選択に使う） |
 
 ## 集計の仕様
