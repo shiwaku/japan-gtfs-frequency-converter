@@ -15,7 +15,7 @@
 
 ## 成果物
 
-`build/bus_frequency.pmtiles` — 648フィード / 85,553区間 / 73,999停留所、30MB、z4–14。
+`build/bus_frequency.pmtiles` — 648フィード / 85,553区間 / 73,999停留所、31MB、z4–14。
 
 | レイヤー | 地物 | 主なプロパティ |
 |---|---|---|
@@ -60,6 +60,33 @@ python3 src/serve.py              # → http://127.0.0.1:8787/
 
 `index.html` が GitHub Pages のトップページを兼ねているので、ローカルで見えるものと
 公開されているものは同一です。
+
+### 主なオプション
+
+`src/aggregate.py`
+
+| オプション | 既定 | 意味 |
+|---|---|---|
+| `--data` / `--out` | `data` / `build` | 入出力ディレクトリ |
+| `--jobs` | 4 | 並列プロセス数 |
+| `--today` / `--date` | 実行日 / 自動 | 基準日 / 対象日の固定 |
+| `--begin-time` / `--end-time` | なし | 時間帯で絞る（`HH:MM`。未検証） |
+| `--no-odpt` | off | ODPT のフィードを使わない |
+| `--dup-overlap` | 0.8 | 重複と判定する停留所名の重なり |
+| `--no-shapes` | off | 経路を使わず全部直線にする |
+| `--shape-tolerance` | 5 | 経路の折れ線を間引く許容誤差 [m] |
+| `--no-unify-stops` | off | フィード内の同名停留所をまとめない |
+| `--unify-threshold` | 200 | 同名停留所をまとめる距離の上限 [m] |
+| `--delimiter` | なし | 停留所名をこの文字で切って前方部分でまとめる |
+| `--no-merge-operators` | off | 事業者横断の停留所統合をしない |
+| `--merge-threshold` | 50 | 事業者横断で同一とみなす距離 [m] |
+| `--max-segment-km` | 30 | これを超える区間を落とす（0で無効） |
+| `--directional` | off | 上り下りを別地物にする |
+| `--by-route` | off | 系統ごとに別地物にする |
+
+`src/fetch.py` / `src/fetch_odpt.py` は `--out` `--jobs` `--force`（変更が無くても再取得）が共通。
+`src/fetch.py` には `--skip-feed-meta`（個別メタデータの取得を省いて前回の manifest を流用する。廃止判定が古くなる）、
+`src/fetch_odpt.py` には `--token` と `--catalog-only`（取得せずカタログの一覧だけ出す）があります。
 
 ### スクリプト
 
