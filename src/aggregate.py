@@ -185,6 +185,164 @@ def filter_time_to_seconds(v: str) -> int:
 
 
 # ---------------------------------------------------------------------------
+# shapes.txt（実走行経路）の利用
+# ---------------------------------------------------------------------------
+# 区間の形は既定では停留所どうしの直線だが、shapes.txt があれば実際の経路に沿った
+# 折れ線にできる。全650フィード中 424 に shapes.txt があり、そのうち stop_times 側にも
+# shape_dist_traveled があって距離で切れるのは 46 だけ。残る 378 は停留所を線形に
+# 投影して切り出す。
+#
+# 投影は「前の停留所より先」に限る。環状線や折返しのある経路では同じ地点を2度通るため、
+# 全体から最近傍を採ると順序が壊れて経路が飛ぶ。
+SHAPE_SNAP_M = 300.0  # これより遠くにしか乗らない停留所は投影を諦めて直線に落とす
+SHAPE_TOLERANCE_M = 5.0  # 折れ線の間引き許容誤差。全国規模だとタイル容量に直結する
+
+# 投影が失敗すると、環状部分を丸ごと含んだ部分線が切り出される（都営バスの
+# 「上町→仲町」は直線 0.19km に対し経路 23.7km になっていた）。片道ループの
+# ような正当な迂回もあるので、比だけでなく超過量も見る。
+SHAPE_MAX_RATIO = 3.0
+SHAPE_MAX_EXCESS_M = 2000.0
+
+
+def read_shapes(z: zipfile.ZipFile) -> dict[str, tuple[list[float], list[float], list[float]]]:
+    """shape_id -> (lats, lons, 累積距離[m])。累積距離は投影の探索に使う。"""
+    header, rows = read_rows(z, "shapes.txt")
+    if not rows:
+        return {}
+    try:
+        i_id = header.index("shape_id")
+        i_lat = header.index("shape_pt_lat")
+        i_lon = header.index("shape_pt_lon")
+        i_seq = header.index("shape_pt_sequence")
+    except ValueError:
+        return {}
+
+    raw: dict[str, list[tuple[int, float, float]]] = defaultdict(list)
+    ncol = len(header)
+    for row in rows:
+        if len(row) < ncol:
+            continue
+        try:
+            raw[row[i_id].strip()].append(
+                (int(float(row[i_seq])), float(row[i_lat]), float(row[i_lon]))
+            )
+        except (ValueError, TypeError):
+            continue
+
+    shapes: dict[str, tuple[list[float], list[float], list[float]]] = {}
+    for sid, pts in raw.items():
+        pts.sort()
+        lats = [p[1] for p in pts]
+        lons = [p[2] for p in pts]
+        if len(lats) < 2:
+            continue
+        cum = [0.0]
+        for i in range(1, len(lats)):
+            c = math.cos(math.radians(lats[i - 1]))
+            dy = (lats[i] - lats[i - 1]) * 111320.0
+            dx = (lons[i] - lons[i - 1]) * 111320.0 * c
+            cum.append(cum[-1] + math.hypot(dy, dx))
+        shapes[sid] = (lats, lons, cum)
+    return shapes
+
+
+def project_on_shape(
+    shape: tuple[list[float], list[float], list[float]],
+    targets: list[tuple[float, float]],
+) -> list[tuple[int, float, float, float] | None]:
+    """停留所列を線形に順番どおり投影する。
+
+    各要素は (直前の頂点index, 補間比, lat, lon)。乗らなかった停留所は None。
+    """
+    lats, lons, _cum = shape
+    n = len(lats)
+    out: list[tuple[int, float, float, float] | None] = []
+    start = 0
+    for tlat, tlon in targets:
+        c = math.cos(math.radians(tlat))
+        best = None
+        best_d2 = SHAPE_SNAP_M * SHAPE_SNAP_M
+        for i in range(start, n - 1):
+            y1 = (lats[i] - tlat) * 111320.0
+            x1 = (lons[i] - tlon) * 111320.0 * c
+            y2 = (lats[i + 1] - tlat) * 111320.0
+            x2 = (lons[i + 1] - tlon) * 111320.0 * c
+            dy, dx = y2 - y1, x2 - x1
+            seg2 = dy * dy + dx * dx
+            if seg2 <= 0:
+                t = 0.0
+                py, px = y1, x1
+            else:
+                t = -(y1 * dy + x1 * dx) / seg2
+                t = 0.0 if t < 0 else (1.0 if t > 1 else t)
+                py, px = y1 + t * dy, x1 + t * dx
+            d2 = py * py + px * px
+            if d2 < best_d2:
+                best_d2 = d2
+                best = (i, t)
+        if best is None:
+            out.append(None)
+            continue
+        i, t = best
+        out.append(
+            (i, t, lats[i] + (lats[i + 1] - lats[i]) * t, lons[i] + (lons[i + 1] - lons[i]) * t)
+        )
+        start = i  # 次の停留所はここより先だけを探す
+    return out
+
+
+def slice_shape(
+    shape: tuple[list[float], list[float], list[float]],
+    a: tuple[int, float, float, float],
+    b: tuple[int, float, float, float],
+) -> list[tuple[float, float]]:
+    """投影点 a から b までの部分折れ線を (lon, lat) で返す。"""
+    lats, lons, _ = shape
+    ia, _ta, alat, alon = a
+    ib, _tb, blat, blon = b
+    pts = [(alon, alat)]
+    for i in range(ia + 1, ib + 1):
+        pts.append((lons[i], lats[i]))
+    pts.append((blon, blat))
+    # 同じ点の連続を落とす（投影点が頂点と一致することがある）
+    out = [pts[0]]
+    for p in pts[1:]:
+        if abs(p[0] - out[-1][0]) > 1e-7 or abs(p[1] - out[-1][1]) > 1e-7:
+            out.append(p)
+    return out
+
+
+def simplify(pts: list[tuple[float, float]], tol_m: float) -> list[tuple[float, float]]:
+    """Douglas-Peucker。タイルに載る頂点数を落とす。"""
+    if len(pts) <= 2:
+        return pts
+    tol_deg = tol_m / 111320.0
+    keep = [False] * len(pts)
+    keep[0] = keep[-1] = True
+    stack = [(0, len(pts) - 1)]
+    while stack:
+        s, e = stack.pop()
+        x1, y1 = pts[s]
+        x2, y2 = pts[e]
+        dx, dy = x2 - x1, y2 - y1
+        norm = math.hypot(dx, dy)
+        far_i, far_d = -1, tol_deg
+        for i in range(s + 1, e):
+            x0, y0 = pts[i]
+            if norm == 0:
+                d = math.hypot(x0 - x1, y0 - y1)
+            else:
+                d = abs(dy * x0 - dx * y0 + x2 * y1 - y2 * x1) / norm
+            if d > far_d:
+                far_i, far_d = i, d
+        if far_i >= 0:
+            keep[far_i] = True
+            stack.append((s, far_i))
+            stack.append((far_i, e))
+    return [p for p, k in zip(pts, keep) if k]
+
+
+# ---------------------------------------------------------------------------
 # 1フィードの集計
 # ---------------------------------------------------------------------------
 def aggregate_feed(task: dict) -> dict:
@@ -261,9 +419,10 @@ def aggregate_feed(task: dict) -> dict:
             for r in routes_raw
         }
 
-        # --- trip → (route_id, service_id) ---
+        # --- trip → (route_id, service_id, shape_id) ---
         trip_route: dict[str, str] = {}
         trip_service: dict[str, str] = {}
+        trip_shape: dict[str, str] = {}
         for t in trips_raw:
             tid = (t.get("trip_id") or "").strip()
             rid = (t.get("route_id") or "").strip()
@@ -271,6 +430,9 @@ def aggregate_feed(task: dict) -> dict:
                 continue
             trip_route[tid] = rid
             trip_service[tid] = (t.get("service_id") or "").strip()
+            sh = (t.get("shape_id") or "").strip()
+            if sh:
+                trip_shape[tid] = sh
         if not trip_route:
             result["status"] = "skip"
             result["note"] = "バス系統に属する trip が無い"
@@ -437,11 +599,16 @@ def aggregate_feed(task: dict) -> dict:
         # 区間: key -> [freq_ab, freq_ba, set(route_id)]
         segments: dict[tuple, list] = {}
         stop_counts: dict[str, int] = defaultdict(int)
+        # (shape_id, 停留所の並び) が同じ便は経路も同じ。投影は重いのでここで束ねる。
+        pattern_trips: dict[tuple, int] = defaultdict(int)
 
         for tid, times in trip_times.items():
             if trip_service.get(tid) not in active:
                 continue
             rid = trip_route[tid]
+            sh = trip_shape.get(tid)
+            if sh:
+                pattern_trips[(sh, tuple(t[1] for t in times))] += 1
 
             for _seq, sid, t, served in times:
                 if not served:
@@ -486,6 +653,73 @@ def aggregate_feed(task: dict) -> dict:
                     seg[0 if fwd else 1] += 1
                     seg[2].add(rid)
 
+        # --- 区間の形を shapes.txt から取る ---
+        # 便数の多いパターンから順に埋め、既に形の付いた区間は上書きしない。
+        # 同じ停留所間を複数系統が別経路で走ることがあり、その場合は主要な方を採る。
+        seg_geom: dict[tuple, list[tuple[float, float]]] = {}
+        n_shaped = 0
+        if opts["use_shapes"] and pattern_trips:
+            shapes = read_shapes(z)
+            stop_pos: dict[str, tuple[float, float]] = {}
+            for s in stops_raw:
+                try:
+                    stop_pos[(s.get("stop_id") or "").strip()] = (
+                        float(s["stop_lat"]),
+                        float(s["stop_lon"]),
+                    )
+                except (KeyError, ValueError, TypeError):
+                    continue
+            tol = opts["shape_tolerance"]
+            for (sh, sids), _cnt in sorted(pattern_trips.items(), key=lambda kv: -kv[1]):
+                shape = shapes.get(sh)
+                if not shape:
+                    continue
+                targets = [stop_pos.get(s) for s in sids]
+                if any(t is None for t in targets):
+                    continue
+                proj = project_on_shape(shape, targets)
+                for i in range(len(sids) - 1):
+                    a = similar.get(sids[i])
+                    b = similar.get(sids[i + 1])
+                    if not a or not b or a[0] == b[0]:
+                        continue
+                    aid, bid = a[0], b[0]
+                    if opts["directional"]:
+                        k = (aid, bid, "")
+                        fwd = True
+                    else:
+                        fwd = aid <= bid
+                        lo, hi = (aid, bid) if fwd else (bid, aid)
+                        k = (lo, hi, "")
+                    if opts["by_route"] or k in seg_geom:
+                        continue
+                    pa, pb = proj[i], proj[i + 1]
+                    if pa is None or pb is None:
+                        continue
+                    # 投影が逆行しているものは経路として使えない
+                    if pb[0] < pa[0] or (pb[0] == pa[0] and pb[1] < pa[1]):
+                        continue
+                    pts = simplify(slice_shape(shape, pa, pb), tol)
+                    if len(pts) < 3:
+                        continue  # 直線と変わらないなら持たせない
+                    plen = 0.0
+                    for j in range(len(pts) - 1):
+                        cj = math.cos(math.radians(pts[j][1]))
+                        plen += math.hypot(
+                            (pts[j + 1][1] - pts[j][1]) * 111320.0,
+                            (pts[j + 1][0] - pts[j][0]) * 111320.0 * cj,
+                        )
+                    c0 = math.cos(math.radians(pts[0][1]))
+                    straight = math.hypot(
+                        (pts[-1][1] - pts[0][1]) * 111320.0,
+                        (pts[-1][0] - pts[0][0]) * 111320.0 * c0,
+                    )
+                    if plen > SHAPE_MAX_RATIO * straight and plen - straight > SHAPE_MAX_EXCESS_M:
+                        continue  # 投影が経路を飛ばしている
+                    seg_geom[k] = pts if fwd else pts[::-1]
+                    n_shaped += 1
+        result["n_shaped"] = n_shaped
+
         # --- 中間レコード化（GeoJSON 化は親プロセスの統合パスで行う） ---
         # 事業者をまたぐ統合は全フィードを見渡さないとできないため、ここでは
         # 「名前 + 代表座標」を持つ素のレコードを返すだけにする。
@@ -498,9 +732,13 @@ def aggregate_feed(task: dict) -> dict:
             agency = (route_meta.get(rid) if rid else None) or (
                 route_meta.get(next(iter(rids)), "") if rids else ""
             ) or agency_name
+            # 中間点だけを渡す。両端は親側で統合後の代表座標に差し替える
+            # （ソースをまたいで同じ停留所にまとめた線が、端でつながるように）。
+            geom = seg_geom.get((aid, bid, rid))
+            mid = geom[1:-1] if geom else None
             # (name, lat, lon) を両端に持たせる。fab は a→b、fba は b→a の便数。
             result["routes"].append(
-                (ra[0], ra[1], ra[2], rb[0], rb[1], rb[2], fab, fba, len(rids), agency, rid)
+                (ra[0], ra[1], ra[2], rb[0], rb[1], rb[2], fab, fba, len(rids), agency, rid, mid)
             )
 
         for sid, count in stop_counts.items():
@@ -705,6 +943,15 @@ def main() -> int:
     )
     ap.add_argument("--no-odpt", action="store_true", help="ODPT のフィードを使わない")
     ap.add_argument(
+        "--no-shapes", action="store_true", help="shapes.txt を使わず停留所どうしの直線にする"
+    )
+    ap.add_argument(
+        "--shape-tolerance",
+        type=float,
+        default=SHAPE_TOLERANCE_M,
+        help=f"経路の折れ線を間引く許容誤差 [m] (default: {SHAPE_TOLERANCE_M:.0f})",
+    )
+    ap.add_argument(
         "--dup-overlap",
         type=float,
         default=DUP_OVERLAP,
@@ -740,6 +987,8 @@ def main() -> int:
         "end_time": args.end_time,
         "unify_stops": not args.no_unify_stops,
         "unify_threshold": args.unify_threshold,
+        "use_shapes": not args.no_shapes,
+        "shape_tolerance": args.shape_tolerance,
         "delimiter": args.delimiter,
         "directional": args.directional,
         "by_route": args.by_route,
@@ -803,9 +1052,9 @@ def main() -> int:
     for r in results:
         status_count[r["status"]] += 1
         key, pref = r["key"], r["pref_id"]
-        for na, la, oa, nb, lb, ob, fab, fba, nr, agency, rid in r["routes"]:
+        for na, la, oa, nb, lb, ob, fab, fba, nr, agency, rid, mid in r["routes"]:
             raw_segments.append(
-                (node_id(na, la, oa), node_id(nb, lb, ob), fab, fba, nr, agency, key, pref, rid)
+                (node_id(na, la, oa), node_id(nb, lb, ob), fab, fba, nr, agency, key, pref, rid, mid)
             )
         for nm, la, lo, count, agency in r["stops"]:
             raw_stops.append((node_id(nm, la, lo), count, agency, key, pref))
@@ -821,6 +1070,7 @@ def main() -> int:
                 "status": r["status"],
                 "note": r["note"],
                 "n_segments": len(r["routes"]),
+                "n_shaped": r.get("n_shaped", 0),
                 "n_stops": len(r["stops"]),
             }
         )
@@ -854,7 +1104,7 @@ def main() -> int:
     # --- 区間の統合 ---
     seg_key = 8 if args.by_route else None
     merged_seg: dict[tuple, list] = {}
-    for ai, bi, fab, fba, nr, agency, feed, pref, rid in raw_segments:
+    for ai, bi, fab, fba, nr, agency, feed, pref, rid, mid in raw_segments:
         ca, cb = rep_of[ai], rep_of[bi]
         if ca == cb:
             continue  # 統合により同一停留所になった区間は落とす
@@ -867,7 +1117,7 @@ def main() -> int:
             k = (lo, hi, rid if args.by_route else "")
         m = merged_seg.get(k)
         if m is None:
-            m = [0, 0, 0, set(), set(), pref]
+            m = [0, 0, 0, set(), set(), pref, None, 0]
             merged_seg[k] = m
         if fwd:
             m[0] += fab
@@ -878,6 +1128,12 @@ def main() -> int:
         m[2] += nr
         m[3].add(agency)
         m[4].add(feed)
+        # 同じ区間を複数フィードが持つときは、便数の多い方の経路を採る
+        if mid:
+            n = fab + fba
+            if n > m[7]:
+                m[6] = mid if fwd else mid[::-1]
+                m[7] = n
 
     # --- 停留所の統合 ---
     merged_stop: dict[int, list] = {}
@@ -929,9 +1185,9 @@ def main() -> int:
         dx = (ob - oa) * 111320.0 * math.cos(math.radians((la + lb) / 2))
         return dy * dy + dx * dx > max_seg_m * max_seg_m
 
-    n_routes = n_stops = n_dropped = 0
+    n_routes = n_stops = n_dropped = n_shaped_out = 0
     with routes_path.open("w", encoding="utf-8") as fr:
-        for (ca, cb, rid), (fab, fba, nr, agencies, feeds, pref) in merged_seg.items():
+        for (ca, cb, rid), (fab, fba, nr, agencies, feeds, pref, mid, _n) in merged_seg.items():
             la, oa = ccoord[ca]
             lb, ob = ccoord[cb]
             if too_long(la, oa, lb, ob):
@@ -950,18 +1206,17 @@ def main() -> int:
             }
             if args.by_route:
                 props["route_id"] = rid
+            coords = [[round(oa, 6), round(la, 6)]]
+            if mid:
+                n_shaped_out += 1
+                coords.extend([round(x, 6), round(y, 6)] for x, y in mid)
+            coords.append([round(ob, 6), round(lb, 6)])
             fr.write(
                 json.dumps(
                     {
                         "type": "Feature",
                         "tippecanoe": {"minzoom": route_minzoom(fab + fba)},
-                        "geometry": {
-                            "type": "LineString",
-                            "coordinates": [
-                                [round(oa, 6), round(la, 6)],
-                                [round(ob, 6), round(lb, 6)],
-                            ],
-                        },
+                        "geometry": {"type": "LineString", "coordinates": coords},
                         "properties": props,
                     },
                     ensure_ascii=False,
@@ -1007,6 +1262,8 @@ def main() -> int:
                     **{k: (str(v) if isinstance(v, datetime.date) else v) for k, v in opts.items()},
                     "merge_operators": not args.no_merge_operators,
                     "unify_threshold_m": args.unify_threshold,
+                    "use_shapes": not args.no_shapes,
+                    "shape_tolerance_m": args.shape_tolerance,
                     "merge_threshold_m": args.merge_threshold,
                     "max_segment_km": args.max_segment_km,
                     "dup_overlap": args.dup_overlap,
@@ -1016,6 +1273,7 @@ def main() -> int:
                     "feeds": len(tasks),
                     "segments": n_routes,
                     "segments_dropped_long": n_dropped,
+                    "segments_with_shape": n_shaped_out,
                     "stops": n_stops,
                     "status": dict(status_count),
                 },
@@ -1032,6 +1290,8 @@ def main() -> int:
         f"区間: {n_routes:,} 地物  → {routes_path}"
         + (f"  ({n_dropped:,} 件を長すぎる区間として除外)" if n_dropped else "")
     )
+    if n_routes:
+        print(f"  うち shapes.txt の経路を持つ区間: {n_shaped_out:,} ({n_shaped_out/n_routes*100:.0f}%)")
     print(f"停留所: {n_stops:,} 地物  → {stops_path}")
     print(f"状態: {dict(status_count)}")
     print(f"レポート: {out / 'aggregate_report.json'}")

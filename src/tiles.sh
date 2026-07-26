@@ -7,6 +7,10 @@
 # ここで --drop-densest-as-needed を付けないのは、密度だけで間引かれると
 # 全国ズームの絵が「たまたま残った区間」になってしまうため。
 # 地物数は区間8.6万・停留所7.4万で、間引きなしでもタイル上限に収まる。
+#
+# 線の簡略化は tippecanoe に任せる（最大ズームでは元の形のまま）。区間が
+# shapes.txt 由来の折れ線になり頂点が 17万→40万 に増えたので、低ズームで
+# 頂点を落とさないとタイルが膨らむ。
 
 set -euo pipefail
 
@@ -29,7 +33,6 @@ tippecanoe \
   --minimum-zoom=4 \
   --named-layer="routes:$ROUTES" \
   --named-layer="stops:$STOPS" \
-  --no-line-simplification \
   --preserve-input-order \
   --attribution='<a href="https://gtfs-data.jp/">GTFSデータリポジトリ</a> | <a href="https://ckan.odpt.org/">公共交通オープンデータセンター</a>' \
   --name="全国バス運行頻度図" \

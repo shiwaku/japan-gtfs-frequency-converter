@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-26T19:41:28+09:00",
+ "generated_at": "2026-07-26T21:00:25+09:00",
  "today": "2026-07-26",
  "options": {
   "today": "2026-07-26",
@@ -8,11 +8,14 @@
   "end_time": "",
   "unify_stops": true,
   "unify_threshold": 200.0,
+  "use_shapes": true,
+  "shape_tolerance": 5.0,
   "delimiter": "",
   "directional": false,
   "by_route": false,
   "merge_operators": true,
   "unify_threshold_m": 200.0,
+  "shape_tolerance_m": 5.0,
   "merge_threshold_m": 50.0,
   "max_segment_km": 30.0,
   "dup_overlap": 0.8
@@ -25,6 +28,7 @@
   "feeds": 648,
   "segments": 85553,
   "segments_dropped_long": 71,
+  "segments_with_shape": 40098,
   "stops": 73999,
   "status": {
    "ok": 565,
@@ -45,6 +49,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 3360,
+   "n_shaped": 0,
    "n_stops": 3038
   },
   {
@@ -58,6 +63,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 2121,
+   "n_shaped": 0,
    "n_stops": 1926
   },
   {
@@ -71,6 +77,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 2086,
+   "n_shaped": 1483,
    "n_stops": 1688
   },
   {
@@ -84,6 +91,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 1770,
+   "n_shaped": 0,
    "n_stops": 1460
   },
   {
@@ -97,6 +105,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 1622,
+   "n_shaped": 1275,
    "n_stops": 1268
   },
   {
@@ -110,6 +119,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 1312,
+   "n_shaped": 0,
    "n_stops": 1088
   },
   {
@@ -123,6 +133,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 1218,
+   "n_shaped": 1184,
    "n_stops": 1103
   },
   {
@@ -136,6 +147,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 1177,
+   "n_shaped": 962,
    "n_stops": 1027
   },
   {
@@ -149,6 +161,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 1094,
+   "n_shaped": 0,
    "n_stops": 936
   },
   {
@@ -162,6 +175,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 1070,
+   "n_shaped": 0,
    "n_stops": 928
   },
   {
@@ -175,6 +189,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 968,
+   "n_shaped": 716,
    "n_stops": 726
   },
   {
@@ -188,6 +203,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 942,
+   "n_shaped": 0,
    "n_stops": 854
   },
   {
@@ -201,6 +217,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 934,
+   "n_shaped": 0,
    "n_stops": 789
   },
   {
@@ -214,6 +231,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 923,
+   "n_shaped": 794,
    "n_stops": 818
   },
   {
@@ -227,6 +245,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 866,
+   "n_shaped": 517,
    "n_stops": 775
   },
   {
@@ -240,6 +259,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 800,
+   "n_shaped": 645,
    "n_stops": 729
   },
   {
@@ -253,6 +273,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 786,
+   "n_shaped": 0,
    "n_stops": 692
   },
   {
@@ -266,6 +287,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 674,
+   "n_shaped": 650,
    "n_stops": 604
   },
   {
@@ -279,6 +301,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 662,
+   "n_shaped": 460,
    "n_stops": 587
   },
   {
@@ -292,6 +315,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 643,
+   "n_shaped": 0,
    "n_stops": 521
   },
   {
@@ -305,6 +329,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 620,
+   "n_shaped": 0,
    "n_stops": 600
   },
   {
@@ -318,6 +343,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 615,
+   "n_shaped": 528,
    "n_stops": 564
   },
   {
@@ -331,6 +357,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 606,
+   "n_shaped": 0,
    "n_stops": 539
   },
   {
@@ -344,6 +371,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 569,
+   "n_shaped": 546,
    "n_stops": 500
   },
   {
@@ -357,6 +385,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 569,
+   "n_shaped": 431,
    "n_stops": 519
   },
   {
@@ -370,6 +399,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 566,
+   "n_shaped": 552,
    "n_stops": 539
   },
   {
@@ -383,6 +413,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 552,
+   "n_shaped": 0,
    "n_stops": 476
   },
   {
@@ -396,6 +427,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 544,
+   "n_shaped": 443,
    "n_stops": 488
   },
   {
@@ -409,6 +441,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 530,
+   "n_shaped": 1,
    "n_stops": 460
   },
   {
@@ -422,6 +455,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 521,
+   "n_shaped": 442,
    "n_stops": 474
   },
   {
@@ -435,6 +469,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 511,
+   "n_shaped": 425,
    "n_stops": 492
   },
   {
@@ -448,6 +483,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 497,
+   "n_shaped": 488,
    "n_stops": 408
   },
   {
@@ -461,6 +497,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 491,
+   "n_shaped": 0,
    "n_stops": 448
   },
   {
@@ -474,6 +511,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 473,
+   "n_shaped": 0,
    "n_stops": 391
   },
   {
@@ -487,6 +525,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 473,
+   "n_shaped": 374,
    "n_stops": 432
   },
   {
@@ -500,6 +539,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 450,
+   "n_shaped": 404,
    "n_stops": 413
   },
   {
@@ -513,6 +553,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 439,
+   "n_shaped": 0,
    "n_stops": 370
   },
   {
@@ -526,6 +567,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 428,
+   "n_shaped": 0,
    "n_stops": 400
   },
   {
@@ -539,6 +581,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 425,
+   "n_shaped": 0,
    "n_stops": 383
   },
   {
@@ -552,6 +595,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 422,
+   "n_shaped": 0,
    "n_stops": 365
   },
   {
@@ -565,6 +609,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 403,
+   "n_shaped": 282,
    "n_stops": 324
   },
   {
@@ -578,6 +623,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 395,
+   "n_shaped": 0,
    "n_stops": 317
   },
   {
@@ -591,6 +637,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 383,
+   "n_shaped": 335,
    "n_stops": 334
   },
   {
@@ -604,6 +651,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 376,
+   "n_shaped": 325,
    "n_stops": 358
   },
   {
@@ -617,6 +665,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 372,
+   "n_shaped": 335,
    "n_stops": 345
   },
   {
@@ -630,6 +679,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 365,
+   "n_shaped": 0,
    "n_stops": 314
   },
   {
@@ -643,6 +693,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 356,
+   "n_shaped": 0,
    "n_stops": 323
   },
   {
@@ -656,6 +707,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 355,
+   "n_shaped": 256,
    "n_stops": 312
   },
   {
@@ -669,6 +721,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 350,
+   "n_shaped": 250,
    "n_stops": 290
   },
   {
@@ -682,6 +735,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 349,
+   "n_shaped": 219,
    "n_stops": 305
   },
   {
@@ -695,6 +749,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 346,
+   "n_shaped": 0,
    "n_stops": 298
   },
   {
@@ -708,6 +763,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 346,
+   "n_shaped": 346,
    "n_stops": 310
   },
   {
@@ -721,6 +777,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 342,
+   "n_shaped": 258,
    "n_stops": 323
   },
   {
@@ -734,6 +791,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 341,
+   "n_shaped": 332,
    "n_stops": 309
   },
   {
@@ -747,6 +805,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 340,
+   "n_shaped": 330,
    "n_stops": 304
   },
   {
@@ -760,6 +819,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 333,
+   "n_shaped": 253,
    "n_stops": 310
   },
   {
@@ -773,6 +833,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 330,
+   "n_shaped": 0,
    "n_stops": 295
   },
   {
@@ -786,6 +847,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 327,
+   "n_shaped": 305,
    "n_stops": 313
   },
   {
@@ -799,6 +861,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 327,
+   "n_shaped": 0,
    "n_stops": 307
   },
   {
@@ -812,6 +875,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 324,
+   "n_shaped": 278,
    "n_stops": 301
   },
   {
@@ -825,6 +889,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 322,
+   "n_shaped": 255,
    "n_stops": 221
   },
   {
@@ -838,6 +903,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 321,
+   "n_shaped": 0,
    "n_stops": 281
   },
   {
@@ -851,6 +917,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 309,
+   "n_shaped": 306,
    "n_stops": 304
   },
   {
@@ -864,6 +931,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 308,
+   "n_shaped": 0,
    "n_stops": 277
   },
   {
@@ -877,6 +945,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 305,
+   "n_shaped": 0,
    "n_stops": 255
   },
   {
@@ -890,6 +959,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 298,
+   "n_shaped": 215,
    "n_stops": 263
   },
   {
@@ -903,6 +973,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 293,
+   "n_shaped": 0,
    "n_stops": 259
   },
   {
@@ -916,6 +987,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 293,
+   "n_shaped": 194,
    "n_stops": 277
   },
   {
@@ -929,6 +1001,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 292,
+   "n_shaped": 277,
    "n_stops": 284
   },
   {
@@ -942,6 +1015,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 289,
+   "n_shaped": 0,
    "n_stops": 259
   },
   {
@@ -955,6 +1029,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 287,
+   "n_shaped": 243,
    "n_stops": 238
   },
   {
@@ -968,6 +1043,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 287,
+   "n_shaped": 247,
    "n_stops": 258
   },
   {
@@ -981,6 +1057,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 286,
+   "n_shaped": 0,
    "n_stops": 251
   },
   {
@@ -994,6 +1071,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 286,
+   "n_shaped": 228,
    "n_stops": 267
   },
   {
@@ -1007,6 +1085,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 280,
+   "n_shaped": 0,
    "n_stops": 229
   },
   {
@@ -1020,6 +1099,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 279,
+   "n_shaped": 251,
    "n_stops": 250
   },
   {
@@ -1033,6 +1113,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 275,
+   "n_shaped": 202,
    "n_stops": 239
   },
   {
@@ -1046,6 +1127,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 274,
+   "n_shaped": 255,
    "n_stops": 246
   },
   {
@@ -1059,6 +1141,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 272,
+   "n_shaped": 239,
    "n_stops": 207
   },
   {
@@ -1072,6 +1155,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 267,
+   "n_shaped": 0,
    "n_stops": 249
   },
   {
@@ -1085,6 +1169,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 261,
+   "n_shaped": 253,
    "n_stops": 256
   },
   {
@@ -1098,6 +1183,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 259,
+   "n_shaped": 211,
    "n_stops": 241
   },
   {
@@ -1111,6 +1197,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 258,
+   "n_shaped": 0,
    "n_stops": 217
   },
   {
@@ -1124,6 +1211,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 256,
+   "n_shaped": 202,
    "n_stops": 225
   },
   {
@@ -1137,6 +1225,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 255,
+   "n_shaped": 250,
    "n_stops": 249
   },
   {
@@ -1150,6 +1239,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 253,
+   "n_shaped": 213,
    "n_stops": 244
   },
   {
@@ -1163,6 +1253,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 251,
+   "n_shaped": 215,
    "n_stops": 233
   },
   {
@@ -1176,6 +1267,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 246,
+   "n_shaped": 224,
    "n_stops": 227
   },
   {
@@ -1189,6 +1281,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 245,
+   "n_shaped": 224,
    "n_stops": 224
   },
   {
@@ -1202,6 +1295,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 243,
+   "n_shaped": 212,
    "n_stops": 226
   },
   {
@@ -1215,6 +1309,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 241,
+   "n_shaped": 0,
    "n_stops": 211
   },
   {
@@ -1228,6 +1323,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 241,
+   "n_shaped": 187,
    "n_stops": 157
   },
   {
@@ -1241,6 +1337,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 235,
+   "n_shaped": 188,
    "n_stops": 226
   },
   {
@@ -1254,6 +1351,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 235,
+   "n_shaped": 0,
    "n_stops": 219
   },
   {
@@ -1267,6 +1365,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 233,
+   "n_shaped": 172,
    "n_stops": 193
   },
   {
@@ -1280,6 +1379,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 232,
+   "n_shaped": 100,
    "n_stops": 200
   },
   {
@@ -1293,6 +1393,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 227,
+   "n_shaped": 0,
    "n_stops": 218
   },
   {
@@ -1306,6 +1407,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 226,
+   "n_shaped": 187,
    "n_stops": 202
   },
   {
@@ -1319,6 +1421,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 226,
+   "n_shaped": 213,
    "n_stops": 213
   },
   {
@@ -1332,6 +1435,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 224,
+   "n_shaped": 222,
    "n_stops": 221
   },
   {
@@ -1345,6 +1449,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 223,
+   "n_shaped": 217,
    "n_stops": 209
   },
   {
@@ -1358,6 +1463,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 221,
+   "n_shaped": 197,
    "n_stops": 178
   },
   {
@@ -1371,6 +1477,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 221,
+   "n_shaped": 198,
    "n_stops": 180
   },
   {
@@ -1384,6 +1491,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 220,
+   "n_shaped": 129,
    "n_stops": 190
   },
   {
@@ -1397,6 +1505,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 220,
+   "n_shaped": 0,
    "n_stops": 192
   },
   {
@@ -1410,6 +1519,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 220,
+   "n_shaped": 205,
    "n_stops": 197
   },
   {
@@ -1423,6 +1533,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 219,
+   "n_shaped": 0,
    "n_stops": 201
   },
   {
@@ -1436,6 +1547,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 219,
+   "n_shaped": 0,
    "n_stops": 197
   },
   {
@@ -1449,6 +1561,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 211,
+   "n_shaped": 0,
    "n_stops": 156
   },
   {
@@ -1462,6 +1575,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 210,
+   "n_shaped": 202,
    "n_stops": 182
   },
   {
@@ -1475,6 +1589,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 210,
+   "n_shaped": 166,
    "n_stops": 200
   },
   {
@@ -1488,6 +1603,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 208,
+   "n_shaped": 178,
    "n_stops": 194
   },
   {
@@ -1501,6 +1617,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 206,
+   "n_shaped": 191,
    "n_stops": 195
   },
   {
@@ -1514,6 +1631,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 205,
+   "n_shaped": 0,
    "n_stops": 201
   },
   {
@@ -1527,6 +1645,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 200,
+   "n_shaped": 187,
    "n_stops": 194
   },
   {
@@ -1540,6 +1659,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 197,
+   "n_shaped": 130,
    "n_stops": 170
   },
   {
@@ -1553,6 +1673,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 196,
+   "n_shaped": 148,
    "n_stops": 181
   },
   {
@@ -1566,6 +1687,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 192,
+   "n_shaped": 186,
    "n_stops": 174
   },
   {
@@ -1579,6 +1701,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 190,
+   "n_shaped": 183,
    "n_stops": 183
   },
   {
@@ -1592,6 +1715,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 189,
+   "n_shaped": 0,
    "n_stops": 164
   },
   {
@@ -1605,6 +1729,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 187,
+   "n_shaped": 0,
    "n_stops": 169
   },
   {
@@ -1618,6 +1743,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 185,
+   "n_shaped": 167,
    "n_stops": 167
   },
   {
@@ -1631,6 +1757,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 184,
+   "n_shaped": 161,
    "n_stops": 184
   },
   {
@@ -1644,6 +1771,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 184,
+   "n_shaped": 138,
    "n_stops": 137
   },
   {
@@ -1657,6 +1785,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 183,
+   "n_shaped": 183,
    "n_stops": 176
   },
   {
@@ -1670,6 +1799,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 183,
+   "n_shaped": 165,
    "n_stops": 166
   },
   {
@@ -1683,6 +1813,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 183,
+   "n_shaped": 0,
    "n_stops": 163
   },
   {
@@ -1696,6 +1827,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 181,
+   "n_shaped": 161,
    "n_stops": 168
   },
   {
@@ -1709,6 +1841,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 178,
+   "n_shaped": 169,
    "n_stops": 170
   },
   {
@@ -1722,6 +1855,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 178,
+   "n_shaped": 0,
    "n_stops": 159
   },
   {
@@ -1735,6 +1869,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 178,
+   "n_shaped": 104,
    "n_stops": 163
   },
   {
@@ -1748,6 +1883,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 177,
+   "n_shaped": 0,
    "n_stops": 172
   },
   {
@@ -1761,6 +1897,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 175,
+   "n_shaped": 0,
    "n_stops": 144
   },
   {
@@ -1774,6 +1911,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 174,
+   "n_shaped": 157,
    "n_stops": 156
   },
   {
@@ -1787,6 +1925,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 174,
+   "n_shaped": 125,
    "n_stops": 150
   },
   {
@@ -1800,6 +1939,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 172,
+   "n_shaped": 168,
    "n_stops": 160
   },
   {
@@ -1813,6 +1953,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 170,
+   "n_shaped": 52,
    "n_stops": 156
   },
   {
@@ -1826,6 +1967,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 170,
+   "n_shaped": 145,
    "n_stops": 167
   },
   {
@@ -1839,6 +1981,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 170,
+   "n_shaped": 0,
    "n_stops": 135
   },
   {
@@ -1852,6 +1995,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 169,
+   "n_shaped": 0,
    "n_stops": 168
   },
   {
@@ -1865,6 +2009,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 169,
+   "n_shaped": 148,
    "n_stops": 134
   },
   {
@@ -1878,6 +2023,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 168,
+   "n_shaped": 163,
    "n_stops": 165
   },
   {
@@ -1891,6 +2037,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 168,
+   "n_shaped": 142,
    "n_stops": 125
   },
   {
@@ -1904,6 +2051,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 167,
+   "n_shaped": 33,
    "n_stops": 140
   },
   {
@@ -1917,6 +2065,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 167,
+   "n_shaped": 0,
    "n_stops": 147
   },
   {
@@ -1930,6 +2079,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 165,
+   "n_shaped": 0,
    "n_stops": 151
   },
   {
@@ -1943,6 +2093,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 164,
+   "n_shaped": 0,
    "n_stops": 143
   },
   {
@@ -1956,6 +2107,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 164,
+   "n_shaped": 92,
    "n_stops": 127
   },
   {
@@ -1969,6 +2121,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 163,
+   "n_shaped": 0,
    "n_stops": 152
   },
   {
@@ -1982,6 +2135,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 163,
+   "n_shaped": 0,
    "n_stops": 148
   },
   {
@@ -1995,6 +2149,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 162,
+   "n_shaped": 138,
    "n_stops": 137
   },
   {
@@ -2008,6 +2163,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 161,
+   "n_shaped": 0,
    "n_stops": 139
   },
   {
@@ -2021,6 +2177,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 160,
+   "n_shaped": 0,
    "n_stops": 141
   },
   {
@@ -2034,6 +2191,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 159,
+   "n_shaped": 78,
    "n_stops": 140
   },
   {
@@ -2047,6 +2205,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 158,
+   "n_shaped": 153,
    "n_stops": 153
   },
   {
@@ -2060,6 +2219,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 158,
+   "n_shaped": 136,
    "n_stops": 128
   },
   {
@@ -2073,6 +2233,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 155,
+   "n_shaped": 131,
    "n_stops": 150
   },
   {
@@ -2086,6 +2247,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 155,
+   "n_shaped": 0,
    "n_stops": 117
   },
   {
@@ -2099,6 +2261,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 152,
+   "n_shaped": 0,
    "n_stops": 125
   },
   {
@@ -2112,6 +2275,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 151,
+   "n_shaped": 115,
    "n_stops": 135
   },
   {
@@ -2125,6 +2289,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 151,
+   "n_shaped": 0,
    "n_stops": 118
   },
   {
@@ -2138,6 +2303,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 149,
+   "n_shaped": 0,
    "n_stops": 128
   },
   {
@@ -2151,6 +2317,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 149,
+   "n_shaped": 138,
    "n_stops": 134
   },
   {
@@ -2164,6 +2331,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 149,
+   "n_shaped": 0,
    "n_stops": 148
   },
   {
@@ -2177,6 +2345,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 146,
+   "n_shaped": 78,
    "n_stops": 103
   },
   {
@@ -2190,6 +2359,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 145,
+   "n_shaped": 0,
    "n_stops": 136
   },
   {
@@ -2203,6 +2373,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 143,
+   "n_shaped": 128,
    "n_stops": 125
   },
   {
@@ -2216,6 +2387,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 142,
+   "n_shaped": 0,
    "n_stops": 113
   },
   {
@@ -2229,6 +2401,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 141,
+   "n_shaped": 0,
    "n_stops": 128
   },
   {
@@ -2242,6 +2415,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 141,
+   "n_shaped": 127,
    "n_stops": 134
   },
   {
@@ -2255,6 +2429,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 138,
+   "n_shaped": 0,
    "n_stops": 122
   },
   {
@@ -2268,6 +2443,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 137,
+   "n_shaped": 95,
    "n_stops": 100
   },
   {
@@ -2281,6 +2457,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 137,
+   "n_shaped": 0,
    "n_stops": 127
   },
   {
@@ -2294,6 +2471,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 136,
+   "n_shaped": 126,
    "n_stops": 126
   },
   {
@@ -2307,6 +2485,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 134,
+   "n_shaped": 102,
    "n_stops": 120
   },
   {
@@ -2320,6 +2499,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 133,
+   "n_shaped": 0,
    "n_stops": 121
   },
   {
@@ -2333,6 +2513,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 133,
+   "n_shaped": 116,
    "n_stops": 102
   },
   {
@@ -2346,6 +2527,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 133,
+   "n_shaped": 41,
    "n_stops": 119
   },
   {
@@ -2359,6 +2541,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 133,
+   "n_shaped": 30,
    "n_stops": 101
   },
   {
@@ -2372,6 +2555,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 133,
+   "n_shaped": 117,
    "n_stops": 111
   },
   {
@@ -2385,6 +2569,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 129,
+   "n_shaped": 0,
    "n_stops": 111
   },
   {
@@ -2398,6 +2583,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 129,
+   "n_shaped": 0,
    "n_stops": 105
   },
   {
@@ -2411,6 +2597,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 129,
+   "n_shaped": 124,
    "n_stops": 102
   },
   {
@@ -2424,6 +2611,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 129,
+   "n_shaped": 93,
    "n_stops": 128
   },
   {
@@ -2437,6 +2625,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 129,
+   "n_shaped": 0,
    "n_stops": 125
   },
   {
@@ -2450,6 +2639,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 127,
+   "n_shaped": 0,
    "n_stops": 80
   },
   {
@@ -2463,6 +2653,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 126,
+   "n_shaped": 0,
    "n_stops": 115
   },
   {
@@ -2476,6 +2667,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 126,
+   "n_shaped": 83,
    "n_stops": 104
   },
   {
@@ -2489,6 +2681,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 126,
+   "n_shaped": 91,
    "n_stops": 116
   },
   {
@@ -2502,6 +2695,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 126,
+   "n_shaped": 114,
    "n_stops": 116
   },
   {
@@ -2515,6 +2709,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 125,
+   "n_shaped": 0,
    "n_stops": 117
   },
   {
@@ -2528,6 +2723,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 125,
+   "n_shaped": 122,
    "n_stops": 115
   },
   {
@@ -2541,6 +2737,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 125,
+   "n_shaped": 0,
    "n_stops": 115
   },
   {
@@ -2554,6 +2751,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 123,
+   "n_shaped": 0,
    "n_stops": 112
   },
   {
@@ -2567,6 +2765,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 123,
+   "n_shaped": 0,
    "n_stops": 113
   },
   {
@@ -2580,6 +2779,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 123,
+   "n_shaped": 0,
    "n_stops": 116
   },
   {
@@ -2593,6 +2793,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 122,
+   "n_shaped": 120,
    "n_stops": 115
   },
   {
@@ -2606,6 +2807,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 121,
+   "n_shaped": 0,
    "n_stops": 95
   },
   {
@@ -2619,6 +2821,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 120,
+   "n_shaped": 0,
    "n_stops": 96
   },
   {
@@ -2632,6 +2835,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 118,
+   "n_shaped": 0,
    "n_stops": 122
   },
   {
@@ -2645,6 +2849,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 118,
+   "n_shaped": 0,
    "n_stops": 96
   },
   {
@@ -2658,6 +2863,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 117,
+   "n_shaped": 113,
    "n_stops": 115
   },
   {
@@ -2671,6 +2877,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 115,
+   "n_shaped": 0,
    "n_stops": 98
   },
   {
@@ -2684,6 +2891,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 115,
+   "n_shaped": 86,
    "n_stops": 77
   },
   {
@@ -2697,6 +2905,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 114,
+   "n_shaped": 101,
    "n_stops": 106
   },
   {
@@ -2710,6 +2919,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 114,
+   "n_shaped": 69,
    "n_stops": 105
   },
   {
@@ -2723,6 +2933,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 114,
+   "n_shaped": 0,
    "n_stops": 97
   },
   {
@@ -2736,6 +2947,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 113,
+   "n_shaped": 101,
    "n_stops": 100
   },
   {
@@ -2749,6 +2961,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 113,
+   "n_shaped": 95,
    "n_stops": 108
   },
   {
@@ -2762,6 +2975,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 112,
+   "n_shaped": 76,
    "n_stops": 74
   },
   {
@@ -2775,6 +2989,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 112,
+   "n_shaped": 108,
    "n_stops": 95
   },
   {
@@ -2788,6 +3003,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 112,
+   "n_shaped": 95,
    "n_stops": 106
   },
   {
@@ -2801,6 +3017,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 112,
+   "n_shaped": 78,
    "n_stops": 88
   },
   {
@@ -2814,6 +3031,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 112,
+   "n_shaped": 100,
    "n_stops": 91
   },
   {
@@ -2827,6 +3045,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 112,
+   "n_shaped": 107,
    "n_stops": 109
   },
   {
@@ -2840,6 +3059,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 111,
+   "n_shaped": 60,
    "n_stops": 106
   },
   {
@@ -2853,6 +3073,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 111,
+   "n_shaped": 95,
    "n_stops": 104
   },
   {
@@ -2866,6 +3087,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 110,
+   "n_shaped": 48,
    "n_stops": 99
   },
   {
@@ -2879,6 +3101,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 110,
+   "n_shaped": 96,
    "n_stops": 71
   },
   {
@@ -2892,6 +3115,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 110,
+   "n_shaped": 0,
    "n_stops": 90
   },
   {
@@ -2905,6 +3129,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 110,
+   "n_shaped": 0,
    "n_stops": 93
   },
   {
@@ -2918,6 +3143,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 109,
+   "n_shaped": 90,
    "n_stops": 91
   },
   {
@@ -2931,6 +3157,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 108,
+   "n_shaped": 0,
    "n_stops": 95
   },
   {
@@ -2944,6 +3171,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 107,
+   "n_shaped": 0,
    "n_stops": 94
   },
   {
@@ -2957,6 +3185,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 107,
+   "n_shaped": 99,
    "n_stops": 96
   },
   {
@@ -2970,6 +3199,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 107,
+   "n_shaped": 96,
    "n_stops": 78
   },
   {
@@ -2983,6 +3213,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 107,
+   "n_shaped": 99,
    "n_stops": 107
   },
   {
@@ -2996,6 +3227,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 107,
+   "n_shaped": 0,
    "n_stops": 80
   },
   {
@@ -3009,6 +3241,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 106,
+   "n_shaped": 79,
    "n_stops": 86
   },
   {
@@ -3022,6 +3255,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 106,
+   "n_shaped": 100,
    "n_stops": 81
   },
   {
@@ -3035,6 +3269,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 104,
+   "n_shaped": 0,
    "n_stops": 77
   },
   {
@@ -3048,6 +3283,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 104,
+   "n_shaped": 0,
    "n_stops": 96
   },
   {
@@ -3061,6 +3297,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 103,
+   "n_shaped": 0,
    "n_stops": 94
   },
   {
@@ -3074,6 +3311,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 102,
+   "n_shaped": 66,
    "n_stops": 77
   },
   {
@@ -3087,6 +3325,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 101,
+   "n_shaped": 88,
    "n_stops": 87
   },
   {
@@ -3100,6 +3339,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 101,
+   "n_shaped": 39,
    "n_stops": 95
   },
   {
@@ -3113,6 +3353,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 101,
+   "n_shaped": 0,
    "n_stops": 84
   },
   {
@@ -3126,6 +3367,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 100,
+   "n_shaped": 55,
    "n_stops": 91
   },
   {
@@ -3139,6 +3381,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 100,
+   "n_shaped": 98,
    "n_stops": 97
   },
   {
@@ -3152,6 +3395,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 100,
+   "n_shaped": 0,
    "n_stops": 94
   },
   {
@@ -3165,6 +3409,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 100,
+   "n_shaped": 0,
    "n_stops": 93
   },
   {
@@ -3178,6 +3423,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 100,
+   "n_shaped": 0,
    "n_stops": 87
   },
   {
@@ -3191,6 +3437,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 100,
+   "n_shaped": 0,
    "n_stops": 81
   },
   {
@@ -3204,6 +3451,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 98,
+   "n_shaped": 90,
    "n_stops": 90
   },
   {
@@ -3217,6 +3465,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 97,
+   "n_shaped": 54,
    "n_stops": 89
   },
   {
@@ -3230,6 +3479,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 97,
+   "n_shaped": 90,
    "n_stops": 86
   },
   {
@@ -3243,6 +3493,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 97,
+   "n_shaped": 0,
    "n_stops": 81
   },
   {
@@ -3256,6 +3507,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 97,
+   "n_shaped": 47,
    "n_stops": 74
   },
   {
@@ -3269,6 +3521,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 96,
+   "n_shaped": 5,
    "n_stops": 80
   },
   {
@@ -3282,6 +3535,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 96,
+   "n_shaped": 92,
    "n_stops": 86
   },
   {
@@ -3295,6 +3549,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 96,
+   "n_shaped": 0,
    "n_stops": 94
   },
   {
@@ -3308,6 +3563,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 95,
+   "n_shaped": 92,
    "n_stops": 87
   },
   {
@@ -3321,6 +3577,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 95,
+   "n_shaped": 87,
    "n_stops": 89
   },
   {
@@ -3334,6 +3591,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 94,
+   "n_shaped": 0,
    "n_stops": 78
   },
   {
@@ -3347,6 +3605,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 94,
+   "n_shaped": 0,
    "n_stops": 87
   },
   {
@@ -3360,6 +3619,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 94,
+   "n_shaped": 64,
    "n_stops": 81
   },
   {
@@ -3373,6 +3633,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 94,
+   "n_shaped": 0,
    "n_stops": 91
   },
   {
@@ -3386,6 +3647,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 93,
+   "n_shaped": 0,
    "n_stops": 89
   },
   {
@@ -3399,6 +3661,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 93,
+   "n_shaped": 73,
    "n_stops": 86
   },
   {
@@ -3412,6 +3675,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 93,
+   "n_shaped": 84,
    "n_stops": 76
   },
   {
@@ -3425,6 +3689,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 93,
+   "n_shaped": 0,
    "n_stops": 76
   },
   {
@@ -3438,6 +3703,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 92,
+   "n_shaped": 61,
    "n_stops": 89
   },
   {
@@ -3451,6 +3717,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 92,
+   "n_shaped": 88,
    "n_stops": 77
   },
   {
@@ -3464,6 +3731,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 92,
+   "n_shaped": 53,
    "n_stops": 89
   },
   {
@@ -3477,6 +3745,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 91,
+   "n_shaped": 0,
    "n_stops": 85
   },
   {
@@ -3490,6 +3759,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 91,
+   "n_shaped": 52,
    "n_stops": 82
   },
   {
@@ -3503,6 +3773,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 91,
+   "n_shaped": 0,
    "n_stops": 77
   },
   {
@@ -3516,6 +3787,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 91,
+   "n_shaped": 0,
    "n_stops": 65
   },
   {
@@ -3529,6 +3801,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 90,
+   "n_shaped": 0,
    "n_stops": 86
   },
   {
@@ -3542,6 +3815,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 88,
+   "n_shaped": 0,
    "n_stops": 86
   },
   {
@@ -3555,6 +3829,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 87,
+   "n_shaped": 0,
    "n_stops": 84
   },
   {
@@ -3568,6 +3843,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 87,
+   "n_shaped": 87,
    "n_stops": 86
   },
   {
@@ -3581,6 +3857,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 86,
+   "n_shaped": 53,
    "n_stops": 81
   },
   {
@@ -3594,6 +3871,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 85,
+   "n_shaped": 48,
    "n_stops": 71
   },
   {
@@ -3607,6 +3885,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 84,
+   "n_shaped": 73,
    "n_stops": 62
   },
   {
@@ -3620,6 +3899,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 84,
+   "n_shaped": 0,
    "n_stops": 67
   },
   {
@@ -3633,6 +3913,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 84,
+   "n_shaped": 51,
    "n_stops": 62
   },
   {
@@ -3646,6 +3927,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 83,
+   "n_shaped": 65,
    "n_stops": 69
   },
   {
@@ -3659,6 +3941,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 83,
+   "n_shaped": 0,
    "n_stops": 64
   },
   {
@@ -3672,6 +3955,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 83,
+   "n_shaped": 76,
    "n_stops": 74
   },
   {
@@ -3685,6 +3969,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 83,
+   "n_shaped": 0,
    "n_stops": 76
   },
   {
@@ -3698,6 +3983,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 80,
+   "n_shaped": 74,
    "n_stops": 73
   },
   {
@@ -3711,6 +3997,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 80,
+   "n_shaped": 0,
    "n_stops": 68
   },
   {
@@ -3724,6 +4011,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 80,
+   "n_shaped": 0,
    "n_stops": 67
   },
   {
@@ -3737,6 +4025,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 80,
+   "n_shaped": 77,
    "n_stops": 71
   },
   {
@@ -3750,6 +4039,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 78,
+   "n_shaped": 0,
    "n_stops": 61
   },
   {
@@ -3763,6 +4053,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 77,
+   "n_shaped": 73,
    "n_stops": 70
   },
   {
@@ -3776,6 +4067,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 77,
+   "n_shaped": 76,
    "n_stops": 71
   },
   {
@@ -3789,6 +4081,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 77,
+   "n_shaped": 70,
    "n_stops": 76
   },
   {
@@ -3802,6 +4095,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 77,
+   "n_shaped": 57,
    "n_stops": 73
   },
   {
@@ -3815,6 +4109,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 76,
+   "n_shaped": 75,
    "n_stops": 62
   },
   {
@@ -3828,6 +4123,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 76,
+   "n_shaped": 0,
    "n_stops": 55
   },
   {
@@ -3841,6 +4137,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 75,
+   "n_shaped": 39,
    "n_stops": 63
   },
   {
@@ -3854,6 +4151,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 75,
+   "n_shaped": 71,
    "n_stops": 72
   },
   {
@@ -3867,6 +4165,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 75,
+   "n_shaped": 0,
    "n_stops": 67
   },
   {
@@ -3880,6 +4179,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 74,
+   "n_shaped": 73,
    "n_stops": 65
   },
   {
@@ -3893,6 +4193,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 74,
+   "n_shaped": 0,
    "n_stops": 70
   },
   {
@@ -3906,6 +4207,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 74,
+   "n_shaped": 68,
    "n_stops": 48
   },
   {
@@ -3919,6 +4221,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 74,
+   "n_shaped": 0,
    "n_stops": 62
   },
   {
@@ -3932,6 +4235,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 73,
+   "n_shaped": 0,
    "n_stops": 54
   },
   {
@@ -3945,6 +4249,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 73,
+   "n_shaped": 48,
    "n_stops": 59
   },
   {
@@ -3958,6 +4263,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 73,
+   "n_shaped": 0,
    "n_stops": 64
   },
   {
@@ -3971,6 +4277,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 72,
+   "n_shaped": 42,
    "n_stops": 64
   },
   {
@@ -3984,6 +4291,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 72,
+   "n_shaped": 66,
    "n_stops": 66
   },
   {
@@ -3997,6 +4305,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 71,
+   "n_shaped": 0,
    "n_stops": 66
   },
   {
@@ -4010,6 +4319,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 71,
+   "n_shaped": 68,
    "n_stops": 57
   },
   {
@@ -4023,6 +4333,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 71,
+   "n_shaped": 65,
    "n_stops": 61
   },
   {
@@ -4036,6 +4347,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 70,
+   "n_shaped": 0,
    "n_stops": 67
   },
   {
@@ -4049,6 +4361,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 70,
+   "n_shaped": 1,
    "n_stops": 70
   },
   {
@@ -4062,6 +4375,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 70,
+   "n_shaped": 41,
    "n_stops": 53
   },
   {
@@ -4075,6 +4389,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 70,
+   "n_shaped": 3,
    "n_stops": 64
   },
   {
@@ -4088,6 +4403,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 70,
+   "n_shaped": 66,
    "n_stops": 56
   },
   {
@@ -4101,6 +4417,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 69,
+   "n_shaped": 0,
    "n_stops": 53
   },
   {
@@ -4114,6 +4431,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 68,
+   "n_shaped": 65,
    "n_stops": 63
   },
   {
@@ -4127,6 +4445,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 68,
+   "n_shaped": 0,
    "n_stops": 68
   },
   {
@@ -4140,6 +4459,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 68,
+   "n_shaped": 0,
    "n_stops": 67
   },
   {
@@ -4153,6 +4473,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 68,
+   "n_shaped": 23,
    "n_stops": 61
   },
   {
@@ -4166,6 +4487,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 68,
+   "n_shaped": 67,
    "n_stops": 71
   },
   {
@@ -4179,6 +4501,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 67,
+   "n_shaped": 30,
    "n_stops": 63
   },
   {
@@ -4192,6 +4515,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 66,
+   "n_shaped": 61,
    "n_stops": 57
   },
   {
@@ -4205,6 +4529,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 65,
+   "n_shaped": 60,
    "n_stops": 61
   },
   {
@@ -4218,6 +4543,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 65,
+   "n_shaped": 44,
    "n_stops": 52
   },
   {
@@ -4231,6 +4557,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 65,
+   "n_shaped": 0,
    "n_stops": 58
   },
   {
@@ -4244,6 +4571,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 65,
+   "n_shaped": 0,
    "n_stops": 56
   },
   {
@@ -4257,6 +4585,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 65,
+   "n_shaped": 61,
    "n_stops": 58
   },
   {
@@ -4270,6 +4599,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 64,
+   "n_shaped": 60,
    "n_stops": 61
   },
   {
@@ -4283,6 +4613,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 64,
+   "n_shaped": 57,
    "n_stops": 56
   },
   {
@@ -4296,6 +4627,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 64,
+   "n_shaped": 60,
    "n_stops": 48
   },
   {
@@ -4309,6 +4641,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 64,
+   "n_shaped": 58,
    "n_stops": 64
   },
   {
@@ -4322,6 +4655,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 64,
+   "n_shaped": 61,
    "n_stops": 61
   },
   {
@@ -4335,6 +4669,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 63,
+   "n_shaped": 0,
    "n_stops": 59
   },
   {
@@ -4348,6 +4683,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 63,
+   "n_shaped": 0,
    "n_stops": 59
   },
   {
@@ -4361,6 +4697,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 62,
+   "n_shaped": 0,
    "n_stops": 58
   },
   {
@@ -4374,6 +4711,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 62,
+   "n_shaped": 0,
    "n_stops": 57
   },
   {
@@ -4387,6 +4725,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 62,
+   "n_shaped": 57,
    "n_stops": 55
   },
   {
@@ -4400,6 +4739,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 60,
+   "n_shaped": 35,
    "n_stops": 49
   },
   {
@@ -4413,6 +4753,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 60,
+   "n_shaped": 58,
    "n_stops": 58
   },
   {
@@ -4426,6 +4767,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 60,
+   "n_shaped": 56,
    "n_stops": 55
   },
   {
@@ -4439,6 +4781,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 59,
+   "n_shaped": 56,
    "n_stops": 50
   },
   {
@@ -4452,6 +4795,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 59,
+   "n_shaped": 0,
    "n_stops": 54
   },
   {
@@ -4465,6 +4809,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 59,
+   "n_shaped": 0,
    "n_stops": 52
   },
   {
@@ -4478,6 +4823,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 59,
+   "n_shaped": 23,
    "n_stops": 51
   },
   {
@@ -4491,6 +4837,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 58,
+   "n_shaped": 56,
    "n_stops": 56
   },
   {
@@ -4504,6 +4851,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 58,
+   "n_shaped": 50,
    "n_stops": 61
   },
   {
@@ -4517,6 +4865,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 57,
+   "n_shaped": 57,
    "n_stops": 53
   },
   {
@@ -4530,6 +4879,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 57,
+   "n_shaped": 53,
    "n_stops": 53
   },
   {
@@ -4543,6 +4893,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 57,
+   "n_shaped": 51,
    "n_stops": 54
   },
   {
@@ -4556,6 +4907,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 56,
+   "n_shaped": 44,
    "n_stops": 55
   },
   {
@@ -4569,6 +4921,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 55,
+   "n_shaped": 0,
    "n_stops": 57
   },
   {
@@ -4582,6 +4935,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 55,
+   "n_shaped": 53,
    "n_stops": 55
   },
   {
@@ -4595,6 +4949,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 55,
+   "n_shaped": 54,
    "n_stops": 47
   },
   {
@@ -4608,6 +4963,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 54,
+   "n_shaped": 48,
    "n_stops": 55
   },
   {
@@ -4621,6 +4977,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 54,
+   "n_shaped": 0,
    "n_stops": 46
   },
   {
@@ -4634,6 +4991,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 54,
+   "n_shaped": 40,
    "n_stops": 45
   },
   {
@@ -4647,6 +5005,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 54,
+   "n_shaped": 48,
    "n_stops": 53
   },
   {
@@ -4660,6 +5019,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 53,
+   "n_shaped": 46,
    "n_stops": 54
   },
   {
@@ -4673,6 +5033,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 53,
+   "n_shaped": 45,
    "n_stops": 43
   },
   {
@@ -4686,6 +5047,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 53,
+   "n_shaped": 42,
    "n_stops": 46
   },
   {
@@ -4699,6 +5061,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 52,
+   "n_shaped": 50,
    "n_stops": 49
   },
   {
@@ -4712,6 +5075,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 52,
+   "n_shaped": 0,
    "n_stops": 53
   },
   {
@@ -4725,6 +5089,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 51,
+   "n_shaped": 38,
    "n_stops": 50
   },
   {
@@ -4738,6 +5103,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 51,
+   "n_shaped": 0,
    "n_stops": 41
   },
   {
@@ -4751,6 +5117,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 51,
+   "n_shaped": 35,
    "n_stops": 47
   },
   {
@@ -4764,6 +5131,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 51,
+   "n_shaped": 50,
    "n_stops": 43
   },
   {
@@ -4777,6 +5145,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 51,
+   "n_shaped": 0,
    "n_stops": 47
   },
   {
@@ -4790,6 +5159,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 50,
+   "n_shaped": 0,
    "n_stops": 51
   },
   {
@@ -4803,6 +5173,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 50,
+   "n_shaped": 38,
    "n_stops": 46
   },
   {
@@ -4816,6 +5187,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 50,
+   "n_shaped": 46,
    "n_stops": 47
   },
   {
@@ -4829,6 +5201,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 50,
+   "n_shaped": 0,
    "n_stops": 49
   },
   {
@@ -4842,6 +5215,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 49,
+   "n_shaped": 44,
    "n_stops": 46
   },
   {
@@ -4855,6 +5229,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 49,
+   "n_shaped": 0,
    "n_stops": 45
   },
   {
@@ -4868,6 +5243,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 49,
+   "n_shaped": 49,
    "n_stops": 41
   },
   {
@@ -4881,6 +5257,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 49,
+   "n_shaped": 0,
    "n_stops": 49
   },
   {
@@ -4894,6 +5271,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 49,
+   "n_shaped": 0,
    "n_stops": 50
   },
   {
@@ -4907,6 +5285,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 48,
+   "n_shaped": 0,
    "n_stops": 39
   },
   {
@@ -4920,6 +5299,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 48,
+   "n_shaped": 47,
    "n_stops": 46
   },
   {
@@ -4933,6 +5313,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 48,
+   "n_shaped": 39,
    "n_stops": 42
   },
   {
@@ -4946,6 +5327,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 47,
+   "n_shaped": 43,
    "n_stops": 47
   },
   {
@@ -4959,6 +5341,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 47,
+   "n_shaped": 43,
    "n_stops": 41
   },
   {
@@ -4972,6 +5355,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 47,
+   "n_shaped": 0,
    "n_stops": 46
   },
   {
@@ -4985,6 +5369,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 47,
+   "n_shaped": 34,
    "n_stops": 44
   },
   {
@@ -4998,6 +5383,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 46,
+   "n_shaped": 0,
    "n_stops": 43
   },
   {
@@ -5011,6 +5397,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 45,
+   "n_shaped": 33,
    "n_stops": 38
   },
   {
@@ -5024,6 +5411,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 45,
+   "n_shaped": 42,
    "n_stops": 42
   },
   {
@@ -5037,6 +5425,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 45,
+   "n_shaped": 38,
    "n_stops": 43
   },
   {
@@ -5050,6 +5439,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 44,
+   "n_shaped": 0,
    "n_stops": 44
   },
   {
@@ -5063,6 +5453,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 44,
+   "n_shaped": 0,
    "n_stops": 42
   },
   {
@@ -5076,6 +5467,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 43,
+   "n_shaped": 42,
    "n_stops": 42
   },
   {
@@ -5089,6 +5481,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 43,
+   "n_shaped": 32,
    "n_stops": 40
   },
   {
@@ -5102,6 +5495,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 42,
+   "n_shaped": 1,
    "n_stops": 41
   },
   {
@@ -5115,6 +5509,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 42,
+   "n_shaped": 42,
    "n_stops": 39
   },
   {
@@ -5128,6 +5523,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 42,
+   "n_shaped": 42,
    "n_stops": 43
   },
   {
@@ -5141,6 +5537,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 42,
+   "n_shaped": 0,
    "n_stops": 42
   },
   {
@@ -5154,6 +5551,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 42,
+   "n_shaped": 0,
    "n_stops": 36
   },
   {
@@ -5167,6 +5565,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 42,
+   "n_shaped": 24,
    "n_stops": 32
   },
   {
@@ -5180,6 +5579,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 42,
+   "n_shaped": 40,
    "n_stops": 41
   },
   {
@@ -5193,6 +5593,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 41,
+   "n_shaped": 27,
    "n_stops": 39
   },
   {
@@ -5206,6 +5607,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 41,
+   "n_shaped": 0,
    "n_stops": 31
   },
   {
@@ -5219,6 +5621,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 41,
+   "n_shaped": 0,
    "n_stops": 29
   },
   {
@@ -5232,6 +5635,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 41,
+   "n_shaped": 0,
    "n_stops": 38
   },
   {
@@ -5245,6 +5649,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 40,
+   "n_shaped": 0,
    "n_stops": 41
   },
   {
@@ -5258,6 +5663,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 40,
+   "n_shaped": 38,
    "n_stops": 40
   },
   {
@@ -5271,6 +5677,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 40,
+   "n_shaped": 0,
    "n_stops": 34
   },
   {
@@ -5284,6 +5691,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 39,
+   "n_shaped": 0,
    "n_stops": 37
   },
   {
@@ -5297,6 +5705,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 39,
+   "n_shaped": 0,
    "n_stops": 36
   },
   {
@@ -5310,6 +5719,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 38,
+   "n_shaped": 34,
    "n_stops": 36
   },
   {
@@ -5323,6 +5733,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 38,
+   "n_shaped": 5,
    "n_stops": 36
   },
   {
@@ -5336,6 +5747,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 38,
+   "n_shaped": 38,
    "n_stops": 28
   },
   {
@@ -5349,6 +5761,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 38,
+   "n_shaped": 38,
    "n_stops": 40
   },
   {
@@ -5362,6 +5775,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 38,
+   "n_shaped": 36,
    "n_stops": 39
   },
   {
@@ -5375,6 +5789,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 38,
+   "n_shaped": 8,
    "n_stops": 37
   },
   {
@@ -5388,6 +5803,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 37,
+   "n_shaped": 34,
    "n_stops": 30
   },
   {
@@ -5401,6 +5817,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 37,
+   "n_shaped": 34,
    "n_stops": 32
   },
   {
@@ -5414,6 +5831,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 37,
+   "n_shaped": 24,
    "n_stops": 36
   },
   {
@@ -5427,6 +5845,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 37,
+   "n_shaped": 34,
    "n_stops": 30
   },
   {
@@ -5440,6 +5859,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 37,
+   "n_shaped": 3,
    "n_stops": 34
   },
   {
@@ -5453,6 +5873,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 36,
+   "n_shaped": 29,
    "n_stops": 34
   },
   {
@@ -5466,6 +5887,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 36,
+   "n_shaped": 0,
    "n_stops": 32
   },
   {
@@ -5479,6 +5901,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 36,
+   "n_shaped": 0,
    "n_stops": 33
   },
   {
@@ -5492,6 +5915,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 36,
+   "n_shaped": 0,
    "n_stops": 37
   },
   {
@@ -5505,6 +5929,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 36,
+   "n_shaped": 0,
    "n_stops": 36
   },
   {
@@ -5518,6 +5943,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 35,
+   "n_shaped": 32,
    "n_stops": 31
   },
   {
@@ -5531,6 +5957,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 35,
+   "n_shaped": 0,
    "n_stops": 34
   },
   {
@@ -5544,6 +5971,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 35,
+   "n_shaped": 35,
    "n_stops": 26
   },
   {
@@ -5557,6 +5985,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 34,
+   "n_shaped": 24,
    "n_stops": 32
   },
   {
@@ -5570,6 +5999,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 34,
+   "n_shaped": 0,
    "n_stops": 32
   },
   {
@@ -5583,6 +6013,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 34,
+   "n_shaped": 32,
    "n_stops": 33
   },
   {
@@ -5596,6 +6027,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 34,
+   "n_shaped": 33,
    "n_stops": 31
   },
   {
@@ -5609,6 +6041,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 34,
+   "n_shaped": 34,
    "n_stops": 32
   },
   {
@@ -5622,6 +6055,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 34,
+   "n_shaped": 29,
    "n_stops": 29
   },
   {
@@ -5635,6 +6069,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 34,
+   "n_shaped": 31,
    "n_stops": 35
   },
   {
@@ -5648,6 +6083,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 34,
+   "n_shaped": 31,
    "n_stops": 32
   },
   {
@@ -5661,6 +6097,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 33,
+   "n_shaped": 0,
    "n_stops": 33
   },
   {
@@ -5674,6 +6111,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 33,
+   "n_shaped": 32,
    "n_stops": 32
   },
   {
@@ -5687,6 +6125,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 33,
+   "n_shaped": 33,
    "n_stops": 34
   },
   {
@@ -5700,6 +6139,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 33,
+   "n_shaped": 0,
    "n_stops": 34
   },
   {
@@ -5713,6 +6153,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 33,
+   "n_shaped": 27,
    "n_stops": 34
   },
   {
@@ -5726,6 +6167,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 33,
+   "n_shaped": 22,
    "n_stops": 33
   },
   {
@@ -5739,6 +6181,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 33,
+   "n_shaped": 0,
    "n_stops": 30
   },
   {
@@ -5752,6 +6195,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 33,
+   "n_shaped": 32,
    "n_stops": 34
   },
   {
@@ -5765,6 +6209,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 32,
+   "n_shaped": 32,
    "n_stops": 33
   },
   {
@@ -5778,6 +6223,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 32,
+   "n_shaped": 27,
    "n_stops": 31
   },
   {
@@ -5791,6 +6237,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 32,
+   "n_shaped": 12,
    "n_stops": 30
   },
   {
@@ -5804,6 +6251,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 32,
+   "n_shaped": 0,
    "n_stops": 29
   },
   {
@@ -5817,6 +6265,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 32,
+   "n_shaped": 28,
    "n_stops": 33
   },
   {
@@ -5830,6 +6279,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 32,
+   "n_shaped": 0,
    "n_stops": 33
   },
   {
@@ -5843,6 +6293,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 31,
+   "n_shaped": 30,
    "n_stops": 30
   },
   {
@@ -5856,6 +6307,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 31,
+   "n_shaped": 31,
    "n_stops": 30
   },
   {
@@ -5869,6 +6321,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 31,
+   "n_shaped": 0,
    "n_stops": 30
   },
   {
@@ -5882,6 +6335,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 31,
+   "n_shaped": 29,
    "n_stops": 30
   },
   {
@@ -5895,6 +6349,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 31,
+   "n_shaped": 31,
    "n_stops": 32
   },
   {
@@ -5908,6 +6363,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 31,
+   "n_shaped": 30,
    "n_stops": 30
   },
   {
@@ -5921,6 +6377,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 30,
+   "n_shaped": 22,
    "n_stops": 27
   },
   {
@@ -5934,6 +6391,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 30,
+   "n_shaped": 0,
    "n_stops": 26
   },
   {
@@ -5947,6 +6405,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 30,
+   "n_shaped": 19,
    "n_stops": 27
   },
   {
@@ -5960,6 +6419,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 29,
+   "n_shaped": 0,
    "n_stops": 23
   },
   {
@@ -5973,6 +6433,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 29,
+   "n_shaped": 22,
    "n_stops": 27
   },
   {
@@ -5986,6 +6447,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 29,
+   "n_shaped": 28,
    "n_stops": 30
   },
   {
@@ -5999,6 +6461,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 29,
+   "n_shaped": 24,
    "n_stops": 21
   },
   {
@@ -6012,6 +6475,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 29,
+   "n_shaped": 0,
    "n_stops": 30
   },
   {
@@ -6025,6 +6489,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 28,
+   "n_shaped": 21,
    "n_stops": 29
   },
   {
@@ -6038,6 +6503,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 27,
+   "n_shaped": 23,
    "n_stops": 28
   },
   {
@@ -6051,6 +6517,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 27,
+   "n_shaped": 21,
    "n_stops": 25
   },
   {
@@ -6064,6 +6531,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 27,
+   "n_shaped": 27,
    "n_stops": 28
   },
   {
@@ -6077,6 +6545,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 27,
+   "n_shaped": 0,
    "n_stops": 25
   },
   {
@@ -6090,6 +6559,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 27,
+   "n_shaped": 25,
    "n_stops": 27
   },
   {
@@ -6103,6 +6573,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 27,
+   "n_shaped": 27,
    "n_stops": 25
   },
   {
@@ -6116,6 +6587,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 27,
+   "n_shaped": 6,
    "n_stops": 26
   },
   {
@@ -6129,6 +6601,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 27,
+   "n_shaped": 5,
    "n_stops": 28
   },
   {
@@ -6142,6 +6615,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 27,
+   "n_shaped": 24,
    "n_stops": 26
   },
   {
@@ -6155,6 +6629,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 27,
+   "n_shaped": 25,
    "n_stops": 23
   },
   {
@@ -6168,6 +6643,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 26,
+   "n_shaped": 25,
    "n_stops": 18
   },
   {
@@ -6181,6 +6657,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 25,
+   "n_shaped": 22,
    "n_stops": 25
   },
   {
@@ -6194,6 +6671,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 25,
+   "n_shaped": 24,
    "n_stops": 23
   },
   {
@@ -6207,6 +6685,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 24,
+   "n_shaped": 24,
    "n_stops": 20
   },
   {
@@ -6220,6 +6699,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 24,
+   "n_shaped": 0,
    "n_stops": 21
   },
   {
@@ -6233,6 +6713,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 24,
+   "n_shaped": 0,
    "n_stops": 20
   },
   {
@@ -6246,6 +6727,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 23,
+   "n_shaped": 0,
    "n_stops": 23
   },
   {
@@ -6259,6 +6741,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 23,
+   "n_shaped": 23,
    "n_stops": 22
   },
   {
@@ -6272,6 +6755,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 23,
+   "n_shaped": 22,
    "n_stops": 22
   },
   {
@@ -6285,6 +6769,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 23,
+   "n_shaped": 22,
    "n_stops": 19
   },
   {
@@ -6298,6 +6783,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 23,
+   "n_shaped": 23,
    "n_stops": 19
   },
   {
@@ -6311,6 +6797,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 23,
+   "n_shaped": 16,
    "n_stops": 24
   },
   {
@@ -6324,6 +6811,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 23,
+   "n_shaped": 22,
    "n_stops": 23
   },
   {
@@ -6337,6 +6825,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 23,
+   "n_shaped": 0,
    "n_stops": 23
   },
   {
@@ -6350,6 +6839,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 22,
+   "n_shaped": 22,
    "n_stops": 18
   },
   {
@@ -6363,6 +6853,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 22,
+   "n_shaped": 0,
    "n_stops": 23
   },
   {
@@ -6376,6 +6867,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 22,
+   "n_shaped": 21,
    "n_stops": 20
   },
   {
@@ -6389,6 +6881,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 22,
+   "n_shaped": 20,
    "n_stops": 17
   },
   {
@@ -6402,6 +6895,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 22,
+   "n_shaped": 0,
    "n_stops": 23
   },
   {
@@ -6415,6 +6909,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 22,
+   "n_shaped": 18,
    "n_stops": 22
   },
   {
@@ -6428,6 +6923,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 22,
+   "n_shaped": 21,
    "n_stops": 20
   },
   {
@@ -6441,6 +6937,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 22,
+   "n_shaped": 22,
    "n_stops": 19
   },
   {
@@ -6454,6 +6951,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 21,
+   "n_shaped": 21,
    "n_stops": 22
   },
   {
@@ -6467,6 +6965,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 21,
+   "n_shaped": 20,
    "n_stops": 21
   },
   {
@@ -6480,6 +6979,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 21,
+   "n_shaped": 2,
    "n_stops": 20
   },
   {
@@ -6493,6 +6993,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 21,
+   "n_shaped": 20,
    "n_stops": 16
   },
   {
@@ -6506,6 +7007,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 21,
+   "n_shaped": 0,
    "n_stops": 20
   },
   {
@@ -6519,6 +7021,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 20,
+   "n_shaped": 0,
    "n_stops": 18
   },
   {
@@ -6532,6 +7035,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 20,
+   "n_shaped": 6,
    "n_stops": 18
   },
   {
@@ -6545,6 +7049,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 20,
+   "n_shaped": 0,
    "n_stops": 19
   },
   {
@@ -6558,6 +7063,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 20,
+   "n_shaped": 20,
    "n_stops": 19
   },
   {
@@ -6571,6 +7077,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 19,
+   "n_shaped": 17,
    "n_stops": 20
   },
   {
@@ -6584,6 +7091,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 19,
+   "n_shaped": 9,
    "n_stops": 15
   },
   {
@@ -6597,6 +7105,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 19,
+   "n_shaped": 15,
    "n_stops": 18
   },
   {
@@ -6610,6 +7119,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 19,
+   "n_shaped": 0,
    "n_stops": 20
   },
   {
@@ -6623,6 +7133,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 19,
+   "n_shaped": 0,
    "n_stops": 18
   },
   {
@@ -6636,6 +7147,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 18,
+   "n_shaped": 0,
    "n_stops": 19
   },
   {
@@ -6649,6 +7161,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 18,
+   "n_shaped": 17,
    "n_stops": 19
   },
   {
@@ -6662,6 +7175,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 18,
+   "n_shaped": 0,
    "n_stops": 17
   },
   {
@@ -6675,6 +7189,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 18,
+   "n_shaped": 17,
    "n_stops": 19
   },
   {
@@ -6688,6 +7203,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 18,
+   "n_shaped": 18,
    "n_stops": 19
   },
   {
@@ -6701,6 +7217,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 17,
+   "n_shaped": 0,
    "n_stops": 16
   },
   {
@@ -6714,6 +7231,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 17,
+   "n_shaped": 17,
    "n_stops": 17
   },
   {
@@ -6727,6 +7245,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 17,
+   "n_shaped": 15,
    "n_stops": 15
   },
   {
@@ -6740,6 +7259,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 17,
+   "n_shaped": 17,
    "n_stops": 18
   },
   {
@@ -6753,6 +7273,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 17,
+   "n_shaped": 13,
    "n_stops": 17
   },
   {
@@ -6766,6 +7287,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 17,
+   "n_shaped": 0,
    "n_stops": 18
   },
   {
@@ -6779,6 +7301,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 16,
+   "n_shaped": 0,
    "n_stops": 17
   },
   {
@@ -6792,6 +7315,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 16,
+   "n_shaped": 16,
    "n_stops": 13
   },
   {
@@ -6805,6 +7329,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 16,
+   "n_shaped": 15,
    "n_stops": 17
   },
   {
@@ -6818,6 +7343,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 16,
+   "n_shaped": 15,
    "n_stops": 16
   },
   {
@@ -6831,6 +7357,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 16,
+   "n_shaped": 14,
    "n_stops": 13
   },
   {
@@ -6844,6 +7371,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 16,
+   "n_shaped": 16,
    "n_stops": 17
   },
   {
@@ -6857,6 +7385,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 16,
+   "n_shaped": 13,
    "n_stops": 16
   },
   {
@@ -6870,6 +7399,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 15,
+   "n_shaped": 15,
    "n_stops": 14
   },
   {
@@ -6883,6 +7413,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 15,
+   "n_shaped": 0,
    "n_stops": 15
   },
   {
@@ -6896,6 +7427,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 15,
+   "n_shaped": 14,
    "n_stops": 15
   },
   {
@@ -6909,6 +7441,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 15,
+   "n_shaped": 0,
    "n_stops": 15
   },
   {
@@ -6922,6 +7455,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 15,
+   "n_shaped": 4,
    "n_stops": 12
   },
   {
@@ -6935,6 +7469,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 14,
+   "n_shaped": 11,
    "n_stops": 12
   },
   {
@@ -6948,6 +7483,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 14,
+   "n_shaped": 14,
    "n_stops": 12
   },
   {
@@ -6961,6 +7497,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 14,
+   "n_shaped": 13,
    "n_stops": 15
   },
   {
@@ -6974,6 +7511,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 14,
+   "n_shaped": 0,
    "n_stops": 14
   },
   {
@@ -6987,6 +7525,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 13,
+   "n_shaped": 12,
    "n_stops": 13
   },
   {
@@ -7000,6 +7539,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 13,
+   "n_shaped": 13,
    "n_stops": 14
   },
   {
@@ -7013,6 +7553,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 13,
+   "n_shaped": 13,
    "n_stops": 12
   },
   {
@@ -7026,6 +7567,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 13,
+   "n_shaped": 11,
    "n_stops": 10
   },
   {
@@ -7039,6 +7581,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 13,
+   "n_shaped": 13,
    "n_stops": 14
   },
   {
@@ -7052,6 +7595,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 12,
+   "n_shaped": 10,
    "n_stops": 12
   },
   {
@@ -7065,6 +7609,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 12,
+   "n_shaped": 12,
    "n_stops": 13
   },
   {
@@ -7078,6 +7623,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 12,
+   "n_shaped": 11,
    "n_stops": 13
   },
   {
@@ -7091,6 +7637,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 12,
+   "n_shaped": 12,
    "n_stops": 11
   },
   {
@@ -7104,6 +7651,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 12,
+   "n_shaped": 12,
    "n_stops": 13
   },
   {
@@ -7117,6 +7665,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 11,
+   "n_shaped": 0,
    "n_stops": 11
   },
   {
@@ -7130,6 +7679,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 11,
+   "n_shaped": 10,
    "n_stops": 9
   },
   {
@@ -7143,6 +7693,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 11,
+   "n_shaped": 11,
    "n_stops": 9
   },
   {
@@ -7156,6 +7707,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 10,
+   "n_shaped": 9,
    "n_stops": 11
   },
   {
@@ -7169,6 +7721,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 10,
+   "n_shaped": 10,
    "n_stops": 10
   },
   {
@@ -7182,6 +7735,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 10,
+   "n_shaped": 0,
    "n_stops": 10
   },
   {
@@ -7195,6 +7749,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 10,
+   "n_shaped": 0,
    "n_stops": 10
   },
   {
@@ -7208,6 +7763,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 9,
+   "n_shaped": 9,
    "n_stops": 10
   },
   {
@@ -7221,6 +7777,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 9,
+   "n_shaped": 9,
    "n_stops": 10
   },
   {
@@ -7234,6 +7791,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 8,
+   "n_shaped": 7,
    "n_stops": 7
   },
   {
@@ -7247,6 +7805,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 8,
+   "n_shaped": 7,
    "n_stops": 8
   },
   {
@@ -7260,6 +7819,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 8,
+   "n_shaped": 8,
    "n_stops": 8
   },
   {
@@ -7273,6 +7833,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 8,
+   "n_shaped": 4,
    "n_stops": 7
   },
   {
@@ -7286,6 +7847,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 8,
+   "n_shaped": 8,
    "n_stops": 7
   },
   {
@@ -7299,6 +7861,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 7,
+   "n_shaped": 6,
    "n_stops": 7
   },
   {
@@ -7312,6 +7875,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 7,
+   "n_shaped": 7,
    "n_stops": 7
   },
   {
@@ -7325,6 +7889,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 6,
+   "n_shaped": 6,
    "n_stops": 7
   },
   {
@@ -7338,6 +7903,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 5,
+   "n_shaped": 0,
    "n_stops": 5
   },
   {
@@ -7351,6 +7917,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 5,
+   "n_shaped": 5,
    "n_stops": 6
   },
   {
@@ -7364,6 +7931,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 3,
+   "n_shaped": 3,
    "n_stops": 4
   },
   {
@@ -7377,6 +7945,7 @@
    "status": "ok",
    "note": "",
    "n_segments": 1,
+   "n_shaped": 1,
    "n_stops": 2
   },
   {
@@ -7390,6 +7959,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7403,6 +7973,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['2'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7416,6 +7987,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7429,6 +8001,7 @@
    "status": "skip",
    "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7442,6 +8015,7 @@
    "status": "skip",
    "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7455,6 +8029,7 @@
    "status": "skip",
    "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7468,6 +8043,7 @@
    "status": "skip",
    "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7481,6 +8057,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7494,6 +8071,7 @@
    "status": "duplicate",
    "note": "daishinto__Radiant-City (gtfs-data.jp) と重複（停留所の重なり 100%）",
    "n_segments": 0,
+   "n_shaped": 7,
    "n_stops": 0
   },
   {
@@ -7507,6 +8085,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7520,6 +8099,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7533,6 +8113,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7546,6 +8127,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7559,6 +8141,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7572,6 +8155,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7585,6 +8169,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['0'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7598,6 +8183,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7611,6 +8197,7 @@
    "status": "duplicate",
    "note": "higashiyamato_city_all_lines_cc0__AllLines_CC0 (odpt) と重複（停留所の重なり 100%）",
    "n_segments": 0,
+   "n_shaped": 38,
    "n_stops": 0
   },
   {
@@ -7624,6 +8211,7 @@
    "status": "duplicate",
    "note": "higashiyamato_city_all_lines_cc0__AllLines_CC0 (odpt) と重複（停留所の重なり 100%）",
    "n_segments": 0,
+   "n_shaped": 38,
    "n_stops": 0
   },
   {
@@ -7637,6 +8225,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7650,6 +8239,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['2'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7663,6 +8253,7 @@
    "status": "skip",
    "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7676,6 +8267,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['2'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7689,6 +8281,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7702,6 +8295,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7715,6 +8309,7 @@
    "status": "skip",
    "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7728,6 +8323,7 @@
    "status": "duplicate",
    "note": "keisei-transitbus__keiseitransitbus (gtfs-data.jp) と重複（停留所の重なり 100%）",
    "n_segments": 0,
+   "n_shaped": 122,
    "n_stops": 0
   },
   {
@@ -7741,6 +8337,7 @@
    "status": "skip",
    "note": "有効期間 2026-03-20〜2027-03-31 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7754,6 +8351,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7767,6 +8365,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7780,6 +8379,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['0'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7793,6 +8393,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['2'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7806,6 +8407,7 @@
    "status": "skip",
    "note": "有効期間 2025-12-04〜2027-01-31 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7819,6 +8421,7 @@
    "status": "duplicate",
    "note": "kunitachicity__aoyagikko (gtfs-data.jp) と重複（停留所の重なり 100%）",
    "n_segments": 0,
+   "n_shaped": 9,
    "n_stops": 0
   },
   {
@@ -7832,6 +8435,7 @@
    "status": "duplicate",
    "note": "kunitachicity__kunikko (gtfs-data.jp) と重複（停留所の重なり 100%）",
    "n_segments": 0,
+   "n_shaped": 5,
    "n_stops": 0
   },
   {
@@ -7845,6 +8449,7 @@
    "status": "duplicate",
    "note": "kyoto_bus_all_lines_anotherversion__AllLinesAnotherversion (odpt) と重複（停留所の重なり 100%）",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7858,6 +8463,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['1'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7871,6 +8477,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7884,6 +8491,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['0'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7897,6 +8505,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7910,6 +8519,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7923,6 +8533,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7936,6 +8547,7 @@
    "status": "skip",
    "note": "有効期間 2026-03-21〜2027-03-31 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7949,6 +8561,7 @@
    "status": "duplicate",
    "note": "mizuhotown__communitybus (gtfs-data.jp) と重複（停留所の重なり 100%）",
    "n_segments": 0,
+   "n_shaped": 33,
    "n_stops": 0
   },
   {
@@ -7962,6 +8575,7 @@
    "status": "error",
    "note": "stop_times.txt の必須列が無い: 'stop_id' is not in list",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7975,6 +8589,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -7988,6 +8603,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8001,6 +8617,7 @@
    "status": "duplicate",
    "note": "nagai-unyu__Nagaibus (gtfs-data.jp) と重複（停留所の重なり 100%）",
    "n_segments": 0,
+   "n_shaped": 166,
    "n_stops": 0
   },
   {
@@ -8014,6 +8631,7 @@
    "status": "skip",
    "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8027,6 +8645,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8040,6 +8659,7 @@
    "status": "skip",
    "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8053,6 +8673,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8066,6 +8687,7 @@
    "status": "skip",
    "note": "有効期間 2026-04-01〜2027-03-31 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8079,6 +8701,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8092,6 +8715,7 @@
    "status": "skip",
    "note": "有効期間 2026-03-23〜2026-11-30 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8105,6 +8729,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8118,6 +8743,7 @@
    "status": "duplicate",
    "note": "otonekotu__otonekotubus (gtfs-data.jp) と重複（停留所の重なり 100%）",
    "n_segments": 0,
+   "n_shaped": 58,
    "n_stops": 0
   },
   {
@@ -8131,6 +8757,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8144,6 +8771,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8157,6 +8785,7 @@
    "status": "duplicate",
    "note": "shimoden_shimoden_bus_gtfs_realtime__Shimoden_BUS_GTFS_Realtime (odpt) と重複（停留所の重なり 100%）",
    "n_segments": 0,
+   "n_shaped": 258,
    "n_stops": 0
   },
   {
@@ -8170,6 +8799,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8183,6 +8813,7 @@
    "status": "skip",
    "note": "有効期間 2026-04-01〜2027-03-31 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8196,6 +8827,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8209,6 +8841,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8222,6 +8855,7 @@
    "status": "duplicate",
    "note": "tachikawacity__kururinbus (gtfs-data.jp) と重複（停留所の重なり 100%）",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8235,6 +8869,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8248,6 +8883,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8261,6 +8897,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8274,6 +8911,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8287,6 +8925,7 @@
    "status": "skip",
    "note": "有効期間 None〜None 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8300,6 +8939,7 @@
    "status": "duplicate",
    "note": "tosacity__GTFS-Tosacity_Bus (gtfs-data.jp) と重複（停留所の重なり 100%）",
    "n_segments": 0,
+   "n_shaped": 120,
    "n_stops": 0
   },
   {
@@ -8313,6 +8953,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['0'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8326,6 +8967,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['2'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8339,6 +8981,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['12'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8352,6 +8995,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['0', '1', '2'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8365,6 +9009,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['1'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8378,6 +9023,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['2'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8391,6 +9037,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8404,6 +9051,7 @@
    "status": "skip",
    "note": "trips.txt / stop_times.txt が無い/空",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8417,6 +9065,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['4'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8430,6 +9079,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['2'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8443,6 +9093,7 @@
    "status": "skip",
    "note": "有効期間 2026-04-01〜2027-03-31 内に平日ダイヤの運行日が見つからない",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   },
   {
@@ -8456,6 +9107,7 @@
    "status": "skip",
    "note": "バス以外のモード (route_type=['1'])",
    "n_segments": 0,
+   "n_shaped": 0,
    "n_stops": 0
   }
  ]
