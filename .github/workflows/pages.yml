@@ -1,0 +1,63 @@
+name: deploy-viewer
+
+# ビューア（viewer/）をビルドし、PMTiles を同梱して GitHub Pages へ配信する。
+# 手動実行、または viewer/ か PMTiles の変更を main に push したときに動く。
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "viewer/**"
+      - "build/bus_frequency.pmtiles"
+      - ".github/workflows/pages.yml"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # PMTiles は成果物としてリポジトリに含めてあるので、Release から落とす必要はない。
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: viewer/package-lock.json
+
+      - name: Build viewer
+        working-directory: viewer
+        run: |
+          npm ci
+          npm run build
+
+      - name: Bundle PMTiles
+        run: |
+          mkdir -p viewer/dist/pmtiles
+          cp build/bus_frequency.pmtiles viewer/dist/pmtiles/
+          touch viewer/dist/.nojekyll
+          ls -lh viewer/dist/pmtiles/
+
+      # enablement: true で Pages 自体の有効化と「Actions から配信」への切替を試みる。
+      # 旧来の「main の / から配信」から切り替わらない場合は、リポジトリの
+      # Settings → Pages → Source を GitHub Actions にするか、下記を一度実行する:
+      #   gh api -X PUT repos/shiwaku/japan-gtfs-frequency-converter/pages -f build_type=workflow
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: viewer/dist
+      - id: deployment
+        uses: actions/deploy-pages@v4

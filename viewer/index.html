@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <title>全国バス運行頻度図</title>
+  <meta name="description" content="全国のバスGTFSから集計した平日の区間別運行本数（gtfs-data.jp と ODPT の648フィード / 85,553区間）" />
+  <meta name="theme-color" content="#2a78d6" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg stroke-linecap='round' fill='none'%3E%3Cpath d='M2 12h12' stroke='%239e1901' stroke-width='3'/%3E%3Cpath d='M3 8h10' stroke='%23bc3181' stroke-width='2'/%3E%3Cpath d='M4 4h8' stroke='%2385b4f0' stroke-width='1.2'/%3E%3C/g%3E%3C/svg%3E" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="バス運行頻度" />
+</head>
+<body>
+  <div id="map"></div>
+
+  <section id="panel" class="panel" aria-label="コントロールパネル">
+    <header class="panel-head">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">🚌</span>
+        <h1>全国バス運行頻度図</h1>
+      </div>
+      <div class="head-actions">
+        <button id="theme-btn" class="icon-btn" type="button" title="テーマ切替" aria-label="テーマ切替"></button>
+        <button id="collapse-btn" class="icon-btn" type="button" title="パネル開閉" aria-label="パネル開閉"></button>
+      </div>
+    </header>
+
+    <div id="panel-body" class="panel-body">
+      <div class="field">
+        <span class="field-label">レイヤー</span>
+        <div id="layers" class="toggles"></div>
+      </div>
+    </div>
+
+    <footer class="panel-foot">
+      出典: <a href="https://gtfs-data.jp/" target="_blank" rel="noopener">GTFSデータリポジトリ</a>・<a href="https://ckan.odpt.org/" target="_blank" rel="noopener">公共交通オープンデータセンター</a><br />
+      平日1日の便数を停留所間の区間ごとに集計（648フィード / 85,553区間）<br />
+      背景: 国土地理院 最適化ベクトルタイル / 全国最新写真<br />
+      <a href="https://github.com/shiwaku/japan-gtfs-frequency-converter" target="_blank" rel="noopener">生成コード（GitHub）</a><br />
+      <span id="build-ver" class="build-ver"></span>
+    </footer>
+  </section>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

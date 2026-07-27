@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+.env.local
+*.local
+
+# 一時スクリプト
+_*.mjs

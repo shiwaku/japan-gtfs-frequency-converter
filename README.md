@@ -8,7 +8,8 @@
 [公共交通オープンデータセンター（ODPT）](https://ckan.odpt.org/) の両方からフィードを取得 →
 平日1日の便数を停留所間の区間単位で集計 → tippecanoe でベクタータイル化、までを行います。
 
-生成物の `build/bus_frequency.pmtiles` はこのリポジトリに含めてあるので、clone すればすぐ地図が見られます。
+生成物の `build/bus_frequency.pmtiles` はこのリポジトリに含めてあるので、clone して
+`viewer/` を起動すればすぐ地図が見られます（集計をやり直す必要はありません）。
 
 表示だけを試したい場合は [japan-gtfs-frequency-viewer](https://github.com/shiwaku/japan-gtfs-frequency-viewer)
 （ブラウザ内で GTFS を処理するビューア）もあわせてどうぞ。こちらは「全国分を事前に焼く」側の実装です。
@@ -37,7 +38,8 @@
 
 ## 使い方
 
-必要なもの: Python 3.10+（標準ライブラリのみ）、[tippecanoe](https://github.com/felt/tippecanoe)、
+必要なもの: 集計に Python 3.10+（標準ライブラリのみ）と
+[tippecanoe](https://github.com/felt/tippecanoe)、ビューアに Node.js 20+、
 確認用に [pmtiles CLI](https://github.com/protomaps/go-pmtiles)。
 
 ```sh
@@ -52,18 +54,29 @@ ODPT の 108 データセットのうち 60 は取得にアクセストークン
 `ODPT_ACCESS_TOKEN`、`~/.odpt_token` のいずれかで渡します。無くても残り 48（都営バスを含む）は
 取得でき、`src/aggregate.py --no-odpt` で ODPT 自体を外すこともできます。
 
-ビューア（PMTiles は HTTP Range を使うので、`file://` では開けません。同梱のサーバ経由で）:
+ビューア（`viewer/`、Vite + TypeScript。Node.js 20+ が要ります）:
 
 ```sh
-python3 src/serve.py              # → http://127.0.0.1:8787/
+cd viewer
+npm install
+npm run dev                       # → http://localhost:8000/
 ```
 
-`index.html` が GitHub Pages のトップページを兼ねているので、ローカルで見えるものと
-公開されているものは同一です。左のパネルでレイヤーごとの表示/不透明度と凡例、
-テーマ（淡色 / ダーク）と背景（地図 / 写真）を切り替えられます。UI は
+PMTiles は HTTP Range を使うので `file://` では開けません。dev サーバーが
+`build/*.pmtiles` を Range 対応で配信します（`viewer/vite.config.ts` のミドルウェア）。
+`npm run build` で `viewer/dist/` に出ます。
+
+左のパネルでレイヤーごとの表示/不透明度と凡例、テーマ（淡色 / ダーク）と背景
+（地図 / 写真）を切り替えられます。UI と背景地図は
 [mlit-urban-planning-converter](https://github.com/shiwaku/mlit-urban-planning-converter) の
-ビューアに揃えてありますが、あちらは Vite + TypeScript、こちらは Pages のトップに置く
-1枚もの（ビルド工程なし）です。
+`viewer/` に揃えてあり、背景の淡色スタイル（`src/pale-style.json`）とその暗色化
+（`src/basemap.ts`）はあちらから持ってきたものです。
+
+### 公開
+
+GitHub Pages は `.github/workflows/pages.yml` から配信します（Pages の Source は
+「GitHub Actions」）。`viewer/**` か `build/bus_frequency.pmtiles` を main に push すると、
+ビューアをビルドして PMTiles を `dist/pmtiles/` に同梱し、デプロイします。手動実行も可。
 
 ### 主なオプション
 
@@ -100,8 +113,12 @@ python3 src/serve.py              # → http://127.0.0.1:8787/
 | `src/fetch_odpt.py` | ODPT から取得。カタログAPIが無いので CKAN の HTML を辿る。版違いは最新だけ選ぶ |
 | `src/aggregate.py` | 集計本体。`--jobs` で並列。`build/aggregate_report.json` にフィードごとの採用日・件数・スキップ理由を出力 |
 | `src/tiles.sh` | tippecanoe 呼び出し。z4–14。低ズームの線の簡略化は tippecanoe に任せる |
-| `index.html` | MapLibre ビューア。レイヤーパネル・テーマ/背景切替つき。z14 で停留所名を表示。ホバー（タッチ環境ではタップ）で区間の方向別内訳が出る。GitHub Pages のトップページ |
-| `src/serve.py` | Range リクエストに応答する最小のローカルサーバ（`index.html` の確認用） |
+| `viewer/src/main.ts` | MapLibre ビューア本体。地図・コントロール・パネル・ポップアップ |
+| `viewer/src/layers.ts` | 便数の配色と階級、レイヤー定義、凡例とポップアップの組み立て |
+| `viewer/src/basemap.ts` | 背景地図（地理院 淡色ベクトル / 全国最新写真）。淡色は明度反転で暗色化する |
+| `viewer/src/theme.ts` | テーマ（淡色 / ダーク）の判定と保存 |
+| `viewer/vite.config.ts` | Vite 設定。dev サーバーで `build/*.pmtiles` を Range 配信するミドルウェア入り |
+| `.github/workflows/pages.yml` | ビューアをビルドし PMTiles を同梱して GitHub Pages へ配信 |
 | `src/jpholidays.py` | 祝日判定（平日ダイヤの選択に使う） |
 
 ## 集計の仕様
