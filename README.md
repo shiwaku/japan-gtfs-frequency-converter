@@ -59,7 +59,11 @@ python3 src/serve.py              # → http://127.0.0.1:8787/
 ```
 
 `index.html` が GitHub Pages のトップページを兼ねているので、ローカルで見えるものと
-公開されているものは同一です。
+公開されているものは同一です。左のパネルでレイヤーごとの表示/不透明度と凡例、
+テーマ（淡色 / ダーク）と背景（地図 / 写真）を切り替えられます。UI は
+[mlit-urban-planning-converter](https://github.com/shiwaku/mlit-urban-planning-converter) の
+ビューアに揃えてありますが、あちらは Vite + TypeScript、こちらは Pages のトップに置く
+1枚もの（ビルド工程なし）です。
 
 ### 主なオプション
 
@@ -96,7 +100,7 @@ python3 src/serve.py              # → http://127.0.0.1:8787/
 | `src/fetch_odpt.py` | ODPT から取得。カタログAPIが無いので CKAN の HTML を辿る。版違いは最新だけ選ぶ |
 | `src/aggregate.py` | 集計本体。`--jobs` で並列。`build/aggregate_report.json` にフィードごとの採用日・件数・スキップ理由を出力 |
 | `src/tiles.sh` | tippecanoe 呼び出し。z4–14。低ズームの線の簡略化は tippecanoe に任せる |
-| `index.html` | MapLibre ビューア。ホバーで区間の方向別内訳が出る。GitHub Pages のトップページ |
+| `index.html` | MapLibre ビューア。レイヤーパネル・テーマ/背景切替つき。z14 で停留所名を表示。ホバー（タッチ環境ではタップ）で区間の方向別内訳が出る。GitHub Pages のトップページ |
 | `src/serve.py` | Range リクエストに応答する最小のローカルサーバ（`index.html` の確認用） |
 | `src/jpholidays.py` | 祝日判定（平日ダイヤの選択に使う） |
 
@@ -158,7 +162,9 @@ z9:83,235 / z10:全件 としています。
 できます。
 
 **線幅や色はタイルに焼き込まない。** MapLibre の式で `frequency` から描けば、スタイル調整だけで
-見た目を変えられます。
+見た目を変えられます。配色は寒色→暖色（少ない=青 / 多い=赤）の6階級。単一色相の濃淡だと、
+便数の多い区間が集まる都市部で上位3階級がひとかたまりの濃紺に見えて幹線を読めませんでした。
+明度は OKLCH で単調に下降させてあるので、色相に頼らなくても順序は保たれます。
 
 ## 既知の制約
 
