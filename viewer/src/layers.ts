@@ -29,15 +29,11 @@ export const RAMP: Record<'light' | 'dark', string[]> = {
 // 色だけでは細線の判別が難しいので、太さの幅も広くとる
 export const WIDTHS = [0.6, 1.0, 1.6, 2.4, 3.6, 5.4]
 
-export type Geom = 'line' | 'circle' | 'symbol'
-
 export interface LayerDef {
   key: string
   name: string
-  geom: Geom
   desc: string
   on: boolean
-  opacity: number
 }
 
 /** 配列の後ろほど地図で前面。区間 → 停留所 → 停留所名 の順に重ねる。 */
@@ -45,37 +41,24 @@ export const LAYERS: LayerDef[] = [
   {
     key: 'routes',
     name: '区間の運行本数',
-    geom: 'line',
     on: true,
-    opacity: 0.9,
     desc: '停留所どうしの区間を、平日1日の便数（両方向の合計）で6段階に塗り分けます。色が濃く太いほど本数が多い区間です。',
   },
   {
     key: 'stops',
     name: '停留所',
-    geom: 'circle',
     on: true,
-    opacity: 1,
     desc: 'GTFS の停留所。同名かつ近接するものは1つにまとめてあります。区間の線より前面に、白抜きの丸で描きます。z11 以上で表示。',
   },
   {
     key: 'stop-labels',
     name: '停留所名',
-    geom: 'symbol',
     on: true,
-    opacity: 1,
     desc: 'z14 で停留所名を表示します。重なる場合は停車回数の多い停留所を優先します。',
   },
 ]
 
 export const defOf = (key: string): LayerDef | undefined => LAYERS.find((d) => d.key === key)
-
-/** 不透明度スライダーが動かす paint プロパティ。円は輪郭も一緒に薄くする。 */
-export const opacityProps = (geom: Geom): string[] => {
-  if (geom === 'line') return ['line-opacity']
-  if (geom === 'circle') return ['circle-opacity', 'circle-stroke-opacity']
-  return ['text-opacity', 'icon-opacity']
-}
 
 export interface Palette {
   /** 便数6階級の色 */
@@ -138,7 +121,8 @@ export function dataLayers(p: Palette): DataLayer[] {
       paint: {
         'line-color': stepExpr(p.colors),
         'line-width': lineWidthExpr(),
-        'line-opacity': defOf('routes')!.opacity,
+        // わずかに透かして、太い幹線の下の地図と交差する区間を読めるようにする
+        'line-opacity': 0.9,
       },
     },
     {
@@ -157,8 +141,6 @@ export function dataLayers(p: Palette): DataLayer[] {
         'circle-color': p.fill,
         'circle-stroke-color': p.ink,
         'circle-stroke-width': ['interpolate', ['linear'], ['zoom'], 11, 0.5, 13, 1, 14, 1.5],
-        'circle-opacity': defOf('stops')!.opacity,
-        'circle-stroke-opacity': defOf('stops')!.opacity,
       },
     },
     {
@@ -183,7 +165,6 @@ export function dataLayers(p: Palette): DataLayer[] {
         'text-color': p.ink,
         'text-halo-color': p.halo,
         'text-halo-width': 1.4,
-        'text-opacity': defOf('stop-labels')!.opacity,
       },
     },
   ]

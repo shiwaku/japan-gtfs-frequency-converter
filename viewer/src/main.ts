@@ -9,7 +9,6 @@ import {
   dataLayers,
   defOf,
   legendMarkup,
-  opacityProps,
   paletteFor,
   popupHtml,
 } from './layers'
@@ -153,32 +152,11 @@ function buildToggles(): void {
 
     label.append(input, sw, text, info)
 
-    // 不透明度スライダー（有効時のみ表示）
-    const opac = document.createElement('div')
-    opac.className = 'layer-opacity'
-    opac.hidden = !def.on
-    const range = document.createElement('input')
-    range.type = 'range'
-    range.min = '0'
-    range.max = '1'
-    range.step = '0.05'
-    range.value = String(def.opacity)
-    range.setAttribute('aria-label', `${def.name}の不透明度`)
-    const val = document.createElement('span')
-    val.className = 'op-val'
-    val.textContent = `${Math.round(def.opacity * 100)}%`
-    range.addEventListener('input', () => {
-      const v = Number(range.value)
-      val.textContent = `${Math.round(v * 100)}%`
-      setLayerOpacity(def, v)
-    })
-    opac.append(range, val)
-
     const legend = document.createElement('div')
     legend.className = 'layer-legend'
     legend.hidden = !def.on
 
-    item.append(label, desc, opac, legend)
+    item.append(label, desc, legend)
     layersDiv.append(item)
   }
   renderLegends()
@@ -189,21 +167,13 @@ function setLayerVisible(def: LayerDef, on: boolean): void {
   if (map.getLayer(def.key)) map.setLayoutProperty(def.key, 'visibility', on ? 'visible' : 'none')
   const item = layersDiv.querySelector<HTMLElement>(`.layer-item[data-key="${def.key}"]`)
   item?.querySelector<HTMLElement>('.layer-legend')?.toggleAttribute('hidden', !on)
-  item?.querySelector<HTMLElement>('.layer-opacity')?.toggleAttribute('hidden', !on)
 }
 
-function setLayerOpacity(def: LayerDef, v: number): void {
-  def.opacity = v
-  if (!map.getLayer(def.key)) return
-  for (const prop of opacityProps(def.geom)) map.setPaintProperty(def.key, prop, v)
-}
-
-/** スタイル差し替え後に、トグル/不透明度の状態を貼り直す。 */
+/** スタイル差し替え後に、トグルの状態を貼り直す。 */
 function applyLayerState(): void {
   for (const def of LAYERS) {
     if (!map.getLayer(def.key)) continue
     map.setLayoutProperty(def.key, 'visibility', def.on ? 'visible' : 'none')
-    for (const prop of opacityProps(def.geom)) map.setPaintProperty(def.key, prop, def.opacity)
   }
 }
 

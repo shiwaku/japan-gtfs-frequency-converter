@@ -283,34 +283,6 @@ body {
   display: none;
 }
 
-/* ---- レイヤー不透明度スライダー ---- */
-.layer-opacity {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 8px 4px 44px;
-}
-
-.layer-opacity[hidden] {
-  display: none;
-}
-
-.layer-opacity input[type='range'] {
-  flex: 1;
-  height: 8px;
-  accent-color: var(--accent);
-  cursor: pointer;
-}
-
-.op-val {
-  flex: none;
-  width: 34px;
-  text-align: right;
-  font-size: 10.5px;
-  color: var(--ink-3);
-  font-variant-numeric: tabular-nums;
-}
-
 /* ---- 各レイヤー直下のインライン凡例 ---- */
 .layer-legend {
   display: grid;
