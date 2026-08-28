@@ -2,7 +2,7 @@
   --surface-solid: #ffffff;
   --ink: #14161a;
   --ink-2: #5a6069;
-  --ink-3: #8b919b;
+  --ink-3: #6f7681;
   --line: rgba(20, 22, 26, 0.1);
   --line-2: rgba(20, 22, 26, 0.16);
   --accent: #2a78d6;
@@ -18,7 +18,7 @@
   --surface-solid: #1b1e24;
   --ink: #f2f4f7;
   --ink-2: #b3b9c4;
-  --ink-3: #7d838e;
+  --ink-3: #949aa5;
   --line: rgba(255, 255, 255, 0.1);
   --line-2: rgba(255, 255, 255, 0.16);
   --accent: #4f97f0;
@@ -53,30 +53,26 @@ body {
 /* ---- パネル ---- */
 .panel {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 12px;
+  left: 12px;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  width: 300px;
-  max-width: 88vw;
-  /* 常に全高で固定。top:0 + bottom:0 で確実に画面の縦いっぱいにする
-     （height:100dvh の dvh 単位に頼らない）。height:auto にすると内容が
-     画面より低いときパネルが縮み、切替で下端が動く。 */
-  bottom: 0;
+  width: 312px;
+  max-width: calc(100vw - 24px);
+  /* 地図の上に浮かせたカード。以前は左端に全高で固定していたが、内容は 500px 弱しか
+     ないのに画面の縦を占め切って地図を隠していた。高さは内容なり（上限は画面高から
+     余白を引いた分）とし、パネルの下と左に地図を残す。上限を超えたぶんは
+     .panel-body が内部スクロールする。 */
+  max-height: calc(100% - 24px);
   /* backdrop-filter（すりガラス）は使わない。実GPUでの合成不具合により、
      内部スクロール（.panel-body）を持つパネルで描画が破綻することがある。
      背景は不透明にしてブラーなしでも可読にする。 */
   background: var(--surface-solid);
-  border-right: 1px solid var(--line);
+  border: 1px solid var(--line);
+  border-radius: 14px;
   box-shadow: var(--shadow);
   overflow: hidden;
-}
-
-.panel.collapsed {
-  /* 畳んだらヘッダの高さだけに（全高固定を解除） */
-  bottom: auto;
-  height: auto;
 }
 
 .panel-head {
@@ -103,7 +99,7 @@ body {
 
 .panel h1 {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 1.25;
 }
@@ -134,7 +130,8 @@ body {
 }
 
 .panel-body {
-  flex: 1 1 auto;
+  /* 高さは内容なり。伸ばさず、上限に達したときだけ縮んで内部スクロールする。 */
+  flex: 0 1 auto;
   min-height: 0;
   padding: 14px;
   display: grid;
@@ -158,7 +155,7 @@ body {
 }
 
 .field-label {
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -205,7 +202,7 @@ body {
   /* flex:1 にすると i ボタンが行の右端へ離れてしまうため自然幅（名前の直後に i が付く） */
   flex: 0 1 auto;
   min-width: 0;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .switch {
@@ -274,7 +271,7 @@ body {
 
 .layer-desc {
   padding: 2px 8px 6px 44px;
-  font-size: 11.5px;
+  font-size: 12.5px;
   line-height: 1.65;
   color: var(--ink-2);
 }
@@ -298,7 +295,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 11.5px;
+  font-size: 12.5px;
   color: var(--ink-2);
   font-variant-numeric: tabular-nums;
 }
@@ -306,7 +303,7 @@ body {
 /* 便数の凡例は線そのものを見せたいので、太さも本文と同じ比率で描く */
 .lg-bar {
   flex: none;
-  width: 34px;
+  width: 40px;
   border-radius: 3px;
 }
 
@@ -319,16 +316,16 @@ body {
 }
 
 .lg-note {
-  font-size: 11px;
-  color: var(--ink-3);
+  font-size: 12px;
+  color: var(--ink-2);
 }
 
 .panel-foot {
   flex: none;
   padding: 12px 14px;
-  font-size: 10.5px;
-  line-height: 1.55;
-  color: var(--ink-3);
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
   border-top: 1px solid var(--line);
 }
 
@@ -373,7 +370,7 @@ body {
 }
 
 .pp-sub {
-  font-size: 12px;
+  font-size: 12.5px;
   color: var(--ink-2);
   margin-top: 1px;
 }
@@ -387,7 +384,7 @@ body {
 
 .pp-dl dt {
   color: var(--ink-2);
-  font-size: 12px;
+  font-size: 12.5px;
 }
 
 .pp-dl dd {
@@ -406,8 +403,8 @@ body {
   margin-top: 9px;
   padding-top: 8px;
   border-top: 1px solid var(--line);
-  font-size: 11px;
-  color: var(--ink-3);
+  font-size: 11.5px;
+  color: var(--ink-2);
 }
 
 /* ---- 背景地図スイッチャー（右下） ---- */
@@ -429,7 +426,7 @@ body {
   color: var(--ink-2);
   font: inherit;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 13px;
   padding: 5px 12px;
   border-radius: 7px;
   cursor: pointer;
@@ -461,7 +458,7 @@ body {
 }
 
 .maplibregl-ctrl-attrib {
-  font-size: 10px;
+  font-size: 11px;
 }
 
 /* ---- レスポンシブ（モバイルはボトムシート） ---- */
@@ -473,18 +470,15 @@ body {
     bottom: 0;
     width: auto;
     max-width: none;
-    height: auto;
     max-height: 62dvh;
     border: none;
     border-top: 1px solid var(--line);
+    /* 画面下端に貼り付くボトムシート。上の角だけ丸める。 */
+    border-radius: 14px 14px 0 0;
   }
 
   .panel.collapsed {
     max-height: none;
-    /* デスクトップ用の .panel.collapsed { bottom:auto } を打ち消す。
-       モバイルは top:auto のため bottom まで auto になるとパネルが
-       画面最上部へ飛ぶ。畳んでも下端固定のボトムシートを維持する。 */
-    bottom: 0;
   }
 
   .panel-head {

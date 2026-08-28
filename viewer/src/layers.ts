@@ -35,8 +35,10 @@ export const RAMP: Record<'light' | 'dark', string[]> = {
   // （3.7）も落ちた。70° まで回すと 0.169 を保てる。
   dark: ['#0068a7', '#685ed7', '#b159c6', '#e65c97', '#ff765a', '#fba100'],
 }
-// 色だけでは細線の判別が難しいので、太さの幅も広くとる
-export const WIDTHS = [0.6, 1.0, 1.6, 2.4, 3.6, 5.4]
+// 太さも色と同じ6階級で振り、色に頼らなくても本数の多寡が読めるようにする。
+// 幅は等比（約1.5倍ずつ）で 1:7.6。等差にすると上位側の比が詰まり、24–47 と 48–95 が
+// 同じ太さに見えてしまう。下限は 1.0px で、最も細い階級も線として残る。
+export const WIDTHS = [1.0, 1.5, 2.2, 3.4, 5.1, 7.6]
 
 export interface LayerDef {
   key: string
@@ -101,20 +103,27 @@ const stepExpr = (vals: (string | number)[]): ExpressionSpecification => {
   return e as unknown as ExpressionSpecification
 }
 
-/** 低ズームでは幹線しか出ず、1区間が数百 m しかないので、細くすると消える。1px 強を下限にする。 */
+/**
+ * どのズームでも階級間の太さの比を保つ。以前は低ズームで 1.0–1.2px の下限に丸めていて、
+ * 下位3階級が同じ太さに潰れ、太さが本数を表していなかった。丸めるかわりに全体を
+ * 縮小率で調整する。z9 未満は便数の少ない区間がそもそもタイルに入らない
+ * （aggregate.py が便数ごとに minzoom を決めている）ので、細くしても線は消えない。
+ */
 const lineWidthExpr = (): ExpressionSpecification =>
   [
     'interpolate',
     ['linear'],
     ['zoom'],
     4,
-    ['max', ['*', stepExpr(WIDTHS), 0.45], 1.2],
+    ['max', ['*', stepExpr(WIDTHS), 0.45], 0.9],
     6,
-    ['max', ['*', stepExpr(WIDTHS), 0.7], 1.0],
+    ['max', ['*', stepExpr(WIDTHS), 0.55], 0.9],
     9,
+    ['*', stepExpr(WIDTHS), 0.8],
+    12,
     stepExpr(WIDTHS),
-    13,
-    ['*', stepExpr(WIDTHS), 1.8],
+    14,
+    ['*', stepExpr(WIDTHS), 1.25],
   ] as unknown as ExpressionSpecification
 
 type DataLayer = LineLayerSpecification | CircleLayerSpecification | SymbolLayerSpecification
@@ -185,7 +194,7 @@ export function legendMarkup(def: LayerDef, p: Palette): string {
     return (
       LABELS.map(
         (l, i) =>
-          `<span class="lg-row"><span class="lg-bar" style="height:${Math.max(WIDTHS[i], 2)}px;background:${p.colors[i]}"></span>${l}</span>`,
+          `<span class="lg-row"><span class="lg-bar" style="height:${Math.max(WIDTHS[i] * 1.25, 1.5)}px;background:${p.colors[i]}"></span>${l}</span>`,
       ).join('') + '<span class="lg-note">便/日（両方向計）</span>'
     )
   }
